@@ -1,0 +1,59 @@
+/* 引入第三方或自定义的字体图标样式 */
+@font-face {
+  font-family: 'iconfont';  /* project id 1410914 */
+  src: url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.eot');
+  src: url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1410914_tdtgq33y9bs.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: 'iconfont';
+  font-style: normal !important;
+}
+
+.iconfont-upload-pic::before {
+  content: '\e60c';
+}
+
+.iconfont-machine::before {
+  content: '\e76d';
+}
+
+.iconfont-role::before {
+  content: '\e604';
+}
+
+.iconfont-question::before {
+  content: '\e6a6';
+}
+
+.iconfont-guide::before {//新手指南
+  content: '\e6f8';
+}
+.iconfont-vote::before {//投票
+  content: '\e63a';
+}
+.iconfont-crown::before {//皇冠
+  content: '\e762';
+}
+.iconfont-merchant::before {//商家
+  content: '\e61d';
+}
+//arrow
+.iconfont-right-arrow::before {//商家
+  content: '\e645';
+}
+//fullscreen
+.iconfont-close-fullscreen::before {//关闭全屏
+  content: '\e606';
+}
+.iconfont-open-fullscreen::before {//开启全屏
+  content: '\e601';
+}
+.iconfont-refresh::before {//刷新
+  content: '\e625';
+}
+// <van-icon class-prefix="my-icon" name="extra" />
