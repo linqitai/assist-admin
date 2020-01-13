@@ -13,8 +13,8 @@ export default{
 	wordStatusOptions:[{id: '',value: "全部"},{id: "0",value: "待回复"},{id: "1",value: "已处理"}],
 	activedOptions:[{id: '-1',value: "未实名"},{id: "0",value: "待审核"},{id: "1",value: "已实名"},{id: "2",value: "审核驳回"}],
 	activedOptions4Serach:[{id: "0",value: "待审核"},{id: "2",value: "审核驳回"}],
-	orderOptions:[{id:"0",value:"按拥有矿石降序"},{id:"1",value:"按算力降序"},{id:"2",value:"按贡献值降序"},{id:"3",value:"按平台券降序"},{id:"4",value:"被打小报告次数"},{id:"5",value:"被冻结账号次数"}],
-	conditionOptions:[{id:"0",value:"姓名"},{id:"1",value:"手机号"},{id:"2",value:"上级手机号"},{id:"3",value:"上级昵称"}],
+	orderOptions:[{id:"0",value:"矿石"},{id:"1",value:"我的算力"},{id:"2",value:"团队算力"},{id:"3",value:"贡献值"},{id:"4",value:"帮扶券"},{id:"5",value:"小报告次数"},{id:"6",value:"冻结次数"}],
+	conditionOptions:[{id:"0",value:"昵称"},{id:"1",value:"姓名"},{id:"2",value:"手机号"},{id:"3",value:"区块地址"}],
 	provinceOptions:[{
 		"ProID": 1,
 		"name": "北京市",

@@ -73,4 +73,8 @@ export default{
 	//platformTicket
 	getAssistPlateformTicketAccountBookList: host + "admin/plateformTicketAccountBook/getAssistPlateformTicketAccountBookList",
 	transferPlatformTicket: host + "admin/plateformTicketAccountBook/transferPlatformTicket",
+  //userFreeze
+  insertAssistUserFreeze: host + "admin/userFreeze/insertAssistUserFreeze",
+  getAssistUserFreezePageList: host + "admin/userFreeze/getAssistUserFreezePageList",
+  unFreeze: host + "admin/userFreeze/unFreeze"
 }

@@ -93,7 +93,8 @@ function voteType(val){
 		return val;
 	}
 }
-const versionOptions = [{id:1,value:'1'},{id:2,value:'2'},{id:3,value:'3'},{id:4,value:'4'},{id:5,value:'5'},{id:6,value:'6'}];
+
+const versionOptions = [{ id:1,value:'1' }, { id:2,value:'2' }, { id:3,value:'3' }, { id:4,value:'4' }, { id:5,value:'5' }, { id:6,value:'6' }];
 //矿机版本号
 function machineVersionType(val){
 	let value = versionOptions[val-1].value;
@@ -199,6 +200,18 @@ function getDateYMD(t) {
   return y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d);
 }
 
+function accountStatus(val){
+	if(val==0){
+		return '正常';
+	}else if(val==1){
+		return '冻结';
+	}else{
+		return val;
+	}
+}
 export {
-	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,isPayType,isNullReturnLine,isOrNo,voteType,machineVersionType,versionOptions,isOrNoOptions,machineTagOptions,machineTypeOptions,machineTagType,machineTypeType,dealStatusType,dealStatusOptions,dealType,noticeType,wordType,platformBookType,activedType,getDateYMD
+	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,
+  isPayType,isNullReturnLine,isOrNo,voteType,machineVersionType,versionOptions,isOrNoOptions,
+  machineTagOptions,machineTypeOptions,machineTagType,machineTypeType,dealStatusType,dealStatusOptions,
+  dealType,noticeType,wordType,platformBookType,activedType,getDateYMD,accountStatus
 }

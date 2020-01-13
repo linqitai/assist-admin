@@ -13,7 +13,6 @@ module.exports = {
     'arrow-parens': 0,
     // allow async-await
     'generator-star-spacing': 0,
-    // allow debugger during development
     'eol-last': 0,
     'space-before-function-paren': 0,
     'semi': [0],
@@ -44,7 +43,8 @@ module.exports = {
     'space-in-parens': 0,
     'block-spacing': 0,
     'brace-style': 0,
-    'padded-blocks': 0
+    'padded-blocks': 0,
+    'object-curly-spacing':0
   },
   parserOptions: {
     parser: 'babel-eslint'

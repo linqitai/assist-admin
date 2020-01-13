@@ -1,12 +1,23 @@
+<style scoped lang="scss">
+  .table {
+		width: 100%;
+		font-size: 14px;
+    .transferBox{
+
+    }
+
+	}
+</style>
+
 <template>
-	<div class="table">
-		<!-- <div class="crumbs">
+  <div class="table">
+    <!-- <div class="crumbs">
 			<el-breadcrumb separator="/">
 				<el-breadcrumb-item><i class="el-icon-lx-cascades"></i>用户管理</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div> -->
-		<div class="container">
-			<!-- <el-select
+    <div class="container">
+      <!-- <el-select
 			  class="width200"
 			  size="medium"
 			  v-model="form.courtId"
@@ -20,42 +31,42 @@
 			    :value="item.value"
 			  ></el-option>
 			</el-select> -->
-			<search-condition @clickSearchData="searchEvent">
-				<div class="element">
-					<p class="inline">排序</p>
-					<div class="inline">
-						<el-select v-model="searchForm.order" @change="orderChange" placeholder="排序方式" class="handle-select mr10 width160">
-							<el-option v-for="item in orderOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
-						</el-select>
-					</div>
-				</div>
-				<div class="element">
+      <search-condition @clickSearchData="searchEvent">
+        <div class="element">
+          <p class="inline">排序</p>
+          <div class="inline">
+            <el-select v-model="searchForm.order" @change="orderChange" placeholder="排序方式" class="handle-select mr10 width160">
+              <el-option v-for="item in orderOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
+            </el-select>
+          </div>
+        </div>
+        <!-- <div class="element">
 					<p class="inline">来自</p>
-					<div class="inline">
+					<div class="inline width140">
 						<el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
 							<el-option key="1" label="广东省" value="广东省"></el-option>
 						</el-select>
 					</div>
-				</div>
-				<div class="element">
-					<p class="inline">条件查询</p>
-					<div class="inline">
-						<el-select v-model="searchForm.condition" @change="conditionChange" class="handle-select mr10">
-							<el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
-						</el-select>
-					</div>
-					<div class="inline width160">
-						<el-input v-model="searchForm.searchContent" size="medium" placeholder="请输入搜索内容" clearable></el-input>
-					</div>
-				</div>
-				<div class="element">
+				</div> -->
+        <div class="element">
+          <p class="inline">条件查询</p>
+          <div class="inline width140">
+            <el-select v-model="searchForm.condition" @change="conditionChange">
+              <el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
+            </el-select>
+          </div>
+          <div class="inline width160 margL10">
+            <el-input v-model="searchForm.searchContent" size="medium" placeholder="请输入搜索内容" clearable></el-input>
+          </div>
+        </div>
+        <!-- <div class="element">
 					<p class="inline">日期</p>
 					<div class="inline">
 						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy-MM-dd"></el-date-picker>
 					</div>
-				</div>
-			</search-condition>
-			<!-- <div class="handle-box">
+				</div> -->
+      </search-condition>
+      <!-- <div class="handle-box">
 				<el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
 					<el-option key="1" label="广东省" value="广东省"></el-option>
 					<el-option key="2" label="湖南省" value="湖南省"></el-option>
@@ -63,334 +74,477 @@
 				<el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
 				<el-button type="primary" icon="search" @click="search">搜索</el-button>
 			</div> -->
-			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="id" label="ID" min-width="195"></el-table-column>
-				<el-table-column prop="parentId" label="上级ID" min-width="195"></el-table-column>
-				<el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
-				<el-table-column prop="realName" label="姓名" min-width="120"></el-table-column>
-				<el-table-column prop="actived" label="是否激活" min-width="80"></el-table-column>
-				<el-table-column prop="level" label="级别" min-width="100"></el-table-column>
-				<el-table-column prop="teamateNum" label="直推人数" min-width="80"></el-table-column>
-				<el-table-column prop="realnameNum" label="实名人数" min-width="80"></el-table-column>
-				<el-table-column prop="validNum" label="有效人数" min-width="80"></el-table-column>
-				<el-table-column prop="thisWeekMineral" label="可用矿石" min-width="80"></el-table-column>
-				<el-table-column prop="contributionValue" label="贡献值" min-width="80"></el-table-column>
-				<el-table-column prop="platformTicket" label="平台券" min-width="80"></el-table-column>
-				<el-table-column prop="calculationPower" label="算力" min-width="80"></el-table-column>
-				<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
-				<el-table-column prop="receivingAddress" label="地区" :formatter="formatter" min-width="220">
-				</el-table-column>
-				<el-table-column label="操作" width="140" align="center" fixed="right">
-					<template slot-scope="scope">
-						<el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
-						<!-- <el-button type="text" icon="el-icon-view" @click="handleDetail(scope.$index, scope.row)">详情</el-button>
+      <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
+        <el-table-column prop="id" label="ID" min-width="60" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="parentId" label="上级ID" min-width="80" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
+        <el-table-column prop="nickName" label="昵称" min-width="120"></el-table-column>
+        <el-table-column prop="realName" label="姓名" min-width="80"></el-table-column>
+        <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
+        <el-table-column prop="actived" label="是否激活" min-width="80"></el-table-column>
+        <el-table-column prop="level" label="级别" min-width="100"></el-table-column>
+        <el-table-column prop="teamateNum" label="直推人数" min-width="80"></el-table-column>
+        <el-table-column prop="realnameNum" label="实名人数" min-width="80"></el-table-column>
+        <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="90"></el-table-column>
+        <el-table-column prop="contributionValue" label="贡献值" min-width="80"></el-table-column>
+        <el-table-column prop="platformTicket" label="帮扶券" min-width="80"></el-table-column>
+        <el-table-column prop="myCalculationPower" label="算力" min-width="80"></el-table-column>
+        <el-table-column prop="beComplaintTimes" label="被投诉次数" min-width="100"></el-table-column>
+        <el-table-column prop="beFrozenTimes" label="被冻结次数" min-width="100"></el-table-column>
+        <el-table-column prop="accountStatus" label="账户状态" min-width="80" fixed="right">
+          <template slot-scope="scope">
+            <span :class="scope.row.accountStatus==1?'red':'green'">{{scope.row.accountStatus | accountStatus}}</span>
+          </template>
+        </el-table-column>
+        <!-- <el-table-column prop="receivingAddress" label="地区" :formatter="formatter" min-width="220">
+				</el-table-column> -->
+        <el-table-column label="操作" width="140" align="center" fixed="right">
+          <template slot-scope="scope">
+            <el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
+            <!-- <el-button type="text" icon="el-icon-view" @click="handleDetail(scope.$index, scope.row)">详情</el-button>
 						<el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
-						<!-- <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
-					</template>
-				</el-table-column>
-			</el-table>
-			<div class="pagination">
-				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
-				 :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
-				</el-pagination>
-			</div>
-		</div>
+            <!-- <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pagination">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+          :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+        </el-pagination>
+      </div>
+      <div class="placeholderLine20"></div>
+    </div>
 
-		<!-- 详情编辑弹出框 -->
-		<el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
-			<el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
-				<el-form-item label="注册时间">
-					<el-date-picker type="datetime" placeholder="选择日期" v-model="form.registerTime" value-format="yyyy-MM-dd hh:mm:ss" class="width200" :disabled="true"></el-date-picker>
-				</el-form-item>
-				<el-form-item label="上级ID">
-					<el-input v-model="form.parentId"></el-input>
-				</el-form-item>
-				<el-form-item label="用户名">
-					<el-input v-model="form.nickName"></el-input>
-				</el-form-item>
-				<el-form-item label="姓名">
-					<el-input v-model="form.realName"></el-input>
-				</el-form-item>
-				<el-form-item label="手机号">
-					<el-input v-model="form.mobilePhone"></el-input>
-				</el-form-item>
-				<el-form-item label="是否激活">
-					<el-input v-model="form.actived"></el-input>
-				</el-form-item>
-				<el-form-item label="支付宝">
-					<el-input v-model="form.alipayNum"></el-input>
-				</el-form-item>
-				<el-form-item label="微信号">
-					<el-input v-model="form.wechartNum"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="上周拥有矿石">
-					<el-input v-model="form.lastWeekMineral"></el-input>
-				</el-form-item>
-				<el-form-item label="当前拥有矿石">
-					<el-input v-model="form.thisWeekMineral"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结矿石">
-					<el-input v-model="form.temporaryFreezeMineral"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="待释放矿石">
-					<el-input v-model="form.toBeReleasedMineral"></el-input>
-				</el-form-item>
-				<el-form-item label="贡献值">
-					<el-input v-model="form.contributionValue"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结贡献值">
-					<el-input v-model="form.temporaryFreezeContribution"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="算力">
-					<el-input v-model="form.calculationPower"></el-input>
-				</el-form-item>
-				<el-form-item label="平台券">
-					<el-input v-model="form.platformTicket"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结平台券">
-					<el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="买入次数">
-					<el-input v-model="form.buyingTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="卖出次数">
-					<el-input v-model="form.sellingTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="区块地址">
-					<el-input v-model="form.blockAddress"></el-input>
-				</el-form-item>
-				<el-form-item label="被打小报告次数">
-					<el-input v-model="form.beComlaintTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="被冻结账号次数">
-					<el-input v-model="form.beFrozenTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="账号状态">
-					<el-input v-model="form.accountStatus"></el-input>
-				</el-form-item>
-				<el-form-item label="账号冻结原因">
-					<el-input v-model="form.abnormalReason"></el-input>
-				</el-form-item>
-				<el-form-item label="口号">
-					<el-input v-model="form.slogan" class="width400"></el-input>
-				</el-form-item>
-			</el-form>
-			<span slot="footer" class="dialog-footer center">
-				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
-				<el-button type="primary" icon="el-icon-edit" @click="operateBtn">冻结</el-button>
-				<!-- <el-button type="danger" icon="el-icon-delete" v-show="visibleType=='detail'" @click="handleDelete(form.ID)">删除</el-button> -->
-				<!-- <el-button type="primary" icon="el-icon-finished" @click="saveEdit" v-show="visibleType=='edit'">确 定</el-button> -->
-			</span>
-		</el-dialog>
+    <!-- 详情编辑弹出框 -->
+    <el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
+      <el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
+        <el-form-item label="注册时间">
+          <el-date-picker type="datetime" placeholder="选择日期" v-model="form.registerTime" value-format="yyyy-MM-dd hh:mm:ss"
+            class="width200" :disabled="true"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="上级ID">
+          <el-input v-model="form.parentId"></el-input>
+        </el-form-item>
+        <el-form-item label="用户名">
+          <el-input v-model="form.nickName"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名">
+          <el-input v-model="form.realName"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号">
+          <el-input v-model="form.mobilePhone"></el-input>
+        </el-form-item>
+        <el-form-item label="是否激活">
+          <el-input v-model="form.actived"></el-input>
+        </el-form-item>
+        <el-form-item label="支付宝">
+          <el-input v-model="form.alipayNum"></el-input>
+        </el-form-item>
+        <el-form-item label="微信号">
+          <el-input v-model="form.wechartNum"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="上周拥有矿石">
+          <el-input v-model="form.lastWeekMineral"></el-input>
+        </el-form-item>
+        <el-form-item label="当前拥有矿石">
+          <el-input v-model="form.thisWeekMineral"></el-input>
+        </el-form-item>
+        <el-form-item label="临时冻结矿石">
+          <el-input v-model="form.temporaryFreezeMineral"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="待释放矿石">
+          <el-input v-model="form.toBeReleasedMineral"></el-input>
+        </el-form-item>
+        <el-form-item label="贡献值">
+          <el-input v-model="form.contributionValue"></el-input>
+        </el-form-item>
+        <el-form-item label="临时冻结贡献值">
+          <el-input v-model="form.temporaryFreezeContribution"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="算力">
+          <el-input v-model="form.calculationPower"></el-input>
+        </el-form-item>
+        <el-form-item label="平台券">
+          <el-input v-model="form.platformTicket"></el-input>
+        </el-form-item>
+        <el-form-item label="临时冻结平台券">
+          <el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="买入次数">
+          <el-input v-model="form.buyingTimes"></el-input>
+        </el-form-item>
+        <el-form-item label="卖出次数">
+          <el-input v-model="form.sellingTimes"></el-input>
+        </el-form-item>
+        <el-form-item label="区块地址">
+          <el-input v-model="form.blockAddress"></el-input>
+        </el-form-item>
+        <el-form-item label="被打小报告次数">
+          <el-input v-model="form.beComlaintTimes"></el-input>
+        </el-form-item>
+        <el-form-item label="被冻结账号次数">
+          <el-input v-model="form.beFrozenTimes"></el-input>
+        </el-form-item>
+        <el-form-item label="账号状态">
+          <el-input v-model="form.accountStatus"></el-input>
+        </el-form-item>
+        <el-form-item label="账号冻结原因">
+          <el-input v-model="form.abnormalReason"></el-input>
+        </el-form-item>
+        <el-form-item label="口号">
+          <el-input v-model="form.slogan" class="width400"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer center">
+        <el-button type="primary" icon="el-icon-edit" @click="freezeBtn(form.userId)">冻结</el-button>
+        <el-button type="primary" icon="el-icon-edit" @click="unFreezeBtn(form)">解冻</el-button>
+      </span>
+    </el-dialog>
 
-		<!-- 删除提示框 -->
-		<el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-			<div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="delVisible = false">取 消</el-button>
-				<el-button type="primary" @click="deleteRow">确 定</el-button>
-			</span>
-		</el-dialog>
-	</div>
+    <!-- 删除提示框 -->
+    <el-dialog title="提示" :visible.sync="isShowFreezeModel" width="440px" center>
+      <div class="transferBox">
+        <el-form ref="form4Freeze" :model="form4Freeze" :rules="rules4Freeze" label-width="140px" label-position="left">
+          <el-form-item label="用户ID" prop="userId">
+            <el-input v-model="form4Freeze.userId" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="冻结原因" prop="reason">
+            <el-input v-model="form4Freeze.reason" clearable show-word-limit></el-input>
+          </el-form-item>
+          <el-form-item label="解封所需帮扶券" prop="needTicket">
+            <el-input min="10" max="100" v-model="form4Freeze.needTicket" clearable></el-input>
+          </el-form-item>
+          <el-form-item label="可否立马解冻" prop="canUnfreeze">
+            <el-radio-group v-model="form4Freeze.canUnfreeze">
+              <el-radio :label="1">可</el-radio>
+              <el-radio :label="0">否</el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="权限密码" prop="safePassword">
+            <el-input v-model="form4Freeze.safePassword" clearable type="password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submit4Freeze('form4Freeze')">冻结对方账号</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <!-- <span slot="footer" class="dialog-footer">
+        <el-button @click="isShowFreezeModel = false">取 消</el-button>
+        <el-button type="primary" @click="submit4Freeze('form4Freeze')">确 定</el-button>
+      </span> -->
+    </el-dialog>
+    <el-dialog title="提示" :visible.sync="isShowUnfrezeeModel" width="300px" center>
+      <div class="del-dialog-cnt">是否确定帮[{{unFreezeNickName}}]用户解冻？</div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="isShowUnfrezeeModel = false">取 消</el-button>
+        <el-button type="primary" @click="sureUnFreeze">确 定</el-button>
+      </span>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
-	import searchCondition from "@/components/common/searchCondition.vue";
-	export default {
-		data() {
-			return {
-				url: '',
-				tableData: [],
-				total: 400,
-				pageSizes:'',
-				pageSize:'',
-				currentPage: 1,
-				multipleSelection: [],
-				searchForm:{
-					order:"",
-					condition: '',
-					searchContent: '',
-					date:''
-				},
-				orderOptions: [],
-				conditionOptions:[],
-				select_cate: '',
-				select_word: '',
-				del_list: [],
-				is_search: false,
-				visibleType: 'detail',
-				detailOrEditVisible: false,
-				delVisible: false,
-				form: {},
-				adressWidth: '200px',
-				idx: -1,
-				checkedMineralDesc: false
-			}
-		},
-		components: {
-			searchCondition
-		},
-		created() {
-			console.log("created")
-			
-			this.initData();
-			this.getData();
-		},
-		computed: {
-		},
-		methods: {
-			initData(){
-				this.pageSizes = this.$config.pageSizes;
-				this.pageSize = this.$config.pageSize;
-				this.currentPage = 1;
-				this.orderOptions = this.$config.orderOptions;
-				this.conditionOptions = this.$config.conditionOptions;
-			},
-			checkedMineralDescChange() {
-				console.log('checkedMineralDesc', this.checkedMineralDesc)
-			},
-			orderChange(val){
-				console.log('val', val)
-			},
-			conditionChange(val) {
-				console.log('val', val)
-			},
-			searchEvent() {
-				this.pageIndex = 1;
-				console.log('searchForm', this.searchForm)
-				
-				// this.getList();
-			},
-			operateBtn() {
-				//这里需要根据账号状态来判断是冻结还是解冻
-				this.$message("此功能尚未开通")
-			},
-			// 分页导航
-			handleCurrentChange(val) {
-				this.currentPage = val;
-				this.getData();
-			},
-			handleSizeChange(val) {
-				console.log('size', val)
-				this.currentPage = 1;
-				this.pageSize = val;
-				this.getData();
-			},
-			// 获取 easy-mock 的模拟数据
-			getData() {
-				let _this = this;
-				// 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-				// if (process.env.NODE_ENV === 'development') {
-				// 	this.url = '/ms/table/list';
-				// };
-				this.searchForm.condition = this.$route.query.condition;
-				this.searchForm.searchContent = this.$route.query.id;
-				console.log('searchForm',this.searchForm);
-				var params = {
-					pageNo:_this.currentPage,
-					pageSize:_this.pageSize
-				}
-				_this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res){
-					// console.log('res',res)
-					if (res.code == _this.$api.ERR_OK) { // 200
-						_this.tableData = res.data.list;
-						_this.total = res.data.total;
-					}
-				})
-				
-			},
-			search() {
-				this.is_search = true;
-			},
-			formatter(row, column) {
-				return row.region;
-			},
-			filterTag(value, row) {
-				return row.tag === value;
-			},
-			handleDetail(index, row) {
-				this.visibleType = 'detail';
-				this.form = row;
-				this.detailOrEditVisible = true;
-			},
-			handleEdit(index, row) {
-				this.visibleType = 'edit';
-				this.idx = index;
-				const item = this.tableData[index];
-				this.form = {
-					name: item.name,
-					date: item.date,
-					address: item.address
-				}
-				this.detailOrEditVisible = true;
-			},
-			handleDelete(ID) {
-				console.log('ID',ID);
-				this.delVisible = true;
-			},
-			delAll() {
-				const length = this.multipleSelection.length;
-				let str = '';
-				this.del_list = this.del_list.concat(this.multipleSelection);
-				for (let i = 0; i < length; i++) {
-					str += this.multipleSelection[i].name + ' ';
-				}
-				this.$message.error('删除了' + str);
-				this.multipleSelection = [];
-			},
-			handleSelectionChange(val) {
-				this.multipleSelection = val;
-			},
-			// 保存编辑
-			saveEdit() {
-				// this.$set(this.tableData, this.idx, this.form);
-				this.detailOrEditVisible = false;
-				this.$message.success(`修改 ${this.form.name} 信息成功`);
-			},
-			// 确定删除
-			deleteRow() {
-				this.tableData.splice(this.idx, 1);
-				this.$message.success('删除成功');
-				this.delVisible = false;
-				this.detailOrEditVisible = false;
-			}
-		}
-	}
+  import searchCondition from "@/components/common/searchCondition.vue";
+  export default {
+    data() {
+      return {
+        form4Freeze: {
+          userId: "",
+          reason: "",
+          needTicket: "",
+          canUnfreeze: 1,
+          safePassword: ""
+        },
+        rules4Freeze: {
+          userId: [{
+            required: true,
+            message: '请输入对方用户ID',
+            trigger: 'blur'
+          }, ],
+          reason: [{
+            required: true,
+            message: '请填写冻结原因',
+            trigger: 'blur'
+          }, ],
+          needTicket: [{
+            required: true,
+            message: '请填写解冻所需帮扶券',
+            trigger: 'blur'
+          }, ],
+          canUnfreeze: [{
+            required: true,
+            message: '请选择可否解冻',
+            trigger: 'blur'
+          }, ],
+          safePassword: [{
+            required: true,
+            message: '请输权限密码',
+            trigger: 'blur'
+          }, ]
+        },
+        url: '',
+        tableData: [],
+        total: 400,
+        pageSizes: '',
+        pageSize: '',
+        currentPage: 1,
+        multipleSelection: [],
+        searchForm: {
+          order: "register_time",
+          condition: 'nickName',
+          searchContent: '',
+          date: ''
+        },
+        orderOptions: [],
+        conditionOptions: [],
+        select_cate: '',
+        select_word: '',
+        del_list: [],
+        is_search: false,
+        visibleType: 'detail',
+        detailOrEditVisible: false,
+        isShowFreezeModel: false,
+        isShowUnfrezeeModel: false,
+        form: {},
+        adressWidth: '200px',
+        idx: -1,
+        checkedMineralDesc: false
+      }
+    },
+    components: {
+      searchCondition
+    },
+    created() {
+      console.log("created")
+
+      this.initData();
+      this.getData();
+    },
+    computed: {},
+    methods: {
+      initData() {
+        this.pageSizes = this.$config.pageSizes;
+        this.pageSize = this.$config.pageSize;
+        this.currentPage = 1;
+        this.orderOptions = this.$config.orderOptions;
+        this.conditionOptions = this.$config.conditionOptions;
+      },
+      freezeBtn(userId) {
+        let _this = this;
+        _this.isShowFreezeModel = true;
+        _this.form4Freeze.userId = userId;
+      },
+      unFreezeBtn(row){
+        let _this = this;
+        _this.isShowUnfrezeeModel = true;
+        _this.unFreezeUserId = row.userId;
+        _this.unFreezeNickName = row.nickName;
+      },
+      sureUnFreeze(){
+        let _this = this;
+        _this.unFreezeEvent();
+      },
+      unFreezeEvent(){
+        let _this = this;
+        let params = {
+          unFreezeUserId: _this.unFreezeUserId
+        }
+        _this.$ajax.ajax(_this.$api.unFreeze, 'POST', params, function(res) {
+          _this.isShowUnfrezeeModel = false;
+        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        		_this.$message.success("解冻成功");
+            _this.detailOrEditVisible = false;
+            _this.getData();
+        	}else{
+        		_this.$message.error(res.message);
+        	}
+        })
+      },
+      submit4Freeze(formName) {
+        let _this = this;
+        console.log('form4Freeze', _this.form4Freeze)
+        if (!_this.$reg.userId.test(_this.form4Freeze.userId)) {
+          _this.$message.error("用户ID有误");
+          return;
+        }
+        if ((_this.form4Freeze.reason.length < 3 || _this.form4Freeze.reason.length > 50)) {
+          _this.$message.error("请填写3~50个字的冻结原因");
+          return;
+        }
+        if ((_this.form4Freeze.needTicket < 10 || _this.form4Freeze.needTicket > 1000)) {
+          _this.$message.error("请填写10~1000的解封所需帮扶券");
+          return;
+        }
+        if (!(_this.form4Freeze.canUnfreeze == 1 || _this.form4Freeze.canUnfreeze == 0)) {
+          _this.$message.error("请选择可否立马解冻");
+          return;
+        }
+        if (!_this.$reg.safePassword.test(_this.form4Freeze.safePassword)) {
+          _this.$message.error("权限密码有误");
+          return;
+        }
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            console.log('valid');
+            let url = _this.$api.insertAssistUserFreeze;
+            var params = _this.form4Freeze;
+            console.log(params, 'params');
+            _this.$ajax.ajax(url, 'POST', params, function(res) {
+              // console.log('res',res)
+              if (res.code == _this.$api.ERR_OK) { // 200
+                _this.$message.success("操作成功");
+                _this.$utils.formClear(_this.form4Freeze);
+                _this.isShowFreezeModel = false;
+                _this.detailOrEditVisible = false;
+                _this.getData();
+              } else {
+                _this.$message.error(res.message);
+              }
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      checkedMineralDescChange() {
+        console.log('checkedMineralDesc', this.checkedMineralDesc)
+      },
+      orderChange(val) {
+        let _this = this;
+        console.log('val', val)
+        if (val == "矿石") {
+          _this.searchForm.order = "this_week_mineral";
+        } else if (val == "我的算力") {
+          _this.searchForm.order = "my_calculation_power";
+        } else if (val == "团队算力") {
+          _this.searchForm.order = "team_calculation_power";
+        } else if (val == "贡献值") {
+          _this.searchForm.order = "contribution_value";
+        } else if (val == "帮扶券") {
+          _this.searchForm.order = "platform_ticket";
+        } else if (val == "冻结次数") {
+          _this.searchForm.order = "be_frozen_times";
+        } else if (val == "小报告次数") {
+          _this.searchForm.order = "be_complaint_times";
+        }
+        console.log("_this.searchForm.order", _this.searchForm.order);
+      },
+      conditionChange(val) {
+        let _this = this;
+        console.log('val', val)
+        if (val == "昵称") {
+          _this.searchForm.condition = "nickName";
+        } else if (val == "姓名") {
+          _this.searchForm.condition = "realName";
+        } else if (val == "手机号") {
+          _this.searchForm.condition = "mobilePhone";
+        } else if (val == "区块地址") {
+          _this.searchForm.condition = "blockAddress";
+        }
+        console.log("_this.searchForm.condition", _this.searchForm.condition);
+      },
+      searchEvent() {
+        this.currentPage = 1;
+        console.log('searchForm', this.searchForm);
+        this.getData();
+        // this.getList();
+      },
+      // 分页导航
+      handleCurrentChange(val) {
+        this.currentPage = val;
+        this.getData();
+      },
+      handleSizeChange(val) {
+        console.log('size', val)
+        this.currentPage = 1;
+        this.pageSize = val;
+        this.getData();
+      },
+      // 获取 easy-mock 的模拟数据
+      getData() {
+        let _this = this;
+        // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
+        // if (process.env.NODE_ENV === 'development') {
+        // 	this.url = '/ms/table/list';
+        // };
+        // this.searchForm.condition = this.$route.query.condition;
+        // this.searchForm.searchContent = this.$route.query.id;
+        console.log('searchForm', this.searchForm);
+        var params = {
+          pageNo: _this.currentPage,
+          pageSize: _this.pageSize,
+        }
+        params[_this.searchForm.condition] = _this.searchForm.searchContent;
+        params.orderField = _this.searchForm.order;
+        _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res) {
+          // console.log('res',res)
+          if (res.code == _this.$api.ERR_OK) { // 200
+            _this.tableData = res.data.list;
+            _this.total = res.data.total;
+          }
+        })
+
+      },
+      search() {
+        this.is_search = true;
+      },
+      formatter(row, column) {
+        return row.region;
+      },
+      filterTag(value, row) {
+        return row.tag === value;
+      },
+      handleDetail(index, row) {
+        this.visibleType = 'detail';
+        this.form = row;
+        this.detailOrEditVisible = true;
+      },
+      handleEdit(index, row) {
+        this.visibleType = 'edit';
+        this.idx = index;
+        const item = this.tableData[index];
+        this.form = {
+          name: item.name,
+          date: item.date,
+          address: item.address
+        }
+        this.detailOrEditVisible = true;
+      },
+      handleDelete(ID) {
+        console.log('ID', ID);
+        this.isShowFreezeModel = true;
+      },
+      delAll() {
+        const length = this.multipleSelection.length;
+        let str = '';
+        this.del_list = this.del_list.concat(this.multipleSelection);
+        for (let i = 0; i < length; i++) {
+          str += this.multipleSelection[i].name + ' ';
+        }
+        this.$message.error('删除了' + str);
+        this.multipleSelection = [];
+      },
+      handleSelectionChange(val) {
+        this.multipleSelection = val;
+      },
+      // 保存编辑
+      saveEdit() {
+        // this.$set(this.tableData, this.idx, this.form);
+        this.detailOrEditVisible = false;
+        this.$message.success(`修改 ${this.form.name} 信息成功`);
+      },
+      // 确定删除
+      deleteRow() {
+        this.tableData.splice(this.idx, 1);
+        this.$message.success('删除成功');
+        this.isShowFreezeModel = false;
+        this.detailOrEditVisible = false;
+      }
+    }
+  }
 </script>
-
-<style scoped>
-	.handle-box {
-		margin-bottom: 20px;
-	}
-
-	.handle-select {
-		width: 120px;
-	}
-
-	.handle-input {
-		width: 300px;
-		display: inline-block;
-	}
-
-	.del-dialog-cnt {
-		font-size: 16px;
-		text-align: center
-	}
-
-	.table {
-		width: 100%;
-		font-size: 14px;
-	}
-
-	.red {
-		color: #ff0000;
-	}
-
-	.mr10 {
-		margin-right: 10px;
-	}
-</style>

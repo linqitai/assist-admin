@@ -162,8 +162,6 @@
 				<el-button type="primary" icon="el-icon-finished" @click="saveBtn">确 定</el-button>
 			</span> -->
 		</el-dialog>
-		
-
 		<!-- 删除提示框 -->
 		<el-dialog title="提示" :visible.sync="delVisible" width="300px" v-dialogDrag center>
 			<div class="del-dialog-cnt">删除后不可恢复，是否确定删除？</div>
@@ -197,11 +195,11 @@
 					],
 					blockAddress: [
 						{ required: true, message: '请输入对方区块地址', trigger: 'blur' },
-						{  min: 20, max: 34, message: '请填写正确的区块地址', trigger: 'blur' }
+						{ min: 20, max: 34, message: '请填写正确的区块地址', trigger: 'blur' }
 					],
 					safePassword:[
 						{ required: true, message: '请输权限密码', trigger: 'blur' },
-						{  min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
+						{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
 					]
 				},
 				formLabelPosition:'left',
@@ -458,7 +456,7 @@
 				this.status = val;
 				this.getData();
 			},
-			
+
 			// 分页导航
 			handleCurrentChange(val) {
 				this.currentPage = val;

@@ -27,6 +27,7 @@
  */
 
 export default{
+  userId:/^[A-Za-z0-9]{1,20}$/,
 	positive_integerHint4BuyBill:'(卖出数量-买入数量)+2000',
 	positive_integer:/^[0-9]\d{0,6}$/,
 	positive_integerHint:'请填写小于1000000的正整数',

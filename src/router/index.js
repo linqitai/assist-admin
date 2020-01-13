@@ -35,6 +35,11 @@ export default new Router({
 				    component: resolve => require(['../components/page/user/userManage.vue'], resolve),
 				    meta: { title: '用户管理' }
 				},
+        {
+				    path: '/freezeManage',
+				    component: resolve => require(['../components/page/user/freezeManage.vue'], resolve),
+				    meta: { title: '冻结管理' }
+				},
 				{
 				    path: '/checkManage',
 				    component: resolve => require(['../components/page/user/checkManage.vue'], resolve),
