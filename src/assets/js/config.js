@@ -1,7 +1,7 @@
 export default{
 	pageSizes:[8, 10, 12, 14],
 	pageSize:8,
-	platformTicketBookTypeOptions:[{id:'',value:'全部'},{id:0,value:'转入'},{id:1,value:'修改信息'},{id:2,value:'第一次租赁矿机'},{id:3,value:'卖出使用服务费'},{id:4,value:'取消交易'},{id:5,value:'竞选省代理获得'},{id:6,value:'竞选市代理获得'},{id:7,value:'转出'},{id:8,value:'津贴奖励'},{id:9,value:'内排注册'},{id:10,value:'留言'}],
+	platformTicketBookTypeOptions:[{id:'',value:'全部'},{id:0,value:'转入'},{id:1,value:'修改信息'},{id:2,value:'第一次租赁矿机'},{id:3,value:'卖出使用服务费'},{id:4,value:'取消交易'},{id:5,value:'竞选省代理获得'},{id:6,value:'竞选市代理获得'},{id:7,value:'转出'},{id:8,value:'津贴奖励'},{id:9,value:'内排注册'},{id:10,value:'留言'},{id:11,value:'解冻'}],
 	dealStatusOptions:[{id:0,value:'待付款'},{id:1,value:'买方已锁定交易'},{id:2,value:'待确认'},{id:3,value:'需上传付款凭证'},{id:4,value:'付款凭证已上传'},{id:5,value:'待客服介入调查'},{id:6,value:'买方取消交易'},{id:7,value:'卖方取消交易'},{id:8,value:'交易成功'},{id:9,value:'客服介入取消交易'}],
 	machineTypeOptions:[{id:0,value:'体验矿机'},{id:1,value:'微型矿机'},{id:2,value:'小型矿机'},{id:3,value:'中型矿机'},{id:4,value:'大型矿机'},{id:5,value:'巨型矿机'}],
 	machineTypeOptions4Give:[{id:2,value:'小型矿机'},{id:3,value:'中型矿机'},{id:4,value:'大型矿机'}],

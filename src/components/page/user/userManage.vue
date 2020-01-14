@@ -134,9 +134,6 @@
         <el-form-item label="手机号">
           <el-input v-model="form.mobilePhone"></el-input>
         </el-form-item>
-        <el-form-item label="是否激活">
-          <el-input v-model="form.actived"></el-input>
-        </el-form-item>
         <el-form-item label="支付宝">
           <el-input v-model="form.alipayNum"></el-input>
         </el-form-item>
@@ -189,19 +186,24 @@
         <el-form-item label="被冻结账号次数">
           <el-input v-model="form.beFrozenTimes"></el-input>
         </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="是否激活">
+          {{form.actived | isOrNo}}
+        </el-form-item>
         <el-form-item label="账号状态">
-          <el-input v-model="form.accountStatus"></el-input>
+          {{form.accountStatus | accountStatus}}
         </el-form-item>
-        <el-form-item label="账号冻结原因">
-          <el-input v-model="form.abnormalReason"></el-input>
+        <el-form-item label="可否解冻">
+          {{form.canUnfreeze | canUnFreeze}}
         </el-form-item>
-        <el-form-item label="口号">
+        <!-- <el-form-item label="口号">
           <el-input v-model="form.slogan" class="width400"></el-input>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <span slot="footer" class="dialog-footer center">
         <el-button type="primary" icon="el-icon-edit" @click="freezeBtn(form.userId)">冻结</el-button>
         <el-button type="primary" icon="el-icon-edit" @click="unFreezeBtn(form)">解冻</el-button>
+        <el-button type="primary" icon="el-icon-edit" @click="canUnFreezeBtn(form)">可解冻</el-button>
       </span>
     </el-dialog>
 
@@ -312,7 +314,9 @@
         form: {},
         adressWidth: '200px',
         idx: -1,
-        checkedMineralDesc: false
+        checkedMineralDesc: false,
+        unFreezeUserId:"",
+        unFreezeNickName:""
       }
     },
     components: {
@@ -332,6 +336,22 @@
         this.currentPage = 1;
         this.orderOptions = this.$config.orderOptions;
         this.conditionOptions = this.$config.conditionOptions;
+      },
+      canUnFreezeBtn(row){
+        let _this = this;
+        let params = {
+          userId: row.userId
+        }
+        _this.$ajax.ajax(_this.$api.updateLetCanUnFreeze, 'POST', params, function(res) {
+          _this.isShowUnfrezeeModel = false;
+        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        		_this.$message.success("操作成功");
+            _this.detailOrEditVisible = false;
+            _this.getData();
+        	}else{
+        		_this.$message.error(res.message);
+        	}
+        })
       },
       freezeBtn(userId) {
         let _this = this;

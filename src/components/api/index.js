@@ -28,6 +28,7 @@ export default{
 	//userinfo
 	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
 	getUserIdByPhone: host + "admin/userInfo/getUserIdByPhone",
+  updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",
 	//menu
 	getMenuPageList: host + "admin/menu/getMenuPageList",
 	insertMenu: host + "admin/menu/insertMenu",

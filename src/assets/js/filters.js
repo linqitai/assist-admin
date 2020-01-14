@@ -204,14 +204,25 @@ function accountStatus(val){
 	if(val==0){
 		return '正常';
 	}else if(val==1){
-		return '冻结';
+		return '冻结中';
 	}else{
 		return val;
 	}
 }
+
+function canUnFreeze(val){
+	if(val==0){
+		return '需要给客服排查问题';
+	}else if(val==1){
+		return '可以让省市代理解冻';
+	}else{
+		return val;
+	}
+}
+
 export {
 	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,
   isPayType,isNullReturnLine,isOrNo,voteType,machineVersionType,versionOptions,isOrNoOptions,
   machineTagOptions,machineTypeOptions,machineTagType,machineTypeType,dealStatusType,dealStatusOptions,
-  dealType,noticeType,wordType,platformBookType,activedType,getDateYMD,accountStatus
+  dealType,noticeType,wordType,platformBookType,activedType,getDateYMD,accountStatus,canUnFreeze
 }
