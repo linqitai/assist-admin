@@ -142,13 +142,13 @@ function dealStatusType(val){
 		return val;
 	}
 }
-
+const dealTypeOptions = config.dealTypeOptions;
 //交易类型
 function dealType(val){
 	if(val==0){
-		return '平台交易';
-	}else if(val==1){
-		return '定向交易';
+		return dealTypeOptions[0].value;
+	}else if(val>0){
+		return dealTypeOptions[val].value;
 	}else{
 		return val;
 	}
@@ -160,8 +160,8 @@ function noticeType(val){
 		return '普通';
 	}else if(val==1){
 		return '轮播图';
-	}else{
-		return val;
+	}else if(val==2){
+		return '图片公告';
 	}
 }
 
@@ -172,7 +172,7 @@ function wordType(val){
 	} else if (val == 1) {
 		return '意见建议';
 	} else if (val == 2) {
-		return '我要告状';
+		return '打小报告';
 	} else if (val == 3) {
 		return '其他类型';
 	} else {

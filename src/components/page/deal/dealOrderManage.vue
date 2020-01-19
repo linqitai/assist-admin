@@ -81,31 +81,40 @@
 
 		<!-- 详情编辑弹出框 -->
 		<el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" width="80%">
-			<div>ID:{{form.id}}</div>
-			<div>买家ID:{{form.buyerId}}</div>
-			<div>卖家ID:{{form.sellerId}}</div>
-			<div>卖家昵称:{{form.nickName}}</div>
-			<div>卖家姓名:{{form.realName}}</div>
-			<div>卖家手机号:{{form.mobilePhone}}</div>
-			<div>交易类型:{{form.type | dealType}}</div>
-			<div>交易数量:{{form.num}}</div>
-			<div>交易单价:{{form.price}}</div>
-			<div :class="textColor(form.status)">交易状态:{{form.status | dealStatusType}}</div>
-			<div>挂单时间:{{form.hangBillTime}}</div>
-			<div>匹配时间:{{form.machingTime}}</div>
-			<div>放币时间:{{form.coinReleaseTime||'--'}}</div>
-			<div>备注:{{form.remark}}</div>
-			<div>
-				<div>打款凭证:</div>
-				<div v-if="form.status==4 || form.status==5 || form.status==8">
-					<img class="selectedImg" :src="form.imgUrl"/>
-				</div>
-			</div>
+
 			<!-- <el-form-item label="备注">
 				<el-input type="textarea" v-model="" class="width400"></el-input>
 			</el-form-item> -->
 			<!-- <el-image class="item" :preview-src-list="imagesList" v-for="item in imagesList" :key="item" :src="item" fit="cover"
 			 lazy></el-image> -->
+       <el-form ref="form" label-width="auto" :inline="false">
+       	<div>ID:{{form.id}}</div>
+       	<div>买家ID:{{form.buyerId}}</div>
+       	<div>卖家ID:{{form.sellerId}}</div>
+       	<div>卖家昵称:{{form.nickName}}</div>
+       	<div>卖家姓名:{{form.realName}}</div>
+       	<div>卖家手机号:{{form.mobilePhone}}</div>
+       	<div>交易类型:{{form.type | dealType}}</div>
+       	<div>交易数量:{{form.num}}</div>
+       	<div>交易单价:{{form.price}}</div>
+       	<div :class="textColor(form.status)">交易状态:{{form.status | dealStatusType}}</div>
+       	<div>挂单时间:{{form.hangBillTime}}</div>
+       	<div>匹配时间:{{form.machingTime}}</div>
+       	<div>放币时间:{{form.coinReleaseTime||'--'}}</div>
+       	<div>备注:{{form.remark}}</div>
+       	<div>
+       		<div>打款凭证:</div>
+       		<div v-if="form.status==4 || form.status==5 || form.status==8">
+       			<img class="selectedImg" :src="form.imgUrl"/>
+       		</div>
+       	</div>
+       	<el-form-item label="贡献值" class="block" v-if="checked">
+       		<el-input-number v-model="addContributionValue" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
+       	</el-form-item>
+       </el-form>
+       <el-checkbox v-model="checked">是否给于买家奖励</el-checkbox>
+       <div class="placeholderLine10"></div>
+       <div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
 				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
 				<el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
@@ -129,27 +138,7 @@
 	export default {
 		data() {
 			return {
-				imagesList: [
-					'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-					'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-				],
-				images: [{
-						id: '1',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '2',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '3',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '4',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-				],
+        addContributionValue:0,
 				url: '',
 				tableData: [],
 				total: 400,
@@ -203,7 +192,8 @@
 				},
 				adressWidth: '200px',
 				idx: -1,
-				checkedMineralDesc: false
+				checkedMineralDesc: false,
+        checked:false
 			}
 		},
 		components: {
@@ -215,13 +205,13 @@
 			this.getData();
 		},
 		computed: {
-			
+
 		},
 		methods: {
 			initData(){
 				this.pageSizes = this.$config.pageSizes;
 				this.pageSize = this.$config.pageSize;
-				this.statusOptions= this.$utils.dealStatusOptions;
+				this.statusOptions= this.$config.dealStatusOptions;
 			},
 			textColor(status){
 				if(status==5){
@@ -283,7 +273,7 @@
 				_this.currentPage = 1;
 				console.log('searchForm', _this.searchForm)
 				if(_this.searchForm.condition=='选择'){
-					
+
 				}else if(_this.searchForm.condition == '订单ID'){
 					_this.searchForm.id = _this.searchForm.searchContent;
 				}else if(_this.searchForm.condition == '买家ID'){
@@ -320,13 +310,17 @@
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
+          if(!_this.checked){
+            _this.addContributionValue = 0.00;
+          }
 					let params = {
 						id:form.id,
 						buyerId:form.buyerId,
-						sellerId:form.sellerId
+						sellerId:form.sellerId,
+            addContributionValue:_this.addContributionValue.toFixed(2)
 					}
 					console.log('params',params);
-					
+
 					_this.$ajax.ajax(_this.$api.cancelAssistTransactionById, 'POST', params, function(res){
 						// console.log('res',res)
 						if (res.code == _this.$api.ERR_OK) { // 200

@@ -33,7 +33,7 @@
 						<span :class="getColor(props.row.messageType)">{{ props.row.messageType | wordType}}</span>
 					</template>
 				</el-table-column>
-				<el-table-column prop="messageTitle" label="留言标题" width="200"></el-table-column>
+				<el-table-column prop="messageTitle" label="留言标题" width="200" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="messageContent" label="留言内容" show-overflow-tooltip width="200"></el-table-column>
 				<el-table-column prop="reply" label="回复内容" show-overflow-tooltip width="200">
 					<!-- <template slot-scope="props">
@@ -89,7 +89,7 @@
 							<el-input type="textarea" autosize v-model="form.reply"></el-input>
 						</el-form-item>
 						<el-form-item label="贡献值" class="block" v-if="checked">
-							<el-input-number v-model="addContributionValue" @change="handleChange" :min="1" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
+							<el-input-number v-model="addContributionValue" @change="handleChange" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
 						</el-form-item>
 					</el-form>
 					<el-checkbox v-model="checked">是否给于奖励</el-checkbox>
@@ -127,7 +127,7 @@
 	export default {
 		data() {
 			return {
-				addContributionValue:1,
+				addContributionValue:0,
 				checked: false,
 				replyRuleForm: {
 					content: '',
@@ -268,13 +268,17 @@
 			},
 			sureReplyEvent(form) {
 				let _this = this;
+        console.log("_this.checked",_this.checked);
+        if(!_this.checked){
+          _this.addContributionValue = 0.00;
+        }
 				var params = {
 					id: _this.form.id,
 					userId:_this.form.userId,
 					messageType:_this.form.messageType,
 					status: 1,
 					reply:_this.form.reply,
-					addContributionValue:_this.addContributionValue
+					addContributionValue:_this.addContributionValue.toFixed(2)
 				}
 				if(_this.$utils.hasNull(params)){
 					_this.$message({
@@ -344,7 +348,7 @@
 			handleSizeChange(val) {
 				console.log('size', val)
 			},
-			
+
 			search() {
 				this.is_search = true;
 			},

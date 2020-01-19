@@ -649,7 +649,7 @@
 			},
 			handleAddCityAgent(index,row){
 				console.log(row);
-				_this.checkList = [];
+				this.checkList = [];
 				this.dialogTitle4CityAgent = "add";
 				this.addlOrEditVisible4CityAgent = true;
 				this.form4CityAgent.provinceAgentId = row.id;
