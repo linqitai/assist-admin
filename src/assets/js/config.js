@@ -15,8 +15,8 @@ export default{
 	wordStatusOptions:[{id: '',value: "全部"},{id: "0",value: "待回复"},{id: "1",value: "已处理"}],
 	activedOptions:[{id: '-1',value: "未实名"},{id: "0",value: "待审核"},{id: "1",value: "已实名"},{id: "2",value: "审核驳回"}],
 	activedOptions4Serach:[{id: "0",value: "待审核"},{id: "2",value: "审核驳回"}],
-	orderOptions:[{id:"0",value:"矿石"},{id:"1",value:"我的算力"},{id:"2",value:"团队算力"},{id:"3",value:"贡献值"},{id:"4",value:"帮扶券"},{id:"5",value:"小报告次数"},{id:"6",value:"冻结次数"}],
-	conditionOptions:[{id:"0",value:"昵称"},{id:"1",value:"姓名"},{id:"2",value:"手机号"},{id:"3",value:"区块地址"}],
+	orderOptions:[{id:"",value:"默认"},{id:"this_week_mineral",value:"矿石"},{id:"my_calculation_power",value:"我的算力"},{id:"team_calculation_power",value:"团队算力"},{id:"contribution_value",value:"贡献值"},{id:"platform_ticket",value:"帮扶券"},{id:"be_complaint_times",value:"小报告次数"},{id:"be_frozen_times",value:"冻结次数"}],
+	conditionOptions:[{id:"",value:"全部"},{id:"userId",value:"用户ID"},{id:"nickName",value:"昵称"},{id:"realName",value:"姓名"},{id:"mobilePhone",value:"手机号"},{id:"blockAddress",value:"区块地址"}],
 	provinceOptions:[{
 		"ProID": 1,
 		"name": "北京市",

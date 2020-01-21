@@ -28,7 +28,7 @@ export default{
 	//userinfo
 	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
 	getUserIdByPhone: host + "admin/userInfo/getUserIdByPhone",
-  updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",
+	updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",
 	//menu
 	getMenuPageList: host + "admin/menu/getMenuPageList",
 	insertMenu: host + "admin/menu/insertMenu",
@@ -74,8 +74,14 @@ export default{
 	//platformTicket
 	getAssistPlateformTicketAccountBookList: host + "admin/plateformTicketAccountBook/getAssistPlateformTicketAccountBookList",
 	transferPlatformTicket: host + "admin/plateformTicketAccountBook/transferPlatformTicket",
-  //userFreeze
-  insertAssistUserFreeze: host + "admin/userFreeze/insertAssistUserFreeze",
-  getAssistUserFreezePageList: host + "admin/userFreeze/getAssistUserFreezePageList",
-  unFreeze: host + "admin/userFreeze/unFreeze"
+	//userFreeze
+	insertAssistUserFreeze: host + "admin/userFreeze/insertAssistUserFreeze",
+	getAssistUserFreezePageList: host + "admin/userFreeze/getAssistUserFreezePageList",
+	unFreeze: host + "admin/userFreeze/unFreeze",
+	//ranking
+	getRanking: host + "admin/statistics/getRanking",
+  getRanking4NoRealNameNum: host + "admin/statistics/getRanking4NoRealNameNum",
+  //statistics
+  getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
+  getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
 }

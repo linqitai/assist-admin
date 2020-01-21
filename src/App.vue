@@ -79,6 +79,17 @@
 	  color: rgb(221, 0, 0);
 	  font-size: 12px;
 	}
+  .bg_blue {
+    background: rgb(45, 140, 240);
+  }
+  
+  .bg_green {
+    background: rgb(100, 213, 114);
+  }
+  
+  .bg_red {
+    background: rgb(242, 94, 67);
+  }
 	.intervals{
 	  height: 24px;
 	  line-height: 24px;

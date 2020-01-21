@@ -36,7 +36,7 @@
           <p class="inline">排序</p>
           <div class="inline">
             <el-select v-model="searchForm.order" @change="orderChange" placeholder="排序方式" class="handle-select mr10 width160">
-              <el-option v-for="item in orderOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
+              <el-option v-for="item in orderOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
             </el-select>
           </div>
         </div>
@@ -52,7 +52,7 @@
           <p class="inline">条件查询</p>
           <div class="inline width140">
             <el-select v-model="searchForm.condition" @change="conditionChange">
-              <el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
+              <el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
             </el-select>
           </div>
           <div class="inline width160 margL10">
@@ -78,17 +78,17 @@
         <el-table-column prop="id" label="ID" min-width="60" show-overflow-tooltip></el-table-column>
         <el-table-column prop="parentId" label="上级ID" min-width="80" show-overflow-tooltip></el-table-column>
         <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
-        <el-table-column prop="nickName" label="昵称" min-width="120"></el-table-column>
-        <el-table-column prop="realName" label="姓名" min-width="80"></el-table-column>
+        <el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip fixed="left"></el-table-column>
+        <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
         <el-table-column prop="actived" label="是否激活" min-width="80"></el-table-column>
-        <el-table-column prop="level" label="级别" min-width="100"></el-table-column>
+        <el-table-column prop="level" label="级别" min-width="50"></el-table-column>
         <el-table-column prop="teamateNum" label="直推人数" min-width="80"></el-table-column>
         <el-table-column prop="realnameNum" label="实名人数" min-width="80"></el-table-column>
-        <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="90"></el-table-column>
-        <el-table-column prop="contributionValue" label="贡献值" min-width="80"></el-table-column>
-        <el-table-column prop="platformTicket" label="帮扶券" min-width="80"></el-table-column>
-        <el-table-column prop="myCalculationPower" label="算力" min-width="80"></el-table-column>
+        <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="80" fixed="right"></el-table-column>
+        <el-table-column prop="contributionValue" label="贡献值" min-width="70" fixed="right"></el-table-column>
+        <el-table-column prop="platformTicket" label="帮扶券" min-width="70" fixed="right"></el-table-column>
+        <el-table-column prop="myCalculationPower" label="算力" min-width="60" fixed="right"></el-table-column>
         <el-table-column prop="beComplaintTimes" label="被投诉次数" min-width="100"></el-table-column>
         <el-table-column prop="beFrozenTimes" label="被冻结次数" min-width="100"></el-table-column>
         <el-table-column prop="accountStatus" label="账户状态" min-width="80" fixed="right">
@@ -296,8 +296,8 @@
         currentPage: 1,
         multipleSelection: [],
         searchForm: {
-          order: "register_time",
-          condition: 'nickName',
+          order: "",
+          condition: '全部',
           searchContent: '',
           date: ''
         },
@@ -437,35 +437,13 @@
       orderChange(val) {
         let _this = this;
         console.log('val', val)
-        if (val == "矿石") {
-          _this.searchForm.order = "this_week_mineral";
-        } else if (val == "我的算力") {
-          _this.searchForm.order = "my_calculation_power";
-        } else if (val == "团队算力") {
-          _this.searchForm.order = "team_calculation_power";
-        } else if (val == "贡献值") {
-          _this.searchForm.order = "contribution_value";
-        } else if (val == "帮扶券") {
-          _this.searchForm.order = "platform_ticket";
-        } else if (val == "冻结次数") {
-          _this.searchForm.order = "be_frozen_times";
-        } else if (val == "小报告次数") {
-          _this.searchForm.order = "be_complaint_times";
-        }
+        _this.searchForm.order = val;
         console.log("_this.searchForm.order", _this.searchForm.order);
       },
       conditionChange(val) {
         let _this = this;
         console.log('val', val)
-        if (val == "昵称") {
-          _this.searchForm.condition = "nickName";
-        } else if (val == "姓名") {
-          _this.searchForm.condition = "realName";
-        } else if (val == "手机号") {
-          _this.searchForm.condition = "mobilePhone";
-        } else if (val == "区块地址") {
-          _this.searchForm.condition = "blockAddress";
-        }
+        _this.searchForm.condition = val;
         console.log("_this.searchForm.condition", _this.searchForm.condition);
       },
       searchEvent() {

@@ -32,127 +32,38 @@
 </style>
 <template>
 	<div class="ranking">
-		<div class="titleCard">每日排名</div>
-		<el-row :gutter="6">
-			<el-col :span="8">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>推广排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toUserManage">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="35"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="55"></el-table-column>
-						<el-table-column prop="count" label="人数" min-width="30"></el-table-column>
-					</el-table>
-					<!-- <div class="list">
-						<div class="item" v-for="item in shareList" :key="item.ID" @click="toUserManage(item.ID)">
-							<span>用户ID:{{item.ID}}</span>
-							<span>姓名:{{item.name}}</span>
-							<span>手机号:{{item.phone}}</span>
-							<span>人数:{{item.count}}</span>
-							<i class="el-icon-arrow-right"></i>
-						</div>
-					</div> -->
-				</el-card>
-			</el-col>
-			<el-col :span="8">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>所加贡献值排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toContributionManage4add">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="35"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="55"></el-table-column>
-						<el-table-column prop="count" label="贡献值" min-width="30"></el-table-column>
-					</el-table>
-				</el-card>
-			</el-col>
-			<el-col :span="8">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>所减贡献值排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toContributionManage4sub">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="35"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="55"></el-table-column>
-						<el-table-column prop="count" label="贡献值" min-width="30"></el-table-column>
-					</el-table>
-				</el-card>
-			</el-col>
-		</el-row>
 		<div class="titleCard">总排名</div>
-		<el-row :gutter="20">
+		<el-row :gutter="10">
 			<el-col :span="allRankingSpan">
 				<el-card shadow="hover" class="mgb20">
 					<div slot="header" class="clearfix">
-						<span>推广排名</span>
+						<span>推广注册人数排名</span>
 						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
 					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toUserManage">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="40"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="50"></el-table-column>
-						<el-table-column prop="count" label="人数" min-width="40"></el-table-column>
-					</el-table>
-					<!-- <div class="list">
-						<div class="item" v-for="item in shareList" :key="item.ID" @click="toContributionManage(item.ID,'-')">
-							<span>用户ID:{{item.ID}}</span>
-							<span>姓名:{{item.name}}</span>
-							<span>手机号:{{item.phone}}</span>
-							<span>贡献值:{{item.count}}</span>
-							<i class="el-icon-arrow-right"></i>
-						</div>
-					</div> -->
-				</el-card>
-			</el-col>
-			<el-col :span="allRankingSpan">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>拥有矿石排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toMineralManage">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="40"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="50"></el-table-column>
-						<el-table-column prop="count" label="矿石" min-width="40"></el-table-column>
+					<el-table :data="teamateNumList" border stripe class="table" style="width: 100%" @row-click="toUserManage">
+            <el-table-column prop="userId" label="用户ID" min-width="50" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="nickName" label="用户昵称" min-width="50" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="realName" label="姓名" min-width="40" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="mobilePhone" label="手机号" min-width="40" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="num" label="人数" min-width="20"></el-table-column>
 					</el-table>
 				</el-card>
 			</el-col>
-			<el-col :span="allRankingSpan">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>拥有贡献值排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%" @row-click="toContributionManage">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="35"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="50"></el-table-column>
-						<el-table-column prop="count" label="贡献值" min-width="30"></el-table-column>
-					</el-table>
-				</el-card>
-			</el-col>
-			<el-col :span="allRankingSpan">
-				<el-card shadow="hover" class="mgb20">
-					<div slot="header" class="clearfix">
-						<span>拥有算力排名</span>
-						<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
-					</div>
-					<el-table :data="shareList" border stripe class="table" style="width: 100%">
-						<el-table-column prop="ID" label="用户ID" min-width="30"></el-table-column>
-						<el-table-column prop="name" label="姓名" min-width="35"></el-table-column>
-						<el-table-column prop="phone" label="手机号" min-width="55"></el-table-column>
-						<el-table-column prop="count" label="算力" min-width="30"></el-table-column>
-					</el-table>
-				</el-card>
-			</el-col>
+      <el-col :span="allRankingSpan">
+      	<el-card shadow="hover" class="mgb20">
+      		<div slot="header" class="clearfix">
+      			<span>无效直推排名</span>
+      			<!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
+      		</div>
+      		<el-table :data="noRealNameNumList" border stripe class="table" style="width: 100%" @row-click="toUserManage">
+            <el-table-column prop="userId" label="用户ID" min-width="50" show-overflow-tooltip></el-table-column>
+      			<el-table-column prop="nickName" label="用户昵称" min-width="50" show-overflow-tooltip></el-table-column>
+      			<el-table-column prop="realName" label="姓名" min-width="40" show-overflow-tooltip></el-table-column>
+      			<el-table-column prop="mobilePhone" label="手机号" min-width="40" show-overflow-tooltip></el-table-column>
+      			<el-table-column prop="num" label="人数" min-width="20"></el-table-column>
+      		</el-table>
+      	</el-card>
+      </el-col>
 		</el-row>
 	</div>
 </template>
@@ -211,10 +122,42 @@
 						phone:'13958777878',
 						count:'181'
 					}
-				]
+				],
+        teamateNumList:[],
+        noRealNameNumList:[],
 			}
 		},
+    created() {
+      let _this = this;
+      _this.getRanking();
+      _this.getRanking4NoRealNameNum();
+    },
 		methods:{
+      getRanking(){
+      	let _this = this;
+      	var params = {
+      		pageNo: 1,
+      		pageSize: 10,
+      		type:'teamate_num'
+      	}
+      	_this.$ajax.ajax(_this.$api.getRanking, 'GET', params, function(res) {
+      		if (res.code == _this.$api.ERR_OK) {
+            _this.teamateNumList = res.data.list;
+      		}
+      	})
+      },
+      getRanking4NoRealNameNum(){
+        let _this = this;
+        var params = {
+          pageNo: 1,
+          pageSize: 10,
+        }
+        _this.$ajax.ajax(_this.$api.getRanking4NoRealNameNum, 'GET', params, function(res) {
+          if (res.code == _this.$api.ERR_OK) {
+            _this.noRealNameNumList = res.data.list;
+          }
+        })
+      },
 			toMineralManage(row, column, event){
 				this.$router.push({path:'mineralManage',query:{condition:'用户ID',id:row.ID}})
 				// this.$router.push({path:'userManage',query:{condition:'上级ID',id:id}})
