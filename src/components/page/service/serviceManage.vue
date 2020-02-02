@@ -29,15 +29,17 @@
 			</search-condition>
 			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
 				<el-table-column prop="id" label="ID" min-width="80"></el-table-column>
-				<el-table-column prop="createTime" label="创建时间" min-width="120"></el-table-column>
-				<el-table-column prop="userName" label="姓名" min-width="120"></el-table-column>
+				<el-table-column prop="realName" label="姓名" min-width="120"></el-table-column>
 				<el-table-column prop="userType" label="角色" min-width="120">
 					<template slot-scope="scope">
 						{{scope.row.userType | getUserType}}
 					</template>
 				</el-table-column>
+        <el-table-column prop="remark" label="备注" min-width="120"></el-table-column>
 				<el-table-column prop="telephone" label="手机号" min-width="120"></el-table-column>
-				</el-table-column>
+        <el-table-column prop="weiChart" label="微信号" min-width="120"></el-table-column>
+        <el-table-column prop="qq" label="QQ号" min-width="120"></el-table-column>
+				<el-table-column prop="createTime" label="创建时间" min-width="160"></el-table-column>
 				<el-table-column label="操作" width="140" align="center" fixed="right">
 					<template slot-scope="scope">
 						<el-link type="primary" @click="handleDelete(scope.$index, scope.row)">删除</el-link>
@@ -56,8 +58,8 @@
 		<!-- 详情编辑弹出框 -->
 		<el-dialog :title="visibleType=='add'?'添加':'编辑'" :visible.sync="addlOrEditVisible" width="340px">
 			<el-form ref="form" :model="form" :rules="rules" label-width="auto">
-				<el-form-item label="姓名" prop="name" required>
-					<el-input v-model="form.name" class="width200"></el-input>
+				<el-form-item label="姓名" prop="realName" required>
+					<el-input v-model="form.realName" class="width200"></el-input>
 				</el-form-item>
 				<el-form-item label="角色" prop="userType" required>
 					<el-select v-model="form.userType" @change="userTypeChange" class="handle-select mr10 width200">
@@ -70,6 +72,12 @@
 				<el-form-item label="微信号" prop="weixin" required>
 					<el-input v-model="form.weixin" class="width200"></el-input>
 				</el-form-item>
+        <el-form-item label="QQ号" prop="weixin" required>
+        	<el-input v-model="form.qq" class="width200"></el-input>
+        </el-form-item>
+        <el-form-item label="备注" prop="weixin" required>
+        	<el-input v-model="form.remark" class="width200"></el-input>
+        </el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer center">
 				<el-button type="primary" icon="el-icon-finished" @click="saveBtn">确 定</el-button>
@@ -118,13 +126,15 @@
 				addlOrEditVisible: false,
 				delVisible: false,
 				form: {
-					name: '',
+					realName: '',
 					userType: '',
 					phone: '',
-					weixin: ''
+					weixin: '',
+          qq: '',
+          remark: ''
 				},
 				rules: {
-					name: [{
+					realName: [{
 							required: true,
 							message: '请输入姓名',
 							trigger: 'blur'
@@ -172,6 +182,30 @@
 							trigger: 'blur'
 						}
 					],
+          qq: [{
+          		required: true,
+          		message: '请填写qq号',
+          		trigger: 'blur'
+          	},
+          	{
+          		min: 1,
+          		max: 20,
+          		message: '长度在 1~20 个字符',
+          		trigger: 'blur'
+          	}
+          ],
+          remark: [{
+          		required: true,
+          		message: '请填写备注',
+          		trigger: 'blur'
+          	},
+          	{
+          		min: 0,
+          		max: 20,
+          		message: '长度在 0~20 个字符',
+          		trigger: 'blur'
+          	}
+          ],
 				},
 				idx: -1,
 				deleteId:'',
@@ -218,11 +252,13 @@
 			insert() {
 				let _this = this;
 				var params = {
-					userName: _this.form.name,
+					realName: _this.form.realName,
 					password: '666666',
 					telephone: _this.form.phone,
 					weiChart: _this.form.weixin,
-					userType: _this.form.userType
+					userType: _this.form.userType,
+          qq:_this.form.qq,
+          remark:_this.form.remark
 				}
 				let url = "";
 				if(_this.visibleType=='add'){
@@ -230,8 +266,8 @@
 					// _this.pageIndex=1;
 				}else{
 					url = _this.$api.editAdminUser;
-					params.id = _this.form.id,
-					delete params.password
+					params.id = _this.form.id;
+					delete params.password;
 				}
 				_this.$ajax.ajax(url, 'POST', params, function(res) {
 					console.log('res', res);
@@ -276,7 +312,9 @@
 					name: '',
 					userType: '',
 					phone: '',
-					weixin: ''
+					weixin: '',
+          qq: '',
+          remark: '',
 				}
 			},
 			handleEdit(index, row) {
@@ -285,10 +323,12 @@
 				// const item = this.tableData[index];
 				this.form = {
 					id:row.id,
-					name: row.userName,
+					realName: row.realName,
 					userType: row.userType,
 					phone: row.telephone,
-					weixin: row.weiChart
+					weixin: row.weiChart,
+          qq:row.qq,
+          remark:row.remark
 				}
 				this.addlOrEditVisible = true;
 			},

@@ -3,8 +3,8 @@
     <div class="ms-login">
       <div class="ms-title">后台管理系统</div>
       <el-form :model="form" :rules="rules" ref="form" label-width="0px" class="ms-content">
-        <el-form-item prop="username">
-          <el-input v-model="form.username" placeholder="username">
+        <el-form-item prop="telephone">
+          <el-input v-model="form.telephone" placeholder="请填写手机号">
             <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
           </el-input>
         </el-form-item>
@@ -28,13 +28,13 @@
     data: function() {
       return {
         form: {
-          username: '13695757240',
-          password: '777777'
+          telephone: '13695757240',
+          password: '888888'
         },
         rules: {
-          username: [{
+          telephone: [{
             required: true,
-            message: '请输入用户名',
+            message: '请填写手机号',
             trigger: 'blur'
           }],
           password: [{
@@ -52,7 +52,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var params = {
-              userName: _this.form.username,
+              telephone: _this.form.telephone,
               password: _this.form.password,
             }
             _this.$ajax.ajax(_this.$api.login, 'GET', params, function(res) {

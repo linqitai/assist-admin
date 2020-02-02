@@ -92,8 +92,8 @@
 				  		<el-option v-for="item in tagOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
 				  	</el-select>
 				  </el-form-item>
-				  <el-form-item label="对方区块地址" prop="blockAddress">
-				    <el-input v-model="form4Transfer.blockAddress" clearable show-word-limit></el-input>
+				  <el-form-item label="对方手机号" prop="mobilePhone">
+				    <el-input v-model="form4Transfer.mobilePhone" clearable :maxlength="maxLen4Phone"></el-input>
 				  </el-form-item>
 				  <el-form-item label="权限密码" prop="safePassword">
 				    <el-input v-model="form4Transfer.safePassword" clearable type="password"></el-input>
@@ -178,8 +178,9 @@
 	export default {
 		data() {
 			return {
+        maxLen4Phone:11,
 				form4Transfer:{
-					blockAddress:"",
+					mobilePhone:"",
 					type:"",
 					tag:"",
 					safePassword:""
@@ -193,9 +194,9 @@
 						{ required: true, message: '请选择矿机标签', trigger: 'blur' },
 						{ type: 'number', message: '请选择矿机标签', trigger: 'blur' }
 					],
-					blockAddress: [
-						{ required: true, message: '请输入对方区块地址', trigger: 'blur' },
-						{ min: 20, max: 34, message: '请填写正确的区块地址', trigger: 'blur' }
+					mobilePhone: [
+						{ required: true, message: '请输入对方手机号', trigger: 'blur' },
+						{ min: 11, max: 11, message: '请填写正确的手机号', trigger: 'blur' }
 					],
 					safePassword:[
 						{ required: true, message: '请输权限密码', trigger: 'blur' },
@@ -332,8 +333,8 @@
 			submit4Transfer(formName){
 				let _this = this;
 				console.log('form4Transfer',_this.form4Transfer)
-				if(!_this.$reg.block_address.test(_this.form4Transfer.blockAddress)){
-					_this.$message.error("区块地址有误");
+				if(!_this.$reg.phone.test(_this.form4Transfer.mobilePhone)){
+					_this.$message.error("手机号有误");
 					return;
 				}
 				if(!_this.$reg.safePassword.test(_this.form4Transfer.safePassword)){
@@ -351,7 +352,7 @@
 								_this.$message.success("操作成功");
 								_this.$utils.formClear(_this.form4Transfer);
 							}else{
-								_this.$message.success(res.message);
+								_this.$message.error(res.message);
 							}
 						})
 					} else {

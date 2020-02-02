@@ -118,7 +118,7 @@
 						noticeContent: ''
 					}
 				}
-				
+
 			},
 			uploadIMG(e) {
 				let _this = this;
@@ -160,7 +160,7 @@
 					console.log(result.length / 1024);
 					// _this.toast.message = `未压缩前的图片大小 ${result.length / 1024} KB`;
 					img.onload = function() {
-					  let data = _this.compress(img, 0.1);//调整压缩比例
+					  let data = _this.compress(img, 1);//调整压缩比例
 					  console.log('*******压缩后的图片大小(KB)*******');
 					  console.log(data.length / 1024);
 					  _this.uploadImage = data;
@@ -233,7 +233,7 @@
 				}
 				if(_this.type=="edit"){
 					params.id=_this.form.id;
-					params.isPublish=_this.form.isPublish?1:0,
+					params.isPublish=_this.form.isPublish?1:0;
 					url=_this.$api.updateNotice;
 				}else if(_this.type=="add"){
 					params.isPublish=0;

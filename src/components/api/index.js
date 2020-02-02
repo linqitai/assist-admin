@@ -71,6 +71,7 @@ export default{
 	//留言板管理
 	updateAssistMessageBoard: host + "admin/messageBoard/updateAssistMessageBoard",
 	getAssistMessageBoardPageList: host + "admin/messageBoard/getAssistMessageBoardPageList",
+  getLeaveWordUndealNum: host + "admin/messageBoard/getLeaveWordUndealNum",
 	//platformTicket
 	getAssistPlateformTicketAccountBookList: host + "admin/plateformTicketAccountBook/getAssistPlateformTicketAccountBookList",
 	transferPlatformTicket: host + "admin/plateformTicketAccountBook/transferPlatformTicket",
