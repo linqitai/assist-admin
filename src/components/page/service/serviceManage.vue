@@ -275,7 +275,9 @@
 						_this.addlOrEditVisible = false;
 						_this.$message.success(`${_this.visibleType=='add'?'添加':'修改'} ${_this.form.name} 信息成功`);
 						_this.getData();
-					}
+					}else{
+            _this.$message.error(res.message);
+          }
 				})
 			},
 			// 获取 easy-mock 的模拟数据
