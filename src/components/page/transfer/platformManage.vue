@@ -43,7 +43,7 @@
 				</div>
 				<div class="element">
 					<div class="inline">
-						
+
 					</div>
 				</div> -->
 			</search-condition>
@@ -62,7 +62,7 @@
 						{{ props.row.type | platformBookType }}
 					</template>
 				</el-table-column>
-				
+
 				<!-- <el-table-column prop="status" label="交易状态" width="140" fixed="right">
 					<template slot-scope="props">
 						<span class="ellipsis" :class="textColor(props.row.status)">{{ props.row.status | dealStatusType }}</span>
@@ -86,8 +86,8 @@
 			  <el-form-item label="转让数量" prop="transferAmount">
 			    <el-input type="number" v-model.number="form4Transfer.transferAmount" clearable></el-input>
 			  </el-form-item>
-			  <el-form-item label="对方区块地址" prop="blockAddress">
-			    <el-input v-model="form4Transfer.blockAddress" clearable show-word-limit></el-input>
+			  <el-form-item label="对方手机号" prop="mobilePhone">
+			    <el-input v-model="form4Transfer.mobilePhone" clearable show-word-limit></el-input>
 			  </el-form-item>
 			  <el-form-item label="权限密码" prop="safePassword">
 			    <el-input v-model="form4Transfer.safePassword" clearable type="password"></el-input>
@@ -107,7 +107,7 @@
 			return {
 				form4Transfer:{
 					transferAmount:"",
-					blockAddress:"",
+					mobilePhone:"",
 					safePassword:""
 				},
 				rules4Transfer:{
@@ -115,13 +115,13 @@
 						{ required: true, message: '请输入转让数量', trigger: 'blur' },
 						{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
 					],
-					blockAddress: [
-						{ required: true, message: '请输入对方区块地址', trigger: 'blur' },
-						{  min: 20, max: 34, message: '请填写正确的区块地址', trigger: 'blur' }
+					mobilePhone: [
+						{ required: true, message: '请输入对方手机号', trigger: 'blur' },
+						{ max: 11, message: '请填写正确的手机号', trigger: 'blur' }
 					],
 					safePassword:[
 						{ required: true, message: '请输权限密码', trigger: 'blur' },
-						{  min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
+						{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
 					]
 				},
 				url: '',
@@ -185,7 +185,7 @@
 			this.getData();
 		},
 		computed: {
-			
+
 		},
 		methods: {
 			initData(){
@@ -205,8 +205,8 @@
 			submit4Transfer(formName){
 				let _this = this;
 				console.log('form4Transfer',_this.form4Transfer)
-				if(!_this.$reg.block_address.test(_this.form4Transfer.blockAddress)){
-					_this.$message.error("区块地址有误");
+				if(!_this.$reg.phone.test(_this.form4Transfer.mobilePhone)){
+					_this.$message.error("手机号有误");
 					return;
 				}
 				if(!_this.$reg.safePassword.test(_this.form4Transfer.safePassword)){
@@ -276,7 +276,7 @@
 				_this.currentPage = 1;
 				console.log('searchForm', _this.searchForm)
 				if(_this.searchForm.condition=='选择'){
-					
+
 				}else if(_this.searchForm.condition == '订单ID'){
 					_this.searchForm.id = _this.searchForm.searchContent;
 				}else if(_this.searchForm.condition == '买家ID'){

@@ -23,7 +23,7 @@
 				<!-- <div class="element">
 					<p class="inline">日期</p>
 					<div class="inline">
-						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy-MM-dd"></el-date-picker>
+						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy/MM/dd"></el-date-picker>
 					</div>
 				</div> -->
 			</search-condition>
@@ -120,27 +120,6 @@
 	export default {
 		data() {
 			return {
-				imagesList: [
-					'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-					'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-				],
-				images: [{
-						id: '1',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '2',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '3',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '4',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-				],
 				url: '',
 				tableData: [],
 				total: 400,

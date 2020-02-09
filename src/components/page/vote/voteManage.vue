@@ -23,7 +23,7 @@
         <!-- <div class="element">
 					<p class="inline">日期</p>
 					<div class="inline">
-						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy-MM-dd"></el-date-picker>
+						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy/MM/dd"></el-date-picker>
 					</div>
 				</div> -->
       </search-condition>
@@ -116,7 +116,7 @@
         </el-form-item>
         <el-form-item label="截止时间" prop="deadTime">
           <el-date-picker type="datetime" placeholder="选择时间" v-model="form.deadTime" :picker-options="pickerDateTimeOptions"
-            default-time="22:00:00" value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+            default-time="22:00:00" value-format="yyyy/MM/dd HH:mm:ss"></el-date-picker>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input class="remark" type="textarea" autosize v-model="form.remark" placeholder="请填写对投票标题的解释文案"></el-input>
