@@ -83,6 +83,11 @@
 		<div class="placeholderLine20"></div>
 		<div class="transferBox">
 			<el-form ref="form4Transfer" :model="form4Transfer" :rules="rules4Transfer" label-width="110px" label-position="left">
+        <el-form-item label="转让类型" prop="transferAmount">
+          <el-select v-model="form4Transfer.transferType" @change="transferTypeTypeChange" class="handle-select mr10 width160">
+          	<el-option v-for="item in transferTypeOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
 			  <el-form-item label="转让数量" prop="transferAmount">
 			    <el-input type="number" v-model.number="form4Transfer.transferAmount" clearable></el-input>
 			  </el-form-item>
@@ -105,12 +110,25 @@
 	export default {
 		data() {
 			return {
+        transferTypeOptions:[{
+						id: 0,
+						value: "转入"
+					},
+					{
+						id: 1,
+						value: "奖励"
+					}],
 				form4Transfer:{
+          transferType:0,
 					transferAmount:"",
 					mobilePhone:"",
 					safePassword:""
 				},
 				rules4Transfer:{
+          transferType: [
+          	{ required: true, message: '请选择转让类型', trigger: 'blur' },
+          	{ type: 'number', message: '请选择转让类型', trigger: 'blur' }
+          ],
 					transferAmount: [
 						{ required: true, message: '请输入转让数量', trigger: 'blur' },
 						{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
@@ -235,6 +253,11 @@
 					}
 				});
 			},
+      transferTypeTypeChange(val){
+        let _this = this;
+        console.log('val', val);
+        _this.form4Transfer.transferType = val;
+      },
 			typeChange(val) {
 				let _this = this;
 				console.log('val', val);

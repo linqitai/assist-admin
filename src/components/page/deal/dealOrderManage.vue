@@ -117,7 +117,8 @@
        <div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
 				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
-				<el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
+				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
+        <!-- <el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button> -->
 				<!-- <el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button> -->
 			</span>
 		</el-dialog>
