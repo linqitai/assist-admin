@@ -109,6 +109,12 @@ function isOrNo(val){
 	if(val==1){
 		return isOrNoOptions[1].value;
 	}
+  if(val == -1){
+  	return '未实名';
+  }
+  if(val==2){
+  	return '审核驳回';
+  }
 	if(val==false){
 		return isOrNoOptions[0].value;
 	}

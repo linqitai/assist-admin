@@ -26,6 +26,7 @@ export default{
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
 	//userinfo
+  getAssistUserInfo: host +'/admin/userInfo/getAssistUserInfo/',
 	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
 	getUserIdByPhone: host + "admin/userInfo/getUserIdByPhone",
 	updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",

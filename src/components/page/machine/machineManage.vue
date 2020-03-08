@@ -350,7 +350,7 @@
 							// console.log('res',res)
 							if (res.code == _this.$api.ERR_OK) { // 200
 								_this.$message.success("操作成功");
-								_this.$utils.formClear(_this.form4Transfer);
+								//_this.$utils.formClear(_this.form4Transfer);
 							}else{
 								_this.$message.error(res.message);
 							}

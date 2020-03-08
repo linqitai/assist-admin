@@ -196,9 +196,19 @@
         <el-form-item label="可否解冻">
           {{form.canUnfreeze | canUnFreeze}}
         </el-form-item>
-        <!-- <el-form-item label="口号">
-          <el-input v-model="form.slogan" class="width400"></el-input>
-        </el-form-item> -->
+        <el-form-item label="驳回原因">
+          <el-input v-model="form.remark" class="width400"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="审核者昵称">
+          {{checkerInfo.nickName}}
+        </el-form-item>
+        <el-form-item label="审核者姓名">
+          {{checkerInfo.realName}}
+        </el-form-item>
+        <el-form-item label="审核者手机号">
+          {{checkerInfo.mobilePhone}}
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer center">
         <el-button type="primary" icon="el-icon-edit" @click="freezeBtn(form.userId)">冻结</el-button>
@@ -256,7 +266,7 @@
       return {
         form4Freeze: {
           userId: "",
-          reason: "",
+          reason: "经系统检测存在刷号",
           needTicket: "",
           canUnfreeze: 1,
           safePassword: ""
@@ -316,15 +326,15 @@
         idx: -1,
         checkedMineralDesc: false,
         unFreezeUserId:"",
-        unFreezeNickName:""
+        unFreezeNickName:"",
+        checkerInfo:{}
       }
     },
     components: {
       searchCondition
     },
     created() {
-      console.log("created")
-
+      //console.log("created")
       this.initData();
       this.getData();
     },
@@ -386,7 +396,6 @@
       },
       submit4Freeze(formName) {
         let _this = this;
-        console.log('form4Freeze', _this.form4Freeze)
         if (!_this.$reg.userId.test(_this.form4Freeze.userId)) {
           _this.$message.error("用户ID有误");
           return;
@@ -395,8 +404,8 @@
           _this.$message.error("请填写3~50个字的冻结原因");
           return;
         }
-        if ((_this.form4Freeze.needTicket < 10 || _this.form4Freeze.needTicket > 1000)) {
-          _this.$message.error("请填写10~1000的解封所需帮扶券");
+        if ((_this.form4Freeze.needTicket < 0 || _this.form4Freeze.needTicket > 1000)) {
+          _this.$message.error("请填写0~1000的解封所需帮扶券");
           return;
         }
         if (!(_this.form4Freeze.canUnfreeze == 1 || _this.form4Freeze.canUnfreeze == 0)) {
@@ -409,10 +418,8 @@
         }
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log('valid');
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
-            console.log(params, 'params');
             _this.$ajax.ajax(url, 'POST', params, function(res) {
               // console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
@@ -426,29 +433,22 @@
               }
             })
           } else {
-            console.log('error submit!!');
             return false;
           }
         });
       },
       checkedMineralDescChange() {
-        console.log('checkedMineralDesc', this.checkedMineralDesc)
       },
       orderChange(val) {
         let _this = this;
-        console.log('val', val)
         _this.searchForm.order = val;
-        console.log("_this.searchForm.order", _this.searchForm.order);
       },
       conditionChange(val) {
         let _this = this;
-        console.log('val', val)
         _this.searchForm.condition = val;
-        console.log("_this.searchForm.condition", _this.searchForm.condition);
       },
       searchEvent() {
         this.currentPage = 1;
-        console.log('searchForm', this.searchForm);
         this.getData();
         // this.getList();
       },
@@ -458,7 +458,6 @@
         this.getData();
       },
       handleSizeChange(val) {
-        console.log('size', val)
         this.currentPage = 1;
         this.pageSize = val;
         this.getData();
@@ -472,7 +471,6 @@
         // };
         // this.searchForm.condition = this.$route.query.condition;
         // this.searchForm.searchContent = this.$route.query.id;
-        console.log('searchForm', this.searchForm);
         var params = {
           pageNo: _this.currentPage,
           pageSize: _this.pageSize,
@@ -498,9 +496,24 @@
         return row.tag === value;
       },
       handleDetail(index, row) {
-        this.visibleType = 'detail';
-        this.form = row;
-        this.detailOrEditVisible = true;
+        let _this = this;
+        _this.visibleType = 'detail';
+        _this.form = row;
+        _this.detailOrEditVisible = true;
+        _this.getChecker(row.checkerId);
+      },
+      getChecker(checkerId){
+        let _this = this;
+        /* var params = {
+          pageNo: _this.currentPage,
+          pageSize: _this.pageSize,
+        } */
+        _this.$ajax.ajax(_this.$api.getAssistUserInfo + checkerId, 'GET', null, function(res) {
+          // console.log('res',res)
+          if (res.code == _this.$api.ERR_OK) { // 200
+            _this.checkerInfo = res.data;
+          }
+        })
       },
       handleEdit(index, row) {
         this.visibleType = 'edit';
@@ -514,7 +527,6 @@
         this.detailOrEditVisible = true;
       },
       handleDelete(ID) {
-        console.log('ID', ID);
         this.isShowFreezeModel = true;
       },
       delAll() {
