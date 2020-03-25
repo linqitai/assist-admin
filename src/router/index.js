@@ -110,6 +110,11 @@ export default new Router({
 				    component: resolve => require(['../components/page/agency/agencyManage.vue'], resolve),
 				    meta: { title: '省市代理' }
 				},
+        {
+            path: '/serviceDealManage',
+            component: resolve => require(['../components/page/service/serviceDealManage.vue'], resolve),
+            meta: { title: '服务商管理' }
+        },
 				{
 				    path: '/serviceManage',
 				    component: resolve => require(['../components/page/service/serviceManage.vue'], resolve),

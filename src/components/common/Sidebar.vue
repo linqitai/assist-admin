@@ -85,6 +85,12 @@
                 title: '省市代理'
               },
               {
+                icon: 'el-icon-s-custom',
+                // icon:'iconfont iconfont-question',
+                index: 'serviceDealManage',
+                title: '服务商管理'
+              },
+              {
                 icon: 'el-icon-headset',
                 // icon:'iconfont iconfont-question',
                 index: 'serviceManage',

@@ -41,6 +41,7 @@ export default{
 	safePassword:/^[A-Za-z0-9._]{1,20}$/,
 	safePasswordHint:"交易密码不超过20位，由'字母或数字或._'组成",
 	phone:/^(1[3-9])\d{9}$/,
+  phone2:/^[0-9]{11}$/,
 	phoneHint:'请填写11位登录手机号',
 	validateCode:/^[A-Za-z0-9]{6}$/,
 	validateCodeHint:'请填写6位短信验证码',

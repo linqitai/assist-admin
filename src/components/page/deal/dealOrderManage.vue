@@ -101,6 +101,7 @@
        	<div>挂单时间:{{form.hangBillTime}}</div>
        	<div>匹配时间:{{form.machingTime}}</div>
        	<div>放币时间:{{form.coinReleaseTime||'--'}}</div>
+        <!-- <div>取消交易时间:{{form.canCancelTime||'--'}}</div> -->
        	<div>备注:{{form.remark}}</div>
        	<div>
        		<div>打款凭证:</div>

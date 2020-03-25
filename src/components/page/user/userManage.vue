@@ -88,7 +88,8 @@
         <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="80" fixed="right"></el-table-column>
         <el-table-column prop="contributionValue" label="贡献值" min-width="70" fixed="right"></el-table-column>
         <el-table-column prop="platformTicket" label="帮扶券" min-width="70" fixed="right"></el-table-column>
-        <el-table-column prop="myCalculationPower" label="算力" min-width="60" fixed="right"></el-table-column>
+        <el-table-column prop="myCalculationPower" label="个人算力" min-width="60" fixed="right"></el-table-column>
+        <el-table-column prop="teamCalculationPower" label="团队算力" min-width="60" fixed="right"></el-table-column>
         <el-table-column prop="beComplaintTimes" label="被投诉次数" min-width="100"></el-table-column>
         <el-table-column prop="beFrozenTimes" label="被冻结次数" min-width="100"></el-table-column>
         <el-table-column prop="accountStatus" label="账户状态" min-width="80" fixed="right">
@@ -161,8 +162,8 @@
           <el-input v-model="form.temporaryFreezeContribution"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
-        <el-form-item label="算力">
-          <el-input v-model="form.calculationPower"></el-input>
+        <el-form-item label="团队算力">
+          <el-input v-model="form.teamCalculationPower"></el-input>
         </el-form-item>
         <el-form-item label="平台券">
           <el-input v-model="form.platformTicket"></el-input>
@@ -172,16 +173,16 @@
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="买入次数">
-          <el-input v-model="form.buyingTimes"></el-input>
+          <el-input v-model="form.buyTimes"></el-input>
         </el-form-item>
         <el-form-item label="卖出次数">
-          <el-input v-model="form.sellingTimes"></el-input>
+          <el-input v-model="form.sellTimes"></el-input>
         </el-form-item>
         <el-form-item label="区块地址">
           <el-input v-model="form.blockAddress"></el-input>
         </el-form-item>
         <el-form-item label="被打小报告次数">
-          <el-input v-model="form.beComlaintTimes"></el-input>
+          <el-input v-model="form.beComplaintTimes"></el-input>
         </el-form-item>
         <el-form-item label="被冻结账号次数">
           <el-input v-model="form.beFrozenTimes"></el-input>

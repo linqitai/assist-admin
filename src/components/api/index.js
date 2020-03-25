@@ -25,6 +25,11 @@ export default{
 	editAdminUser: host + "admin/user/updateAdminUser",
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
+  //service
+  getServiceUserPageList: host + "admin/user/getServiceUserPageList",
+  insertServiceUser: host + "admin/user/insertServiceUser",
+  deletedServiceUserById: host + "admin/user/deletedServiceUserById/",
+  updateServiceUser: host + "admin/user/updateServiceUser",
 	//userinfo
   getAssistUserInfo: host +'/admin/userInfo/getAssistUserInfo/',
 	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
