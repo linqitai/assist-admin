@@ -25,13 +25,13 @@ export default{
 	editAdminUser: host + "admin/user/updateAdminUser",
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
-  //service
-  getServiceUserPageList: host + "admin/user/getServiceUserPageList",
-  insertServiceUser: host + "admin/user/insertServiceUser",
-  deletedServiceUserById: host + "admin/user/deletedServiceUserById/",
-  updateServiceUser: host + "admin/user/updateServiceUser",
+	//service
+	getServiceUserPageList: host + "admin/user/getServiceUserPageList",
+	insertServiceUser: host + "admin/user/insertServiceUser",
+	deletedServiceUserById: host + "admin/user/deletedServiceUserById/",
+	updateServiceUser: host + "admin/user/updateServiceUser",
 	//userinfo
-  getAssistUserInfo: host +'/admin/userInfo/getAssistUserInfo/',
+	getAssistUserInfo: host +'/admin/userInfo/getAssistUserInfo/',
 	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
 	getUserIdByPhone: host + "admin/userInfo/getUserIdByPhone",
 	updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",
@@ -77,18 +77,21 @@ export default{
 	//留言板管理
 	updateAssistMessageBoard: host + "admin/messageBoard/updateAssistMessageBoard",
 	getAssistMessageBoardPageList: host + "admin/messageBoard/getAssistMessageBoardPageList",
-  getLeaveWordUndealNum: host + "admin/messageBoard/getLeaveWordUndealNum",
+	getLeaveWordUndealNum: host + "admin/messageBoard/getLeaveWordUndealNum",
 	//platformTicket
 	getAssistPlateformTicketAccountBookList: host + "admin/plateformTicketAccountBook/getAssistPlateformTicketAccountBookList",
 	transferPlatformTicket: host + "admin/plateformTicketAccountBook/transferPlatformTicket",
+	//contribution
+	getAssistContributionValueList: host + "admin/contributionValue/getAssistContributionValueList",
+  insertAssistContributionValue: host + "admin/contributionValue/insertAssistContributionValue",
 	//userFreeze
 	insertAssistUserFreeze: host + "admin/userFreeze/insertAssistUserFreeze",
 	getAssistUserFreezePageList: host + "admin/userFreeze/getAssistUserFreezePageList",
 	unFreeze: host + "admin/userFreeze/unFreeze",
 	//ranking
 	getRanking: host + "admin/statistics/getRanking",
-  getRanking4NoRealNameNum: host + "admin/statistics/getRanking4NoRealNameNum",
-  //statistics
-  getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
-  getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
+	getRanking4NoRealNameNum: host + "admin/statistics/getRanking4NoRealNameNum",
+	//statistics
+	getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
+	getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
 }

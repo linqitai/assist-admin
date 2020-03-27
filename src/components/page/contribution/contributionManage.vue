@@ -1,35 +1,12 @@
 
-<style scoped>
-	.handle-box {
-		margin-bottom: 20px;
-	}
-
-	.handle-select {
-		width: 120px;
-	}
-
-	.handle-input {
-		width: 300px;
-		display: inline-block;
-	}
-
-	.del-dialog-cnt {
-		font-size: 16px;
-		text-align: center
-	}
-
+<style scoped lang="scss">
 	.table {
 		width: 100%;
 		font-size: 14px;
-	}
-
-	.red {
-		color: #ff0000;
-	}
-
-	.mr10 {
-		margin-right: 10px;
-	}
+		.transferBox{
+			width: 400px;
+		}
+  }
 </style>
 <template>
 	<div class="table">
@@ -73,12 +50,17 @@
 				</div> -->
 			</search-condition>
 			<el-table :data="tableData" show-summary border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="ID" label="账本ID" min-width="80"></el-table-column>
-				<el-table-column prop="date" label="用户ID" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="类型" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="时间" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="正负" min-width="150"></el-table-column>
-				<el-table-column prop="ID" label="贡献值" min-width="150"></el-table-column>
+				<el-table-column prop="id" label="账本ID" min-width="80"></el-table-column>
+				<el-table-column prop="userId" label="用户ID" min-width="210"></el-table-column>
+				<el-table-column label="类型" min-width="80">
+          <template slot-scope="props">
+          	{{ props.row.type | contributionType }}
+          </template>
+        </el-table-column>
+				<el-table-column prop="createTime" label="时间" min-width="150"></el-table-column>
+				<el-table-column prop="addOrReduce" label="正负" min-width="60"></el-table-column>
+				<el-table-column prop="contributionValue" label="贡献值" min-width="90"></el-table-column>
+        <el-table-column prop="currentContributionValue" label="所拥有贡献值" min-width="120"></el-table-column>
 				<!-- <el-table-column label="操作" width="90" align="center" fixed="right">
 					<template slot-scope="scope">
 						<el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
@@ -90,70 +72,29 @@
 				 :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
 				</el-pagination>
 			</div>
+      <div class="transferBox">
+      	<el-form ref="form4Transfer" :model="form4Transfer" :rules="rules4Transfer" label-width="110px" label-position="left">
+          <el-form-item label="转让类型" prop="transferAmount">
+            <el-select v-model="form4Transfer.transferType" @change="transferTypeTypeChange" class="handle-select mr10 width160">
+            	<el-option v-for="item in transferTypeOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+            </el-select>
+          </el-form-item>
+      	  <el-form-item label="转让数量" prop="transferAmount">
+      	    <el-input type="number" v-model.number="form4Transfer.transferAmount" clearable></el-input>
+      	  </el-form-item>
+      	  <el-form-item label="对方手机号" prop="mobilePhone">
+      	    <el-input v-model="form4Transfer.mobilePhone" clearable show-word-limit></el-input>
+      	  </el-form-item>
+      	  <el-form-item label="权限密码" prop="safePassword">
+      	    <el-input v-model="form4Transfer.safePassword" clearable type="password"></el-input>
+      	  </el-form-item>
+      	  <el-form-item>
+      	    <el-button type="primary" @click="submit4Transfer('form4Transfer')">提交</el-button>
+      	  </el-form-item>
+      	</el-form>
+      </div>
 		</div>
 
-		<!-- 详情编辑弹出框 -->
-		<el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
-			<el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
-				<el-form-item label="ID">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="买家手机号">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="卖家ID">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="卖家手机号">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易类型">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易数量">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易单价">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易状态">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="挂单时间">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="匹配时间">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="放币时间">
-					<el-input v-model="form.address"></el-input>
-				</el-form-item>
-				<el-form-item label="备注">
-					<el-input type="textarea" v-model="form.address" class="width400"></el-input>
-				</el-form-item>
-				<el-form-item label="付款截图">
-					<div class="imageBox">
-						<el-image class="item" :preview-src-list="imagesList" v-for="item in imagesList" :key="item" :src="item" fit="cover"
-						 lazy></el-image>
-					</div>
-				</el-form-item>
-
-			</el-form>
-			<span slot="footer" class="dialog-footer center">
-				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
-				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn">取消交易</el-button>
-				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button>
-			</span>
-		</el-dialog>
-
-		<!-- 删除提示框 -->
-		<el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-			<div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="delVisible = false">取 消</el-button>
-				<el-button type="primary" @click="deleteRow">确 定</el-button>
-			</span>
-		</el-dialog>
 	</div>
 </template>
 
@@ -162,27 +103,6 @@
 	export default {
 		data() {
 			return {
-				imagesList: [
-					'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-					'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-				],
-				images: [{
-						id: '1',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '2',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '3',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '4',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-				],
 				url: '',
 				tableData: [],
 				total: 400,
@@ -238,9 +158,43 @@
 					name: '',
 					address: ''
 				},
-				adressWidth: '200px',
-				idx: -1,
-				checkedMineralDesc: false
+        transferTypeOptions:[{
+          id: 19,
+          value: "奖励津贴"
+        },{
+          id: 14,
+          value: "诉讼成功"
+        },{
+          id: 4,
+          value: "建议被采纳"
+        },{
+          id: 5,
+          value: "反馈问题成功"
+        }],
+				form4Transfer:{
+				  transferType:19,
+					transferAmount:"",
+					mobilePhone:"",
+					safePassword:""
+				},
+				rules4Transfer:{
+				  transferType: [
+				  	{ required: true, message: '请选择转让类型', trigger: 'blur' },
+				  	{ type: 'number', message: '请选择转让类型', trigger: 'blur' }
+				  ],
+					transferAmount: [
+						{ required: true, message: '请输入转让数量', trigger: 'blur' },
+						{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
+					],
+					mobilePhone: [
+						{ required: true, message: '请输入对方手机号', trigger: 'blur' },
+						{ max: 11, message: '请填写正确的手机号', trigger: 'blur' }
+					],
+					safePassword:[
+						{ required: true, message: '请输权限密码', trigger: 'blur' },
+						{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
+					]
+				},
 			}
 		},
 		components: {
@@ -289,28 +243,47 @@
 			searchEvent() {
 				this.pageIndex = 1;
 				console.log('searchForm', this.searchForm)
-
 				// this.getList();
 			},
-			sellerSureBtn(){
-				this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
-					confirmButtonText: '确定',
-					cancelButtonText: '取消',
-					type: 'warning'
-				}).then(() => {
-					this.$message({
-						type: 'success',
-						message: '确认成功'
-					});
-					this.detailOrEditVisible = false;
-				}).catch(() => {
-					this.$message({
-						type: 'info',
-						message: '我再考虑考虑'
-					});
-				});
-			},
-			cancelDealBtn() {
+      transferTypeTypeChange(val){
+        let _this = this;
+        console.log('val', val);
+        _this.form4Transfer.transferType = val;
+      },
+      submit4Transfer(formName){
+      	let _this = this;
+      	//console.log('form4Transfer',_this.form4Transfer)
+      	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
+      		_this.$message.error("手机号有误");
+      		return;
+      	}
+      	if(!_this.$reg.safePassword.test(_this.form4Transfer.safePassword)){
+      		_this.$message.error("权限密码有误");
+      		return;
+      	}
+      	this.$refs[formName].validate((valid) => {
+      		if (valid) {
+      			let url = _this.$api.insertAssistContributionValue;
+      			var params = _this.form4Transfer;
+      			//console.log(params,'params');
+      			_this.$ajax.ajax(url, 'POST', params, function(res){
+      				// console.log('res',res)
+      				if (res.code == _this.$api.ERR_OK) { // 200
+      					_this.$message.success("转让成功");
+      					_this.currentPage = 1;
+      					_this.getData();
+      					//_this.$utils.formClear(_this.form4Transfer);
+      				}else{
+      					_this.$message.success(res.message);
+      				}
+      			})
+      		} else {
+      			console.log('error submit!!');
+      			return false;
+      		}
+      	});
+      },
+			/* cancelDealBtn() {
 				this.$confirm('此操作将取消此单交易, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
@@ -327,7 +300,7 @@
 						message: '我再考虑考虑'
 					});
 				});
-			},
+			}, */
 			// 分页导航
 			handleCurrentChange(val) {
 				this.currentPage = val;
@@ -338,166 +311,22 @@
 			},
 			// 获取 easy-mock 的模拟数据
 			getData() {
-				// 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-				if (process.env.NODE_ENV === 'development') {
-					this.url = '/ms/table/list';
-				};
-				this.searchForm.condition = this.$route.query.condition;
-				this.searchForm.parentID = this.$route.query.id;
-				this.searchForm.searchContent = this.$route.query.id;
-				this.searchForm.status = this.$route.query.status;
-				console.log('searchForm',this.searchForm);
-				// this.$axios.post(this.url, {
-				//     page: this.cur_page
-				// }).then((res) => {
-				//     this.tableData = res.data.list;
-				// })
-				this.tableData = [{
-					ID: 1,
-					date: '2016-05-02',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1518 弄',
-					zip: 200333
-				}, {
-					ID: 2,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333
-				}, {
-					ID: 3,
-					date: '2016-05-01',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1519 弄',
-					zip: 200333
-				}, {
-					ID: 4,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 5,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333
-				}, {
-					ID: 6,
-					date: '2016-05-01',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1519 弄',
-					zip: 200333
-				}, {
-					ID: 7,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 8,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333,
-					remark: "上海市普陀区金沙江路 1517 弄上弄上弄上"
-				}, {
-					ID: 9,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 10,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333,
-					remark: "上海市普陀区金沙江路 1517 弄上弄上弄上"
-				}]
+        let _this = this;
+        var params = {
+        	pageNo: _this.pageIndex,
+        	pageSize: _this.pageSize,
+        }
+        _this.$ajax.ajax(_this.$api.getAssistContributionValueList, 'GET', params, function(res) {
+        	//console.log('res', res);
+        	if (res.code == _this.$api.ERR_OK) { // 200
+        		let list = res.data.list;
+        		//console.log('list', list);
+        		_this.currentItemsCount = list.length;
+        		_this.tableData = list;
+        		_this.total = res.data.total;
+        	}
+        })
 			},
-			search() {
-				this.is_search = true;
-			},
-			formatter(row, column) {
-				return row.region;
-			},
-			filterTag(value, row) {
-				return row.tag === value;
-			},
-			handleDetail(index, row) {
-				this.visibleType = 'detail';
-				this.idx = index;
-				const item = this.tableData[index];
-				this.form = {
-					name: item.name,
-					date: item.date,
-					address: item.address
-				}
-				this.detailOrEditVisible = true;
-			},
-			handleEdit(index, row) {
-				this.visibleType = 'edit';
-				this.idx = index;
-				const item = this.tableData[index];
-				this.form = {
-					name: item.name,
-					date: item.date,
-					address: item.address
-				}
-				this.detailOrEditVisible = true;
-			},
-			handleDelete(ID) {
-				console.log('ID', ID);
-				this.delVisible = true;
-			},
-			delAll() {
-				const length = this.multipleSelection.length;
-				let str = '';
-				this.del_list = this.del_list.concat(this.multipleSelection);
-				for (let i = 0; i < length; i++) {
-					str += this.multipleSelection[i].name + ' ';
-				}
-				this.$message.error('删除了' + str);
-				this.multipleSelection = [];
-			},
-			handleSelectionChange(val) {
-				this.multipleSelection = val;
-			},
-			// 保存编辑
-			saveEdit() {
-				// this.$set(this.tableData, this.idx, this.form);
-				this.detailOrEditVisible = false;
-				this.$message.success(`修改 ${this.form.name} 信息成功`);
-			},
-			// 确定删除
-			deleteRow() {
-				this.tableData.splice(this.idx, 1);
-				this.$message.success('删除成功');
-				this.delVisible = false;
-				this.detailOrEditVisible = false;
-			}
 		}
 	}
 </script>
-

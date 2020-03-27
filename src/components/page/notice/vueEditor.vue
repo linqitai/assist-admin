@@ -160,7 +160,7 @@
 					console.log(result.length / 1024);
 					// _this.toast.message = `未压缩前的图片大小 ${result.length / 1024} KB`;
 					img.onload = function() {
-					  let data = _this.compress(img, 1);//调整压缩比例
+					  let data = _this.compress(img, 0.3);//调整压缩比例
 					  console.log('*******压缩后的图片大小(KB)*******');
 					  console.log(data.length / 1024);
 					  _this.uploadImage = data;

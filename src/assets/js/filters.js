@@ -192,6 +192,11 @@ function platformBookType(val){
 	 return platformTicketBookTypeOptions[val + 1].value;
 }
 
+const contributionTypeOptions = config.contributeTypeOptions;
+function contributionType(val){
+	 return contributionTypeOptions[val].value;
+}
+
 const activedOptions = config.activedOptions;
 function activedType(val){
 	return activedOptions[val + 1].value;
@@ -230,5 +235,5 @@ export {
 	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,
   isPayType,isNullReturnLine,isOrNo,voteType,machineVersionType,versionOptions,isOrNoOptions,
   machineTagOptions,machineTypeOptions,machineTagType,machineTypeType,dealStatusType,dealStatusOptions,
-  dealType,noticeType,wordType,platformBookType,activedType,getDateYMD,accountStatus,canUnFreeze
+  dealType,noticeType,wordType,platformBookType,contributionType,activedType,getDateYMD,accountStatus,canUnFreeze
 }

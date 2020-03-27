@@ -242,7 +242,7 @@
 								_this.$message.success("转让成功");
 								_this.currentPage = 1;
 								_this.getData();
-								_this.$utils.formClear(_this.form4Transfer);
+								//_this.$utils.formClear(_this.form4Transfer);
 							}else{
 								_this.$message.success(res.message);
 							}
