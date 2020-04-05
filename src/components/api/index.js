@@ -83,7 +83,7 @@ export default{
 	transferPlatformTicket: host + "admin/plateformTicketAccountBook/transferPlatformTicket",
 	//contribution
 	getAssistContributionValueList: host + "admin/contributionValue/getAssistContributionValueList",
-  insertAssistContributionValue: host + "admin/contributionValue/insertAssistContributionValue",
+	insertAssistContributionValue: host + "admin/contributionValue/insertAssistContributionValue",
 	//userFreeze
 	insertAssistUserFreeze: host + "admin/userFreeze/insertAssistUserFreeze",
 	getAssistUserFreezePageList: host + "admin/userFreeze/getAssistUserFreezePageList",
@@ -94,4 +94,5 @@ export default{
 	//statistics
 	getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
 	getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
+  get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum"
 }

@@ -140,13 +140,7 @@ function machineTypeType(val){
 const dealStatusOptions = config.dealStatusOptions;
 //交易状态
 function dealStatusType(val){
-	if(val==0){
-		return dealStatusOptions[0].value;
-	}else if(val>0){
-		return dealStatusOptions[val].value;
-	}else{
-		return val;
-	}
+	return dealStatusOptions[val+1].value;
 }
 const dealTypeOptions = config.dealTypeOptions;
 //交易类型

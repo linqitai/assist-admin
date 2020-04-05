@@ -37,23 +37,15 @@
             </el-card>
           </el-col>
         </el-row>
+        <div class="center">
+          <el-button type="primary" icon="el-icon-circle-plus-outline" @click="refresh">刷新</el-button>
+        </div>
+        <div class="placeholderLine"></div>
         <el-card shadow="hover" style="height:403px;">
-          <schart ref="bar" class="schart" canvasId="bar" :data="visitorVolume" type="bar" :options="options"></schart>
+          <schart ref="bar" class="schart" canvasId="bar" :data="registerNumList" type="bar" :options="options"></schart>
         </el-card>
       </el-col>
     </el-row>
-    <!-- <el-row :gutter="20">
-            <el-col :span="12">
-                <el-card shadow="hover">
-                    <schart ref="bar" class="schart" canvasId="bar" :data="data" type="bar" :options="options"></schart>
-                </el-card>
-            </el-col>
-            <el-col :span="12">
-                <el-card shadow="hover">
-                    <schart ref="line" class="schart" canvasId="line" :data="data" type="line" :options="options2"></schart>
-                </el-card>
-            </el-col>
-        </el-row> -->
   </div>
 </template>
 
@@ -66,30 +58,6 @@
       return {
         userInfo: {},
         name: localStorage.getItem('ms_username'),
-        todoList: [{
-            title: '今天要修复100个bug',
-            status: false,
-          },
-          {
-            title: '今天要修复100个bug',
-            status: false,
-          },
-          {
-            title: '今天要写100行代码加几个bug吧',
-            status: false,
-          }, {
-            title: '今天要修复100个bug',
-            status: false,
-          },
-          {
-            title: '今天要修复100个bug',
-            status: true,
-          },
-          {
-            title: '今天要写100行代码加几个bug吧',
-            status: true,
-          }
-        ],
         visitorVolume: [],
         options: {
           title: '最近七天每天的用户注册量',
@@ -109,7 +77,8 @@
         },
         todayRegisterNum:0,
         awaitingCheckNum:0,
-        leaveWordUndealNum:0
+        leaveWordUndealNum:0,
+        registerNumList:[]
       }
     },
     components: {
@@ -122,9 +91,10 @@
     },
     created() {
       this.userInfo = JSON.parse(localStorage.getItem('_USERINFO_'));
-      this.getVisitorVolume();
+      //this.getVisitorVolume();
       this.getLeaveWordUndealNum();
       this.getToDayRegisterNum();
+      this.get7DaysRegisterNum();
     },
     activated() {
       this.handleListener();
@@ -140,6 +110,22 @@
       },
       toCheckManage(){
         this.$router.push('/checkManage');
+      },
+      refresh(){
+        this.getLeaveWordUndealNum();
+        this.getToDayRegisterNum();
+        this.get7DaysRegisterNum();
+      },
+      get7DaysRegisterNum(){
+        let _this = this;
+        _this.$ajax.ajax(_this.$api.get7DaysRegisterNum, 'GET', null, function(res) {
+        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+            _this.registerNumList = res.data;
+            //_this.handleListener();
+        	}else{
+        		_this.$message.error(res.message);
+        	}
+        })
       },
       getAwaitingCheckNum(){
         let _this = this;
@@ -169,48 +155,6 @@
         	}else{
         		_this.$message.error(res.message);
         	}
-        })
-      },
-      getVisitorVolume() {
-        let _this = this;
-        setTimeout(function() {
-          _this.visitorVolume = [{
-              name: '2018/09/04',
-              value: 1083
-            },
-            {
-              name: '2018/09/05',
-              value: 941
-            },
-            {
-              name: '2018/09/06',
-              value: 1139
-            },
-            {
-              name: '2018/09/07',
-              value: 816
-            },
-            {
-              name: '2018/09/08',
-              value: 327
-            },
-            {
-              name: '2018/09/09',
-              value: 228
-            },
-            {
-              name: '2018/09/10',
-              value: 1065
-            }
-          ]
-          _this.handleListener();
-        }, 1000);
-      },
-      changeDate() {
-        const now = new Date().getTime();
-        this.data.forEach((item, index) => {
-          const date = new Date(now - (6 - index) * 86400000);
-          item.name = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}`
         })
       },
       handleListener() {
