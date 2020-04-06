@@ -25,6 +25,7 @@ export default{
 	editAdminUser: host + "admin/user/updateAdminUser",
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
+  giveLevelDealProfit: host + "admin/userInfo/giveLevelDealProfit",
 	//service
 	getServiceUserPageList: host + "admin/user/getServiceUserPageList",
 	insertServiceUser: host + "admin/user/insertServiceUser",

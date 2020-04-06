@@ -159,6 +159,9 @@
 					address: ''
 				},
         transferTypeOptions:[{
+          id: '21',
+          value: "优秀领导人扶持"
+        },{
           id: 19,
           value: "奖励津贴"
         },{
@@ -171,30 +174,30 @@
           id: 5,
           value: "反馈问题成功"
         }],
-				form4Transfer:{
-				  transferType:19,
-					transferAmount:"",
-					mobilePhone:"",
-					safePassword:""
-				},
-				rules4Transfer:{
-				  transferType: [
-				  	{ required: true, message: '请选择转让类型', trigger: 'blur' },
-				  	{ type: 'number', message: '请选择转让类型', trigger: 'blur' }
-				  ],
-					transferAmount: [
-						{ required: true, message: '请输入转让数量', trigger: 'blur' },
-						{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
-					],
-					mobilePhone: [
-						{ required: true, message: '请输入对方手机号', trigger: 'blur' },
-						{ max: 11, message: '请填写正确的手机号', trigger: 'blur' }
-					],
-					safePassword:[
-						{ required: true, message: '请输权限密码', trigger: 'blur' },
-						{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
-					]
-				},
+		form4Transfer:{
+		  transferType:19,
+			transferAmount:"",
+			mobilePhone:"",
+			safePassword:""
+		},
+		rules4Transfer:{
+		  transferType: [
+			{ required: true, message: '请选择转让类型', trigger: 'blur' },
+			{ type: 'number', message: '请选择转让类型', trigger: 'blur' }
+		  ],
+			transferAmount: [
+				{ required: true, message: '请输入转让数量', trigger: 'blur' },
+				{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
+			],
+			mobilePhone: [
+				{ required: true, message: '请输入对方手机号', trigger: 'blur' },
+				{ max: 11, message: '请填写正确的手机号', trigger: 'blur' }
+			],
+			safePassword:[
+				{ required: true, message: '请输权限密码', trigger: 'blur' },
+				{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
+			]
+		},
 			}
 		},
 		components: {

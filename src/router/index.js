@@ -121,6 +121,11 @@ export default new Router({
 				    meta: { title: '客服管理' }
 				},
 				{
+				    path: '/levelManage',
+				    component: resolve => require(['../components/page/user/levelManage.vue'], resolve),
+				    meta: { title: '会长管理' }
+				},
+				{
 				    path: '/roleManage',
 				    component: resolve => require(['../components/page/role/roleManage.vue'], resolve),
 				    meta: { title: '角色管理' }

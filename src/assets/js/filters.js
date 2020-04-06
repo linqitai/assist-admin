@@ -10,6 +10,22 @@ function getUserType(val){
 	}
 }
 
+function getUserLevel(val) {
+	if (val == 1) {
+		return '青铜';
+	} else if (val == 2) {
+		return '白银';
+	} else if(val == 3) {
+		return '黄金';
+	} else if (val == 4) {
+		return '铂金';
+	} else if (val == 5) {
+		return '钻石';
+	} else {
+		return val;
+	}
+}
+
 function getRoleType(val){
 	if(val==0){
 		return '管理角色';
@@ -226,7 +242,7 @@ function canUnFreeze(val){
 }
 
 export {
-	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,
+	getUserType,getRoleType,menuType,levelType,agencyStatusType,agencyStatusOptions,getUserLevel,
   isPayType,isNullReturnLine,isOrNo,voteType,machineVersionType,versionOptions,isOrNoOptions,
   machineTagOptions,machineTypeOptions,machineTagType,machineTypeType,dealStatusType,dealStatusOptions,
   dealType,noticeType,wordType,platformBookType,contributionType,activedType,getDateYMD,accountStatus,canUnFreeze

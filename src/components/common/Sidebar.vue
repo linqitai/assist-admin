@@ -91,6 +91,12 @@
                 title: '服务商管理'
               },
               {
+                icon: 'el-icon-s-custom',
+                // icon:'iconfont iconfont-question',
+                index: 'levelManage',
+                title: '会长管理'
+              },
+              {
                 icon: 'el-icon-headset',
                 // icon:'iconfont iconfont-question',
                 index: 'serviceManage',

@@ -33,10 +33,10 @@
 			</el-select> -->
       <search-condition @clickSearchData="searchEvent">
         <div class="element">
-          <p class="inline">排序</p>
+          <p class="inline">等级</p>
           <div class="inline">
-            <el-select v-model="searchForm.order" @change="orderChange" placeholder="排序方式" class="handle-select mr10 width160">
-              <el-option v-for="item in orderOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+            <el-select v-model="searchForm.level" @change="levelChange" placeholder="等级" class="handle-select mr10 width160">
+              <el-option v-for="item in levelOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
             </el-select>
           </div>
         </div>
@@ -75,36 +75,25 @@
 				<el-button type="primary" icon="search" @click="search">搜索</el-button>
 			</div> -->
       <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-        <el-table-column prop="id" label="ID" min-width="60" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="parentId" label="上级ID" min-width="80" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
-        <el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip fixed="left"></el-table-column>
-        <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
-        <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
-        <el-table-column prop="actived" label="是否激活" min-width="80"></el-table-column>
-        <el-table-column prop="level" label="级别" min-width="50"></el-table-column>
-        <el-table-column prop="teamateNum" label="直推人数" min-width="80"></el-table-column>
-        <el-table-column prop="realnameNum" label="实名人数" min-width="80"></el-table-column>
+        <!-- <el-table-column prop="registerTime" label="注册日期" min-width="120"></el-table-column> -->
+        <el-table-column prop="nickName" label="昵称" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
+        <el-table-column prop="realName" label="姓名" min-width="70" show-overflow-tooltip fixed="left"></el-table-column>
+        <el-table-column prop="mobilePhone" label="手机号" min-width="90"></el-table-column>
+        <el-table-column prop="level" label="级别" min-width="50">
+          <template slot-scope="scope">
+            <span>{{scope.row.level | getUserLevel}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="teamateNum" label="直推人数" min-width="70"></el-table-column>
+        <el-table-column prop="realnameNum" label="实名人数" min-width="70"></el-table-column>
         <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="80" fixed="right"></el-table-column>
         <el-table-column prop="contributionValue" label="贡献值" min-width="70" fixed="right"></el-table-column>
         <el-table-column prop="platformTicket" label="帮扶券" min-width="70" fixed="right"></el-table-column>
         <el-table-column prop="myCalculationPower" label="个人算力" min-width="60" fixed="right"></el-table-column>
         <el-table-column prop="teamCalculationPower" label="团队算力" min-width="60" fixed="right"></el-table-column>
-        <el-table-column prop="beComplaintTimes" label="被投诉次数" min-width="100"></el-table-column>
-        <el-table-column prop="beFrozenTimes" label="被冻结次数" min-width="100"></el-table-column>
-        <el-table-column prop="accountStatus" label="账户状态" min-width="80" fixed="right">
-          <template slot-scope="scope">
-            <span :class="scope.row.accountStatus==1?'red':'green'">{{scope.row.accountStatus | accountStatus}}</span>
-          </template>
-        </el-table-column>
-        <!-- <el-table-column prop="receivingAddress" label="地区" :formatter="formatter" min-width="220">
-				</el-table-column> -->
         <el-table-column label="操作" width="140" align="center" fixed="right">
           <template slot-scope="scope">
             <el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
-            <!-- <el-button type="text" icon="el-icon-view" @click="handleDetail(scope.$index, scope.row)">详情</el-button>
-						<el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
-            <!-- <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
           </template>
         </el-table-column>
       </el-table>
@@ -114,6 +103,9 @@
         </el-pagination>
       </div>
       <div class="placeholderLine20"></div>
+      <div>
+        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="giveLevelDealProfit">执行分红</el-button>
+      </div>
     </div>
 
     <!-- 详情编辑弹出框 -->
@@ -122,9 +114,6 @@
         <el-form-item label="注册时间">
           <el-date-picker type="datetime" placeholder="选择日期" v-model="form.registerTime" value-format="yyyy-MM-dd hh:mm:ss"
             class="width200" :disabled="true"></el-date-picker>
-        </el-form-item>
-        <el-form-item label="个人ID">
-          <el-input v-model="form.userId"></el-input>
         </el-form-item>
         <el-form-item label="上级ID">
           <el-input v-model="form.parentId"></el-input>
@@ -310,12 +299,12 @@
         currentPage: 1,
         multipleSelection: [],
         searchForm: {
-          order: "",
+          level: 3,
           condition: '全部',
           searchContent: '',
           date: ''
         },
-        orderOptions: [],
+        levelOptions: [],
         conditionOptions: [],
         select_cate: '',
         select_word: '',
@@ -348,7 +337,7 @@
         this.pageSizes = this.$config.pageSizes;
         this.pageSize = this.$config.pageSize;
         this.currentPage = 1;
-        this.orderOptions = this.$config.orderOptions;
+        this.levelOptions = this.$config.levelOptions;
         this.conditionOptions = this.$config.conditionOptions;
       },
       canUnFreezeBtn(row){
@@ -443,9 +432,9 @@
       },
       checkedMineralDescChange() {
       },
-      orderChange(val) {
+      levelChange(val) {
         let _this = this;
-        _this.searchForm.order = val;
+        _this.searchForm.level = val;
       },
       conditionChange(val) {
         let _this = this;
@@ -466,6 +455,24 @@
         this.pageSize = val;
         this.getData();
       },
+      giveLevelDealProfit(){
+        let _this = this;
+        //过滤出userId
+        let userIdList = [];
+        _this.tableData.forEach(item=>{
+          userIdList.push(item.userId);
+        })
+        var params = {
+          userIdList: userIdList.join(','),
+          level:_this.searchForm.level
+        }
+        _this.$ajax.ajax(_this.$api.giveLevelDealProfit, 'POST', params, function(res) {
+          // console.log('res',res)
+          if (res.code == _this.$api.ERR_OK) { // 200
+            _this.$message.success('执行成功');
+          }
+        })
+      },
       // 获取 easy-mock 的模拟数据
       getData() {
         let _this = this;
@@ -479,8 +486,10 @@
           pageNo: _this.currentPage,
           pageSize: _this.pageSize,
         }
-        params[_this.searchForm.condition] = _this.searchForm.searchContent;
-        params.orderField = _this.searchForm.order;
+        if(_this.searchForm.condition!='全部') {
+          params[_this.searchForm.condition] = _this.searchForm.searchContent;
+        }
+        params.level = _this.searchForm.level;
         _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res) {
           // console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
