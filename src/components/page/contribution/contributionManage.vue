@@ -159,7 +159,10 @@
 					address: ''
 				},
         transferTypeOptions:[{
-          id: '21',
+          id: 2,
+          value: "转入"
+        },{
+          id: 21,
           value: "优秀领导人扶持"
         },{
           id: 19,
@@ -175,7 +178,7 @@
           value: "反馈问题成功"
         }],
 		form4Transfer:{
-		  transferType:19,
+		  transferType:2,
 			transferAmount:"",
 			mobilePhone:"",
 			safePassword:""

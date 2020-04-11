@@ -272,7 +272,7 @@
 					address: '上海市普陀区金沙江路 1518 弄'
 				}],
 				searchForm: {
-					versionNo:2,
+					versionNo:3,
 					sellOrNot:''
 				},
 				status: "",

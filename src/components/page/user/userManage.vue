@@ -404,8 +404,8 @@
           _this.$message.error("用户ID有误");
           return;
         }
-        if ((_this.form4Freeze.reason.length < 3 || _this.form4Freeze.reason.length > 50)) {
-          _this.$message.error("请填写3~50个字的冻结原因");
+        if ((_this.form4Freeze.reason.length < 3 || _this.form4Freeze.reason.length > 100)) {
+          _this.$message.error("请填写3~100个字的冻结原因");
           return;
         }
         if ((_this.form4Freeze.needTicket < 0 || _this.form4Freeze.needTicket > 1000)) {
