@@ -26,6 +26,9 @@ export default{
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
   giveLevelDealProfit: host + "admin/userInfo/giveLevelDealProfit",
+  getAssistUserInfoPageList4Prifit: host + "admin/userInfo/getAssistUserInfoPageList4Prifit",
+  getAssistUserInfoPageList4Level: host + "admin/userInfo/getAssistUserInfoPageList4Level",
+  updateUserInfo: host + "admin/userInfo/updateUserInfo",
 	//service
 	getServiceUserPageList: host + "admin/user/getServiceUserPageList",
 	insertServiceUser: host + "admin/user/insertServiceUser",
@@ -70,6 +73,7 @@ export default{
 	//交易信息
 	getAssistTransactionListByPage: host + "admin/transaction/getAssistTransactionListByPage",
 	cancelAssistTransactionById: host + "admin/transaction/cancelAssistTransactionById",
+  sureDeal4SellerById: host + "admin/transaction/sureDeal4SellerById",
 	//公告管理
 	getNoticePageList: host + "admin/notice/getNoticePageList",
 	updateNotice: host + "admin/notice/updateNotice",

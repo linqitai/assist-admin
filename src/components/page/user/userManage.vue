@@ -118,16 +118,17 @@
 
     <!-- 详情编辑弹出框 -->
     <el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
-      <el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
+      <!-- :disabled="visibleType=='detail'?true:false" -->
+      <el-form ref="form" :model="form" label-width="auto" :inline="true">
         <el-form-item label="注册时间">
           <el-date-picker type="datetime" placeholder="选择日期" v-model="form.registerTime" value-format="yyyy-MM-dd hh:mm:ss"
             class="width200" :disabled="true"></el-date-picker>
         </el-form-item>
         <el-form-item label="个人ID">
-          <el-input v-model="form.userId"></el-input>
+          <el-input v-model="form.userId" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="上级ID">
-          <el-input v-model="form.parentId"></el-input>
+          <el-input v-model="form.parentId" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="用户名">
           <el-input v-model="form.nickName"></el-input>
@@ -144,51 +145,54 @@
         <el-form-item label="微信号">
           <el-input v-model="form.wechartNum"></el-input>
         </el-form-item>
+        <el-form-item label="身份证号">
+          <el-input v-model="form.idCard"></el-input>
+        </el-form-item>
         <div class="placeholderLine10"></div>
-        <el-form-item label="上周拥有矿石">
-          <el-input v-model="form.lastWeekMineral"></el-input>
+        <el-form-item label="上周拥有矿石" :disabled="true">
+          <el-input v-model="form.lastWeekMineral" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="当前拥有矿石">
-          <el-input v-model="form.thisWeekMineral"></el-input>
+          <el-input v-model="form.thisWeekMineral" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结矿石">
-          <el-input v-model="form.temporaryFreezeMineral"></el-input>
+          <el-input v-model="form.temporaryFreezeMineral" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="待释放矿石">
-          <el-input v-model="form.toBeReleasedMineral"></el-input>
+          <el-input v-model="form.toBeReleasedMineral" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="贡献值">
-          <el-input v-model="form.contributionValue"></el-input>
+          <el-input v-model="form.contributionValue" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结贡献值">
-          <el-input v-model="form.temporaryFreezeContribution"></el-input>
+          <el-input v-model="form.temporaryFreezeContribution" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="团队算力">
-          <el-input v-model="form.teamCalculationPower"></el-input>
+          <el-input v-model="form.teamCalculationPower" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="平台券">
-          <el-input v-model="form.platformTicket"></el-input>
+          <el-input v-model="form.platformTicket" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结平台券">
-          <el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
+          <el-input v-model="form.temporaryFreezePlatformTicket" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="买入次数">
-          <el-input v-model="form.buyTimes"></el-input>
+          <el-input v-model="form.buyTimes" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="卖出次数">
-          <el-input v-model="form.sellTimes"></el-input>
+          <el-input v-model="form.sellTimes" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="区块地址">
-          <el-input v-model="form.blockAddress"></el-input>
+          <el-input v-model="form.blockAddress" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="被打小报告次数">
-          <el-input v-model="form.beComplaintTimes"></el-input>
+          <el-input v-model="form.beComplaintTimes" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="被冻结账号次数">
-          <el-input v-model="form.beFrozenTimes"></el-input>
+          <el-input v-model="form.beFrozenTimes" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="是否激活">
@@ -201,7 +205,7 @@
           {{form.canUnfreeze | canUnFreeze}}
         </el-form-item>
         <el-form-item label="驳回原因">
-          <el-input v-model="form.remark" class="width400"></el-input>
+          <el-input v-model="form.remark" class="width400" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="审核者昵称">
@@ -215,6 +219,7 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer center">
+        <el-button type="primary" icon="el-icon-s-claim" @click="updateUserInfo(form)">保存</el-button>
         <el-button type="primary" icon="el-icon-edit" @click="freezeBtn(form.userId)">冻结</el-button>
         <el-button type="primary" icon="el-icon-edit" @click="unFreezeBtn(form)">解冻</el-button>
         <el-button type="primary" icon="el-icon-edit" @click="canUnFreezeBtn(form)">可解冻</el-button>
@@ -382,6 +387,30 @@
         let _this = this;
         _this.unFreezeEvent();
       },
+      updateUserInfo(form){
+        let _this = this;
+        let params = {
+          userId: form.userId,
+          nickName: form.nickName,
+          realName:form.realName,
+          mobilePhone:form.mobilePhone,
+          alipayNum:form.alipayNum,
+          wechartNum:form.wechartNum,
+          idCard:form.idCard,
+          submitActivedNum:form.submitActivedNum,
+        }
+        console.log("params",params);
+        _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
+          _this.isShowUnfrezeeModel = false;
+        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        		_this.$message.success("修改成功");
+            _this.detailOrEditVisible = false;
+            _this.getData();
+        	}else{
+        		_this.$message.error(res.message);
+        	}
+        })
+      },
       unFreezeEvent(){
         let _this = this;
         let params = {
@@ -502,6 +531,7 @@
       handleDetail(index, row) {
         let _this = this;
         _this.visibleType = 'detail';
+        console.log("row",row);
         _this.form = row;
         _this.detailOrEditVisible = true;
         _this.getChecker(row.checkerId);

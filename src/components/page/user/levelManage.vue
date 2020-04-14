@@ -49,16 +49,18 @@
 					</div>
 				</div> -->
         <div class="element">
-          <p class="inline">条件查询</p>
-          <div class="inline width140">
-            <el-select v-model="searchForm.condition" @change="conditionChange">
-              <el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
-            </el-select>
+          <p class="inline">注册时间段</p>
+          <div class="inline">
+            <el-date-picker type="datetime" placeholder="选择时间" v-model="searchForm.startTime" default-time="00:00:00" value-format="yyyy/MM/dd HH:mm:ss"></el-date-picker>
           </div>
-          <div class="inline width160 margL10">
-            <el-input v-model="searchForm.searchContent" size="medium" placeholder="请输入搜索内容" clearable></el-input>
+          <div class="inline">
+            <el-date-picker type="datetime" placeholder="选择时间" v-model="searchForm.endTime" default-time="00:00:00" value-format="yyyy/MM/dd HH:mm:ss"></el-date-picker>
           </div>
         </div>
+        <div class="element">
+          <div class="inline width160 margL10"><el-button type="primary" icon="el-icon-circle-plus-outline" @click="giveLevelDealProfit">执行分红</el-button></div>
+        </div>
+
         <!-- <div class="element">
 					<p class="inline">日期</p>
 					<div class="inline">
@@ -74,7 +76,7 @@
 				<el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
 				<el-button type="primary" icon="search" @click="search">搜索</el-button>
 			</div> -->
-      <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
+      <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%" height="680" v-loading="loading">
         <!-- <el-table-column prop="registerTime" label="注册日期" min-width="120"></el-table-column> -->
         <el-table-column prop="nickName" label="昵称" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="realName" label="姓名" min-width="70" show-overflow-tooltip fixed="left"></el-table-column>
@@ -101,10 +103,6 @@
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
           :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
         </el-pagination>
-      </div>
-      <div class="placeholderLine20"></div>
-      <div>
-        <el-button type="primary" icon="el-icon-circle-plus-outline" @click="giveLevelDealProfit">执行分红</el-button>
       </div>
     </div>
 
@@ -300,9 +298,8 @@
         multipleSelection: [],
         searchForm: {
           level: 3,
-          condition: '全部',
-          searchContent: '',
-          date: ''
+          startTime: '',
+          endTime: ''
         },
         levelOptions: [],
         conditionOptions: [],
@@ -320,7 +317,10 @@
         checkedMineralDesc: false,
         unFreezeUserId:"",
         unFreezeNickName:"",
-        checkerInfo:{}
+        checkerInfo:{},
+        loading:false,
+        startTime:'',
+        endTime:''
       }
     },
     components: {
@@ -329,13 +329,13 @@
     created() {
       //console.log("created")
       this.initData();
-      this.getData();
+      //this.getData();
     },
     computed: {},
     methods: {
       initData() {
-        this.pageSizes = this.$config.pageSizes;
-        this.pageSize = this.$config.pageSize;
+        this.pageSizes = [20, 30, 40, 50];
+        this.pageSize = 20;
         this.currentPage = 1;
         this.levelOptions = this.$config.levelOptions;
         this.conditionOptions = this.$config.conditionOptions;
@@ -435,6 +435,7 @@
       levelChange(val) {
         let _this = this;
         _this.searchForm.level = val;
+        this.getData();
       },
       conditionChange(val) {
         let _this = this;
@@ -442,6 +443,8 @@
       },
       searchEvent() {
         this.currentPage = 1;
+        console.log(this.searchForm.startTime,"startTime");
+        console.log(this.searchForm.endTime,"endTime");
         this.getData();
         // this.getList();
       },
@@ -476,26 +479,37 @@
       // 获取 easy-mock 的模拟数据
       getData() {
         let _this = this;
-        // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-        // if (process.env.NODE_ENV === 'development') {
-        // 	this.url = '/ms/table/list';
-        // };
-        // this.searchForm.condition = this.$route.query.condition;
-        // this.searchForm.searchContent = this.$route.query.id;
+        // var params = {
+        //   pageNo: _this.currentPage,
+        //   pageSize: _this.pageSize,
+        //   level:_this.searchForm.level,
+        //   startTime:_this.searchForm.startTime,
+        //   endTime:_this.searchForm.endTime
+        // }
+        // params.level = _this.searchForm.level;
+        // _this.loading = true;
+        // _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList4Prifit, 'GET', params, function(res) {
+        //   // console.log('res',res)
+        //   if (res.code == _this.$api.ERR_OK) { // 200
+        //     _this.tableData = res.data.list;
+        //     _this.total = res.data.total;
+        //   }
+        //   _this.loading = false;
+        // })
         var params = {
           pageNo: _this.currentPage,
           pageSize: _this.pageSize,
-        }
-        if(_this.searchForm.condition!='全部') {
-          params[_this.searchForm.condition] = _this.searchForm.searchContent;
+          level:_this.searchForm.level
         }
         params.level = _this.searchForm.level;
-        _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res) {
+        _this.loading = true;
+        _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList4Level, 'GET', params, function(res) {
           // console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.tableData = res.data.list;
             _this.total = res.data.total;
           }
+          _this.loading = false;
         })
 
       },

@@ -119,6 +119,7 @@
 			<span slot="footer" class="dialog-footer center">
 				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
 				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
+				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn(form)">帮卖方确认</el-button>
         <!-- <el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button> -->
 				<!-- <el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button> -->
 			</span>
@@ -287,12 +288,31 @@
 				}
 				_this.getData();
 			},
-			sellerSureBtn(){
+			sellerSureBtn(form){
 				this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
+          let params = {
+          	id:form.id
+          }
+          _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
+          	// console.log('res',res)
+          	if (res.code == _this.$api.ERR_OK) { // 200
+          		_this.$message({
+          			type: 'success',
+          			message: '确认成功'
+          		});
+          		_this.detailOrEditVisible = false;
+          		_this.getData();
+          	}else{
+          		_this.$message({
+          			type: 'info',
+          			message: res.message
+          		});
+          	}
+          })
 					this.$message({
 						type: 'success',
 						message: '确认成功'

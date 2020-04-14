@@ -72,12 +72,11 @@
                 index: 'freezeManage',
                 title: '冻结管理',
               },
-              {
-                icon: 'el-icon-user',
-                // icon:'iconfont iconfont-question',
-                index: 'checkManage',
-                title: '审核管理'
-              },
+              // {
+              //   icon: 'el-icon-user',
+              //   index: 'checkManage',
+              //   title: '审核管理'
+              // },
               {
                 icon: 'el-icon-guide',
                 // icon:'iconfont iconfont-question',
