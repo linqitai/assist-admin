@@ -130,12 +130,14 @@
         <el-form-item label="上级ID">
           <el-input v-model="form.parentId" :disabled="true"></el-input>
         </el-form-item>
+        <div class="placeholderLine10"></div>
         <el-form-item label="用户名">
           <el-input v-model="form.nickName"></el-input>
         </el-form-item>
         <el-form-item label="姓名">
           <el-input v-model="form.realName"></el-input>
         </el-form-item>
+        <div class="placeholderLine10"></div>
         <el-form-item label="手机号">
           <el-input v-model="form.mobilePhone"></el-input>
         </el-form-item>
@@ -149,18 +151,11 @@
           <el-input v-model="form.idCard"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
-        <el-form-item label="上周拥有矿石" :disabled="true">
-          <el-input v-model="form.lastWeekMineral" :disabled="true"></el-input>
-        </el-form-item>
         <el-form-item label="当前拥有矿石">
           <el-input v-model="form.thisWeekMineral" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结矿石">
           <el-input v-model="form.temporaryFreezeMineral" :disabled="true"></el-input>
-        </el-form-item>
-        <div class="placeholderLine10"></div>
-        <el-form-item label="待释放矿石">
-          <el-input v-model="form.toBeReleasedMineral" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="贡献值">
           <el-input v-model="form.contributionValue" :disabled="true"></el-input>
@@ -169,22 +164,32 @@
           <el-input v-model="form.temporaryFreezeContribution" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
+        <el-form-item label="直推人数">
+          <el-input v-model="form.teamateNum" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="直推实名人数">
+          <el-input v-model="form.realnameNum" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="个人算力">
+          <el-input v-model="form.myCalculationPower" :disabled="true"></el-input>
+        </el-form-item>
         <el-form-item label="团队算力">
           <el-input v-model="form.teamCalculationPower" :disabled="true"></el-input>
         </el-form-item>
+        <div class="placeholderLine10"></div>
         <el-form-item label="平台券">
           <el-input v-model="form.platformTicket" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结平台券">
-          <el-input v-model="form.temporaryFreezePlatformTicket" :disabled="true"></el-input>
+          <el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
         </el-form-item>
-        <div class="placeholderLine10"></div>
         <el-form-item label="买入次数">
           <el-input v-model="form.buyTimes" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="卖出次数">
           <el-input v-model="form.sellTimes" :disabled="true"></el-input>
         </el-form-item>
+        <div class="placeholderLine10"></div>
         <el-form-item label="区块地址">
           <el-input v-model="form.blockAddress" :disabled="true"></el-input>
         </el-form-item>
@@ -398,6 +403,7 @@
           wechartNum:form.wechartNum,
           idCard:form.idCard,
           submitActivedNum:form.submitActivedNum,
+          temporaryFreezePlatformTicket:form.temporaryFreezePlatformTicket
         }
         console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {

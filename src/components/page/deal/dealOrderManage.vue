@@ -97,10 +97,12 @@
        	<div>交易类型:{{form.type | dealType}}</div>
        	<div>交易数量:{{form.num}}</div>
        	<div>交易单价:{{form.price}}</div>
-       	<div :class="textColor(form.status)">交易状态:{{form.status | dealStatusType}}</div>
+       	<div class="red">交易状态:{{form.status | dealStatusType}}</div>
        	<div>挂单时间:{{form.hangBillTime}}</div>
        	<div>匹配时间:{{form.machingTime}}</div>
-       	<div>放币时间:{{form.coinReleaseTime||'--'}}</div>
+        <div>放币时间:{{form.coinReleaseTime||'--'}}</div>
+       	<div>可确认时间:{{form.letSureTime||'--'}}</div>
+        <div>可取消时间:{{form.canCancelTime||'--'}}</div>
         <!-- <div>取消交易时间:{{form.canCancelTime||'--'}}</div> -->
        	<div>备注:{{form.remark}}</div>
        	<div>
@@ -109,6 +111,15 @@
        			<img class="selectedImg" :src="form.imgUrl"/>
        		</div>
        	</div>
+        <el-form-item label="交易状态" class="block">
+        	 <!-- @change="conditionChange" -->
+          <el-select v-model="form4Update.status" @change="status4UpdateChange">
+            <el-option v-for="item in statusOptions4Update" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="留言" class="block">
+          <el-input v-model="form4Update.remark" size="medium" type="textarea" :rows="2" placeholder="留言内容" clearable></el-input>
+        </el-form-item>
        	<el-form-item label="贡献值" class="block" v-if="checked">
        		<el-input-number v-model="addContributionValue" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
        	</el-form-item>
@@ -117,9 +128,9 @@
        <div class="placeholderLine10"></div>
        <div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
-				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
 				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
 				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn(form)">帮卖方确认</el-button>
+				<el-button type="default" icon="el-icon-edit" @click="saveDealStatusBtn(form)">保存修改</el-button>
         <!-- <el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button> -->
 				<!-- <el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button> -->
 			</span>
@@ -141,6 +152,10 @@
 	export default {
 		data() {
 			return {
+        form4Update:{
+          status:2,
+          remark:''
+        },
         addContributionValue:0,
 				url: '',
 				tableData: [],
@@ -158,6 +173,9 @@
 				},
 				status:"",
 				statusOptions: [],
+        statusOptions4Update: [
+          {id:0,value:'待付款'},{id:2,value:'待确认'}
+        ],
 				conditionOptions: [
 					{
 						id: "",
@@ -235,6 +253,11 @@
 				_this.currentPage = 1;
 				_this.getData();
 			},
+      status4UpdateChange(val){
+        let _this = this;
+        console.log('val', val);
+        _this.form4Update.status = val;
+      },
 			statusChange(val) {
 				let _this = this;
 				console.log('val', val);
@@ -289,11 +312,13 @@
 				_this.getData();
 			},
 			sellerSureBtn(form){
-				this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
+        let _this = this;
+				_this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
+          console.log("sure");
           let params = {
           	id:form.id
           }
@@ -313,18 +338,54 @@
           		});
           	}
           })
-					this.$message({
+					_this.$message({
 						type: 'success',
 						message: '确认成功'
 					});
-					this.detailOrEditVisible = false;
+					_this.detailOrEditVisible = false;
 				}).catch(() => {
-					this.$message({
+					_this.$message({
 						type: 'info',
 						message: '我再考虑考虑'
 					});
 				});
 			},
+      saveDealStatusBtn(){
+        let _this = this;
+        _this.$confirm('此操作将修改此单交易信息与状态, 是否继续?', '提示', {
+        	confirmButtonText: '确定',
+        	cancelButtonText: '取消',
+        	type: 'warning'
+        }).then(() => {
+        	let params = {
+        		id:_this.form.id,
+        		status:_this.form4Update.status,
+        		remark:_this.form4Update.remark
+        	}
+        	console.log('params',params);
+        	_this.$ajax.ajax(_this.$api.updateTransactionInfo, 'POST', params, function(res){
+        		// console.log('res',res)
+        		if (res.code == _this.$api.ERR_OK) { // 200
+        			_this.$message({
+        				type: 'success',
+        				message: '修改成功'
+        			});
+        			_this.detailOrEditVisible = false;
+        			_this.getData();
+        		}else{
+        			_this.$message({
+        				type: 'info',
+        				message: res.message
+        			});
+        		}
+        	})
+        }).catch(() => {
+        	this.$message({
+        		type: 'info',
+        		message: '我再考虑考虑'
+        	});
+        });
+      },
 			cancelDealBtn(form) {
 				let _this = this;
 				_this.$confirm('此操作将取消此单交易, 是否继续?', '提示', {
@@ -389,6 +450,8 @@
 			handleDetail(index, row) {
 				this.visibleType = 'detail';
 				this.form = row;
+        this.form4Update.status = row.status;
+        this.form4Update.remark = row.remark;
 				this.detailOrEditVisible = true;
 			},
 			handleEdit(index, row) {

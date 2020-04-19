@@ -165,6 +165,9 @@
           id: 20,
           value: "全球分红"
         },{
+          id: 22,
+          value: "地推扶持"
+        },{
           id: 21,
           value: "优秀领导人扶持"
         },{
@@ -283,7 +286,7 @@
       					_this.getData();
       					//_this.$utils.formClear(_this.form4Transfer);
       				}else{
-      					_this.$message.success(res.message);
+      					_this.$message.error(res.message);
       				}
       			})
       		} else {

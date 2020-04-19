@@ -74,6 +74,7 @@ export default{
 	getAssistTransactionListByPage: host + "admin/transaction/getAssistTransactionListByPage",
 	cancelAssistTransactionById: host + "admin/transaction/cancelAssistTransactionById",
   sureDeal4SellerById: host + "admin/transaction/sureDeal4SellerById",
+  updateTransactionInfo: host + "admin/transaction/updateTransactionInfo",
 	//公告管理
 	getNoticePageList: host + "admin/notice/getNoticePageList",
 	updateNotice: host + "admin/notice/updateNotice",
