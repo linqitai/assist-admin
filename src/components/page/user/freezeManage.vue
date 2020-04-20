@@ -193,7 +193,7 @@
           unFreezeUserId: _this.unFreezeUserId
         }
         _this.$ajax.ajax(_this.$api.unFreeze, 'POST', params, function(res) {
-          _this.isShowUnfrezeeModel = false;
+			_this.isShowUnfrezeeModel = false;
         	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
         		_this.$message.success("解冻成功");
             _this.getData();
