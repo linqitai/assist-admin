@@ -55,6 +55,7 @@
 	.block{display: block;}
 	.textCenter{text-align: center;}
 	.textLeft{text-align: left;}
+  .em13{line-height: 1.3em;}
 	.ellipsis{
 	  overflow: hidden;  /*溢出隐藏*/
 	  text-overflow: ellipsis; /*以省略号...显示*/
