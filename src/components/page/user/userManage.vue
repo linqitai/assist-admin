@@ -261,10 +261,6 @@
           </el-form-item>
         </el-form>
       </div>
-      <!-- <span slot="footer" class="dialog-footer">
-        <el-button @click="isShowFreezeModel = false">取 消</el-button>
-        <el-button type="primary" @click="submit4Freeze('form4Freeze')">确 定</el-button>
-      </span> -->
     </el-dialog>
     <el-dialog title="提示" :visible.sync="isShowUnfrezeeModel" width="300px" center>
       <div class="del-dialog-cnt">是否确定帮[{{unFreezeNickName}}]用户解冻？</div>
