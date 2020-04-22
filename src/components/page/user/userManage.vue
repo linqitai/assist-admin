@@ -407,7 +407,7 @@
         console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
           _this.isShowUnfrezeeModel = false;
-        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        	if (res.code == _this.$api.ERR_OK) {
         		_this.$message.success("修改成功");
             _this.detailOrEditVisible = false;
             _this.getData();
@@ -423,7 +423,7 @@
         }
         _this.$ajax.ajax(_this.$api.unFreeze, 'POST', params, function(res) {
           _this.isShowUnfrezeeModel = false;
-        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        	if (res.code == _this.$api.ERR_OK) {
         		_this.$message.success("解冻成功");
             _this.detailOrEditVisible = false;
             _this.getData();
