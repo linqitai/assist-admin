@@ -39,24 +39,24 @@
 				</div>
 			</search-condition>
 			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="id" label="ID" width="190"></el-table-column>
+				<el-table-column prop="id" label="ID" width="30" show-overflow-tooltip></el-table-column>
 				<!-- <el-table-column prop="buyerId" label="买家ID" width="190"></el-table-column>
 				<el-table-column prop="sellerId" label="卖家ID" width="190"></el-table-column> -->
-				<el-table-column prop="nickName" label="卖家昵称" width="150"></el-table-column>
-				<el-table-column prop="realName" label="卖家姓名" width="150"></el-table-column>
-				<el-table-column prop="mobilePhone" label="卖家手机号" width="150"></el-table-column>
-				<el-table-column prop="alipayNum" label="卖家支付宝" width="170"></el-table-column>
-				<el-table-column prop="type" label="交易类型" width="100">
+				<el-table-column prop="nickName" label="卖家昵称" min-width="120"></el-table-column>
+				<el-table-column prop="realName" label="卖家姓名" min-width="120"></el-table-column>
+				<el-table-column prop="mobilePhone" label="卖家手机号" min-width="120"></el-table-column>
+				<el-table-column prop="buyerPhone" label="买家手机号" min-width="120"></el-table-column>
+				<el-table-column prop="type" label="交易类型" min-width="100">
 					<template slot-scope="props">
 						{{ props.row.type | dealType }}
 					</template>
 				</el-table-column>
-				<el-table-column prop="num" label="交易数量" width="150"></el-table-column>
-				<el-table-column prop="price" label="交易单价" width="150"></el-table-column>
-				<el-table-column prop="hangBillTime" label="挂单时间" width="170"></el-table-column>
-				<el-table-column prop="machingTime" label="匹配时间" width="170" fixed="right"></el-table-column>
-				<el-table-column prop="coinReleaseTime" label="放币时间" width="170"></el-table-column>
-				<el-table-column prop="status" label="交易状态" width="140" fixed="right">
+				<el-table-column prop="num" label="交易数量" min-width="90"></el-table-column>
+				<el-table-column prop="price" label="交易单价" min-width="90"></el-table-column>
+				<el-table-column prop="hangBillTime" label="挂单时间" min-width="120"></el-table-column>
+				<el-table-column prop="machingTime" label="匹配时间" min-width="120" fixed="right"></el-table-column>
+				<el-table-column prop="coinReleaseTime" label="放币时间" min-width="120"></el-table-column>
+				<el-table-column prop="status" label="交易状态" min-width="100" fixed="right">
 					<template slot-scope="props">
 						<span class="ellipsis" :class="textColor(props.row.status)">{{ props.row.status | dealStatusType }}</span>
 					</template>
@@ -94,6 +94,7 @@
        	<div>卖家昵称:{{form.nickName}}</div>
        	<div>卖家姓名:{{form.realName}}</div>
        	<div>卖家手机号:{{form.mobilePhone}}</div>
+        <div>买家手机号:{{form.buyerPhone}}</div>
        	<div>交易类型:{{form.type | dealType}}</div>
        	<div>交易数量:{{form.num}}</div>
        	<div>交易单价:{{form.price}}</div>
