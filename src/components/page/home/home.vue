@@ -105,7 +105,7 @@
     },
     methods: {
       toMessage() {
-        console.log("tomessage")
+        //console.log("tomessage")
         this.$router.push('/messageBoard');
       },
       toCheckManage(){

@@ -39,7 +39,7 @@
 				</div>
 			</search-condition>
 			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="id" label="ID" width="30" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="id" label="ID" width="50" show-overflow-tooltip></el-table-column>
 				<!-- <el-table-column prop="buyerId" label="买家ID" width="190"></el-table-column>
 				<el-table-column prop="sellerId" label="卖家ID" width="190"></el-table-column> -->
 				<el-table-column prop="nickName" label="卖家昵称" min-width="120"></el-table-column>
@@ -53,9 +53,9 @@
 				</el-table-column>
 				<el-table-column prop="num" label="交易数量" min-width="90"></el-table-column>
 				<el-table-column prop="price" label="交易单价" min-width="90"></el-table-column>
-				<el-table-column prop="hangBillTime" label="挂单时间" min-width="120"></el-table-column>
-				<el-table-column prop="machingTime" label="匹配时间" min-width="120" fixed="right"></el-table-column>
-				<el-table-column prop="coinReleaseTime" label="放币时间" min-width="120"></el-table-column>
+				<el-table-column prop="hangBillTime" label="挂单时间" min-width="150"></el-table-column>
+				<el-table-column prop="machingTime" label="匹配时间" min-width="150" fixed="right"></el-table-column>
+				<el-table-column prop="coinReleaseTime" label="放币时间" min-width="150"></el-table-column>
 				<el-table-column prop="status" label="交易状态" min-width="100" fixed="right">
 					<template slot-scope="props">
 						<span class="ellipsis" :class="textColor(props.row.status)">{{ props.row.status | dealStatusType }}</span>
@@ -222,7 +222,7 @@
 			searchCondition
 		},
 		created() {
-			console.log("created")
+			//console.log("created")
 			this.initData();
 			this.getData();
 		},
@@ -245,31 +245,31 @@
 				}
 			},
 			checkedMineralDescChange() {
-				console.log('checkedMineralDesc', this.checkedMineralDesc)
+				//console.log('checkedMineralDesc', this.checkedMineralDesc)
 			},
 			datePickerChange(val){
 				let _this = this;
-				console.log(val);
+				//console.log(val);
 				_this.searchForm.machingTime = val;
 				_this.currentPage = 1;
 				_this.getData();
 			},
       status4UpdateChange(val){
         let _this = this;
-        console.log('val', val);
+        //console.log('val', val);
         _this.form4Update.status = val;
       },
 			statusChange(val) {
 				let _this = this;
-				console.log('val', val);
+				//console.log('val', val);
 				_this.searchForm.status = val;
 				_this.currentPage = 1;
-				console.log('_this.searchForm',_this.searchForm);
+				//console.log('_this.searchForm',_this.searchForm);
 				_this.getData();
 			},
 			conditionChange(val) {
 				let _this = this;
-				console.log('val', val);
+				//console.log('val', val);
 				_this.searchForm = _this.$utils.formClear(_this.searchForm);
 				_this.searchForm.condition = val;
 			},
@@ -286,9 +286,9 @@
 					sellerId:_this.searchForm.sellerId,
 					mobilePhone:_this.searchForm.mobilePhone,
 				}
-				console.log(params,'params');
+				//console.log(params,'params');
 				_this.$ajax.ajax(_this.$api.getAssistTransactionListByPage, 'GET', params, function(res){
-					// console.log('res',res)
+					// //console.log('res',res)
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
 						_this.total = res.data.total;
@@ -298,7 +298,7 @@
 			searchEvent() {
 				let _this = this;
 				_this.currentPage = 1;
-				console.log('searchForm', _this.searchForm)
+				//console.log('searchForm', _this.searchForm)
 				if(_this.searchForm.condition=='选择'){
 
 				}else if(_this.searchForm.condition == '订单ID'){
@@ -319,12 +319,12 @@
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
-          console.log("sure");
+          //console.log("sure");
           let params = {
           	id:form.id
           }
           _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
-          	// console.log('res',res)
+          	// //console.log('res',res)
           	if (res.code == _this.$api.ERR_OK) { // 200
           		_this.$message({
           			type: 'success',
@@ -363,9 +363,9 @@
         		status:_this.form4Update.status,
         		remark:_this.form4Update.remark
         	}
-        	console.log('params',params);
+        	//console.log('params',params);
         	_this.$ajax.ajax(_this.$api.updateTransactionInfo, 'POST', params, function(res){
-        		// console.log('res',res)
+        		// //console.log('res',res)
         		if (res.code == _this.$api.ERR_OK) { // 200
         			_this.$message({
         				type: 'success',
@@ -403,10 +403,10 @@
 						sellerId:form.sellerId,
             addContributionValue:_this.addContributionValue.toFixed(2)
 					}
-					console.log('params',params);
+					//console.log('params',params);
 
 					_this.$ajax.ajax(_this.$api.cancelAssistTransactionById, 'POST', params, function(res){
-						// console.log('res',res)
+						// //console.log('res',res)
 						if (res.code == _this.$api.ERR_OK) { // 200
 							_this.$message({
 								type: 'success',
@@ -434,7 +434,7 @@
 				this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+				//console.log('size', val)
 				this.currentPage = 1;
 				this.pageSize = val;
 				this.getData();
@@ -467,7 +467,7 @@
 				this.detailOrEditVisible = true;
 			},
 			handleDelete(ID) {
-				console.log('ID', ID);
+				//console.log('ID', ID);
 				this.delVisible = true;
 			},
 			delAll() {

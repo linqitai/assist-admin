@@ -162,7 +162,7 @@
       searchCondition
     },
     created() {
-      console.log("created")
+      //console.log("created")
 
       this.initData();
       this.getData();
@@ -178,7 +178,7 @@
       },
       unFreezeBtn(row) {
         let _this = this;
-        console.log("row",row);
+        //console.log("row",row);
         _this.unFreezeUserId = row.userId;
         _this.unFreezeNickName = row.nickName;
         _this.isShowUnfrezeeModel = true;
@@ -204,7 +204,7 @@
       },
       submit4Freeze(formName) {
         let _this = this;
-        console.log('form4Freeze', _this.form4Freeze)
+        //console.log('form4Freeze', _this.form4Freeze)
         if (!_this.$reg.userId.test(_this.form4Freeze.userId)) {
           _this.$message.error("用户ID有误");
           return;
@@ -227,12 +227,12 @@
         }
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log('valid');
+            //console.log('valid');
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
-            console.log(params, 'params');
+            //console.log(params, 'params');
             _this.$ajax.ajax(url, 'POST', params, function(res) {
-              // console.log('res',res)
+              // //console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
                 _this.$message.success("操作成功");
                 _this.$utils.formClear(_this.form4Freeze);
@@ -241,23 +241,23 @@
               }
             })
           } else {
-            console.log('error submit!!');
+            //console.log('error submit!!');
             return false;
           }
         });
       },
       checkedMineralDescChange() {
-        console.log('checkedMineralDesc', this.checkedMineralDesc)
+        //console.log('checkedMineralDesc', this.checkedMineralDesc)
       },
       orderChange(val) {
-        console.log('val', val)
+        //console.log('val', val)
       },
       conditionChange(val) {
-        console.log('val', val)
+        //console.log('val', val)
       },
       searchEvent() {
         this.currentPage = 1;
-        console.log('searchForm', this.searchForm)
+        //console.log('searchForm', this.searchForm)
         this.getData();
         // this.getList();
       },
@@ -271,7 +271,7 @@
         this.getData();
       },
       handleSizeChange(val) {
-        console.log('size', val)
+        //console.log('size', val)
         this.currentPage = 1;
         this.pageSize = val;
         this.getData();
@@ -285,7 +285,7 @@
         // };
         this.searchForm.condition = this.$route.query.condition;
         this.searchForm.searchContent = this.$route.query.id;
-        console.log('searchForm', this.searchForm);
+        //console.log('searchForm', this.searchForm);
         var params = {
           pageNo: _this.currentPage,
           pageSize: _this.pageSize,
@@ -293,7 +293,7 @@
           blockAddress: _this.searchForm.blockAddress,
         }
         _this.$ajax.ajax(_this.$api.getAssistUserFreezePageList, 'GET', params, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.tableData = res.data.list;
             _this.total = res.data.total;
@@ -322,7 +322,7 @@
         this.detailOrEditVisible = true;
       },
       handleDelete(ID) {
-        console.log('ID', ID);
+        //console.log('ID', ID);
         this.delVisible = true;
       },
       delAll() {

@@ -297,7 +297,7 @@
 			searchCondition
 		},
 		created() {
-			console.log("created")
+			//console.log("created")
 			
 			this.initData();
 			this.getData();
@@ -314,14 +314,14 @@
 				this.activedOptions = this.$config.activedOptions4Serach;
 			},
 			checkedMineralDescChange() {
-				console.log('checkedMineralDesc', this.checkedMineralDesc)
+				//console.log('checkedMineralDesc', this.checkedMineralDesc)
 			},
 			activedChange(val){
 				this.currentPage = 1;
 				this.getData();
 			},
 			conditionChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 				if(val == 0){
 					
 				}
@@ -340,7 +340,7 @@
 				this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+				//console.log('size', val)
 				this.currentPage = 1;
 				this.pageSize = val;
 				this.getData();
@@ -348,7 +348,7 @@
 			// 获取 easy-mock 的模拟数据
 			getData() {
 				let _this = this;
-				console.log('searchForm',this.searchForm);
+				//console.log('searchForm',this.searchForm);
 				var params = {
 					pageNo:_this.currentPage,
 					pageSize:_this.pageSize,
@@ -357,7 +357,7 @@
 					mobilePhone: _this.searchForm.mobilePhone
 				}
 				_this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res){
-					// console.log('res',res)
+					// //console.log('res',res)
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
 						_this.total = res.data.total;
@@ -385,9 +385,9 @@
 						userId:row.userId,
 						actived: 1
 					}
-					console.log("params",params);
+					//console.log("params",params);
 					_this.$ajax.ajax(_this.$api.updateUserActivedByUserId, 'POST', params, function(res){
-						console.log('updateUserActivedByUserId')
+						//console.log('updateUserActivedByUserId')
 						if (res.code == _this.$api.ERR_OK) { // 200
 							_this.getData();
 							 _this.$message({
@@ -411,9 +411,9 @@
 						actived: 2,
 						remark: _this.$utils.clearSpecialStrict(value)
 					}
-					console.log("params",params);
+					//console.log("params",params);
 					_this.$ajax.ajax(_this.$api.updateUserActivedByUserId, 'POST', params, function(res){
-						console.log('updateUserActivedByUserId')
+						//console.log('updateUserActivedByUserId')
 						if (res.code == _this.$api.ERR_OK) { // 200
 							_this.getData();
 							 _this.$message({
@@ -430,7 +430,7 @@
 				});
 			},
 			handleDelete(ID) {
-				console.log('ID',ID);
+				//console.log('ID',ID);
 				this.delVisible = true;
 			},
 			delAll() {

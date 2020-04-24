@@ -347,7 +347,7 @@
       searchCondition
     },
     created() {
-      //console.log("created")
+      ////console.log("created")
       this.initData();
       this.getData();
     },
@@ -404,7 +404,7 @@
           submitActivedNum:form.submitActivedNum,
           temporaryFreezePlatformTicket:form.temporaryFreezePlatformTicket
         }
-        console.log("params",params);
+        //console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
           _this.isShowUnfrezeeModel = false;
         	if (res.code == _this.$api.ERR_OK) {
@@ -459,7 +459,7 @@
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
             _this.$ajax.ajax(url, 'POST', params, function(res) {
-              // console.log('res',res)
+              // //console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
                 _this.$message.success("操作成功");
                 _this.$utils.formClear(_this.form4Freeze);
@@ -516,7 +516,7 @@
         params[_this.searchForm.condition] = _this.searchForm.searchContent;
         params.orderField = _this.searchForm.order;
         _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.tableData = res.data.list;
             _this.total = res.data.total;
@@ -536,7 +536,7 @@
       handleDetail(index, row) {
         let _this = this;
         _this.visibleType = 'detail';
-        console.log("row",row);
+        //console.log("row",row);
         _this.form = row;
         _this.detailOrEditVisible = true;
         _this.getChecker(row.checkerId);
@@ -548,7 +548,7 @@
           pageSize: _this.pageSize,
         } */
         _this.$ajax.ajax(_this.$api.getAssistUserInfo + checkerId, 'GET', null, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.checkerInfo = res.data;
           }

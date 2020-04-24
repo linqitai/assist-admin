@@ -313,7 +313,7 @@
 			searchCondition
 		},
 		created() {
-			console.log("created")
+			//console.log("created")
 			this.initData();
 			this.getData();
 		},
@@ -332,7 +332,7 @@
 			},
 			submit4Transfer(formName){
 				let _this = this;
-				console.log('form4Transfer',_this.form4Transfer)
+				//console.log('form4Transfer',_this.form4Transfer)
 				if(!_this.$reg.phone.test(_this.form4Transfer.mobilePhone)){
 					_this.$message.error("手机号有误");
 					return;
@@ -345,9 +345,9 @@
 					if (valid) {
 						let url = _this.$api.giveMyMachine;
 						var params = _this.form4Transfer;
-						console.log(params,'params');
+						//console.log(params,'params');
 						_this.$ajax.ajax(url, 'POST', params, function(res){
-							// console.log('res',res)
+							// //console.log('res',res)
 							if (res.code == _this.$api.ERR_OK) { // 200
 								_this.$message.success("操作成功");
 								//_this.$utils.formClear(_this.form4Transfer);
@@ -356,7 +356,7 @@
 							}
 						})
 					} else {
-						console.log('error submit!!');
+						//console.log('error submit!!');
 						return false;
 					}
 				});
@@ -365,7 +365,7 @@
 				let _this = this;
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						console.log('form', _this.form)
+						//console.log('form', _this.form)
 						let params = {
 							versionNo:_this.form.versionNo,
 							tag:_this.form.tag,
@@ -378,7 +378,7 @@
 							inventory:_this.form.inventory,
 							sellOrNot:_this.form.sellOrNot
 						};
-						console.log('params',params);
+						//console.log('params',params);
 						let url = '';
 						if(_this.visibleType=='add'){
 							url = _this.$api.insertAssistMiningMachine;
@@ -387,7 +387,7 @@
 							url = _this.$api.updateAssistMiningMachine;
 						}
 						_this.$ajax.ajax(url, 'POST', params, function(res) {
-							console.log('res', res);
+							//console.log('res', res);
 							if (res.code == _this.$api.ERR_OK) {
 								_this.addlOrEditVisible = false;
 								_this.$message.success(`${_this.visibleType=='add'?'添加':'修改'} 成功`);
@@ -395,11 +395,11 @@
 							}
 						})
 					} else {
-						console.log('error submit!!');
+						//console.log('error submit!!');
 						return false;
 					}
 				});
-				// console.log(this.form);
+				// //console.log(this.form);
 				// this.$message.success('提交成功！');
 				// this.$router.push('noticeManage')
 			},
@@ -411,7 +411,7 @@
 					sellOrNot:_this.searchForm.sellOrNot
 				}
 				_this.$ajax.ajax(_this.$api.getAssistMiningMachineList, 'GET', params, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data;
 						// _this.menuData = _this.$utils.getMenuTreeList(list)
@@ -421,7 +421,7 @@
 			getDataByStatus(params) {
 				let _this = this;
 				_this.$ajax.ajax(_this.$api.getCityAgentListMoreInfo, 'GET', params, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
 						_this.total = res.data.size;
@@ -448,12 +448,12 @@
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-				// console.log('searchForm', this.searchForm);
+				// //console.log('searchForm', this.searchForm);
 				// this.getData()
 				this.getData();
 			},
 			versionChangeAndSearch(val) {
-				console.log('val', val)
+				//console.log('val', val)
 				this.status = val;
 				this.getData();
 			},
@@ -464,7 +464,7 @@
 				this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+				//console.log('size', val)
 			},
 			search() {
 				this.is_search = true;
@@ -473,12 +473,12 @@
 				this.visibleType = 'detail';
 				this.form = row;
 				this.detailVisible = true;
-				console.log('detailVisible',this.detailVisible);
+				//console.log('detailVisible',this.detailVisible);
 				// this.idx = index;
-				// console.log('index',index)
-				// console.log('row.id',row.ID)
+				// //console.log('index',index)
+				// //console.log('row.id',row.ID)
 				// this.$store.commit('setMerchantId',row.ID)
-				// console.log('getMerchantId',this.$store.state.merchantId)
+				// //console.log('getMerchantId',this.$store.state.merchantId)
 				// this.$router.push('/shopOrderManage')
 			},
 			addBtn() {
@@ -502,11 +502,11 @@
 				let _this = this;
 				this.visibleType = 'edit';
 				this.addlOrEditVisible = true;
-				console.log('row', row)
+				//console.log('row', row)
 				this.form = row
 			},
 			handleDelete(index,row) {
-				console.log('row.id', row.id);
+				//console.log('row.id', row.id);
 				this.form.id = row.id;
 				this.delVisible = true;
 			},
@@ -520,7 +520,7 @@
 			deleteRow() {
 				let _this = this;
 				_this.$ajax.ajax(_this.$api.deleteAssistMiningMachine + _this.form.id, 'POST', null, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.$message.success(`删除成功`);
 						_this.delVisible = false;

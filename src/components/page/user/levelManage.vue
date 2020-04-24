@@ -327,7 +327,7 @@
       searchCondition
     },
     created() {
-      //console.log("created")
+      ////console.log("created")
       this.initData();
       //this.getData();
     },
@@ -414,7 +414,7 @@
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
             _this.$ajax.ajax(url, 'POST', params, function(res) {
-              // console.log('res',res)
+              // //console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
                 _this.$message.success("操作成功");
                 _this.$utils.formClear(_this.form4Freeze);
@@ -443,8 +443,8 @@
       },
       searchEvent() {
         this.currentPage = 1;
-        console.log(this.searchForm.startTime,"startTime");
-        console.log(this.searchForm.endTime,"endTime");
+        //console.log(this.searchForm.startTime,"startTime");
+        //console.log(this.searchForm.endTime,"endTime");
         this.getData();
         // this.getList();
       },
@@ -470,7 +470,7 @@
           level:_this.searchForm.level
         }
         _this.$ajax.ajax(_this.$api.giveLevelDealProfit, 'POST', params, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.$message.success('执行成功');
           }
@@ -489,7 +489,7 @@
         // params.level = _this.searchForm.level;
         // _this.loading = true;
         // _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList4Prifit, 'GET', params, function(res) {
-        //   // console.log('res',res)
+        //   // //console.log('res',res)
         //   if (res.code == _this.$api.ERR_OK) { // 200
         //     _this.tableData = res.data.list;
         //     _this.total = res.data.total;
@@ -504,7 +504,7 @@
         params.level = _this.searchForm.level;
         _this.loading = true;
         _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList4Level, 'GET', params, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.tableData = res.data.list;
             _this.total = res.data.total;
@@ -536,7 +536,7 @@
           pageSize: _this.pageSize,
         } */
         _this.$ajax.ajax(_this.$api.getAssistUserInfo + checkerId, 'GET', null, function(res) {
-          // console.log('res',res)
+          // //console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.checkerInfo = res.data;
           }

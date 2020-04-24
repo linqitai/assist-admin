@@ -375,7 +375,7 @@
 			searchCondition
 		},
 		created() {
-			console.log("created")
+			//console.log("created")
 			this.initData();
 			this.getData();
 		},
@@ -391,14 +391,14 @@
 			},
 			checkBoxChange(val){
 				this.checkList = val;
-				console.log('checkList',this.checkList);
+				//console.log('checkList',this.checkList);
 			},
 			isPayChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			searchUserIdByCity(){
 				let _this = this;
-				console.log('searchUserId');
+				//console.log('searchUserId');
 				if(!_this.$reg.phone.test(this.form4CityAgent.mobilePhone)){
 					_this.$message('手机号格式不对');
 					return;
@@ -409,13 +409,13 @@
 				_this.$ajax.ajax(_this.$api.getUserIdByPhone, 'GET', params, function(res) {
 					if (res.code == _this.$api.ERR_OK) {
 						_this.form4CityAgent.userId = res.data;
-						console.log(_this.form4CityAgent,'_this.form4CityAgent')
+						//console.log(_this.form4CityAgent,'_this.form4CityAgent')
 					}
 				})
 			},
 			searchUserId(){
 				let _this = this;
-				console.log('searchUserId');
+				//console.log('searchUserId');
 				if(!_this.$reg.phone.test(this.form4PrivinceAgent.mobilePhone)){
 					_this.$message('手机号格式不对');
 					return;
@@ -426,7 +426,7 @@
 				_this.$ajax.ajax(_this.$api.getUserIdByPhone, 'GET', params, function(res) {
 					if (res.code == _this.$api.ERR_OK) {
 						_this.form4PrivinceAgent.userId = res.data;
-						console.log(_this.form4PrivinceAgent,'_this.form4PrivinceAgent')
+						//console.log(_this.form4PrivinceAgent,'_this.form4PrivinceAgent')
 					}
 				})
 			},
@@ -447,7 +447,7 @@
 				let _this = this;
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						// console.log('form4PrivinceAgent', _this.form4PrivinceAgent)
+						// //console.log('form4PrivinceAgent', _this.form4PrivinceAgent)
 						let params = {
 							provinceName:_this.form4PrivinceAgent.provinceName,
 							status:_this.form4PrivinceAgent.status,
@@ -474,7 +474,7 @@
 							}
 						})
 					} else {
-						console.log('error submit!!');
+						//console.log('error submit!!');
 						return false;
 					}
 				});
@@ -483,7 +483,7 @@
 				let _this = this;
 				this.$refs[formName].validate((valid) => {
 					if (valid) {
-						// console.log('form4PrivinceAgent', _this.form4PrivinceAgent)
+						// //console.log('form4PrivinceAgent', _this.form4PrivinceAgent)
 						let params = {
 							provinceAgentId: _this.form4CityAgent.provinceAgentId,
 							cityName:_this.form4CityAgent.cityName,
@@ -502,7 +502,7 @@
 							url = _this.$api.updateCityAgent;
 						}
 						_this.$ajax.ajax(url, 'POST', params, function(res) {
-							console.log('res', res);
+							//console.log('res', res);
 							if (res.code == _this.$api.ERR_OK) {
 								_this.addlOrEditVisible4CityAgent = false;
 								_this.$message.success(`${_this.dialogTitle4CityAgent=='add'?'添加':'修改'} 信息成功`);
@@ -512,7 +512,7 @@
 							}
 						})
 					} else {
-						console.log('error submit!!');
+						//console.log('error submit!!');
 						return false;
 					}
 				});
@@ -525,7 +525,7 @@
 					pageSize: this.pageSize
 				}
 				_this.$ajax.ajax(_this.$api.getAssistProvinceAgentListByPage, 'GET', params, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
 						_this.total = res.data.total;
@@ -536,7 +536,7 @@
 			getDataByStatus(params) {
 				let _this = this;
 				_this.$ajax.ajax(_this.$api.getCityAgentListMoreInfo, 'GET', params, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
 						_this.total = res.data.size;
@@ -554,34 +554,34 @@
 				return status == "0" ? "red" : status == "1" ? "green" : "";
 			},
 			checkedMineralDescChange() {
-				console.log('checkedMineralDesc', this.checkedMineralDesc)
+				//console.log('checkedMineralDesc', this.checkedMineralDesc)
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-				// console.log('searchForm', this.searchForm);
+				// //console.log('searchForm', this.searchForm);
 				// this.getData()
 				this.getData();
 			},
 			statusChangeAndSearch(val) {
-				console.log('val', val)
+				//console.log('val', val)
 				this.status = val;
 				this.getData();
 			},
 			statusChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			selectProvinceNameChange(val){
-				console.log('proId',val)
+				//console.log('proId',val)
 				this.form4CityAgent.provinceAgentId = val;
 			},
 			provinceNameChange(val){
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			cityNameChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			conditionChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			
 			// 分页导航
@@ -590,7 +590,7 @@
 				this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+				//console.log('size', val)
 			},
 			search() {
 				this.is_search = true;
@@ -611,7 +611,7 @@
 				_this.checkList = [];
 				this.dialogTitle4PrivinceAgent = 'edit';
 				this.addlOrEditVisible4PrivinceAgent = true;
-				console.log('row', row)
+				//console.log('row', row)
 				this.form4PrivinceAgent = {
 					id:row.id,
 					provinceName: row.provinceName || '',
@@ -629,7 +629,7 @@
 				_this.checkList = [];
 				this.dialogTitle4CityAgent = 'edit';
 				this.addlOrEditVisible4CityAgent = true;
-				console.log('row', row)
+				//console.log('row', row)
 				this.form4CityAgent = {
 					id:row.id,
 					cityName: row.cityName || '',
@@ -642,20 +642,20 @@
 				}
 			},
 			handleDelete4CityAgent(index,row) {
-				console.log('row.id', row.id);
+				//console.log('row.id', row.id);
 				this.id = row.id;
 				this.deleteType = 'cityAgent';
 				this.delVisible = true;
 			},
 			handleAddCityAgent(index,row){
-				console.log(row);
+				//console.log(row);
 				this.checkList = [];
 				this.dialogTitle4CityAgent = "add";
 				this.addlOrEditVisible4CityAgent = true;
 				this.form4CityAgent.provinceAgentId = row.id;
 			},
 			handleDelete4ProviceAgent(index,row) {
-				console.log('row.id', row.id);
+				//console.log('row.id', row.id);
 				this.id = row.id;
 				this.deleteType = 'provinceAgent';
 				this.delVisible = true;
@@ -679,7 +679,7 @@
 					url = _this.$api.deletedCityAgent;
 				}
 				_this.$ajax.ajax(url + _this.id, 'POST', null, function(res) {
-					console.log('res', res);
+					//console.log('res', res);
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.$message.success(`删除成功`);
 						_this.delVisible = false;

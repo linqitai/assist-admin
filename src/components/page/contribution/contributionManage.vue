@@ -49,9 +49,10 @@
 					</div>
 				</div> -->
 			</search-condition>
-			<el-table :data="tableData" show-summary border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="id" label="账本ID" min-width="80"></el-table-column>
+			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
+				<el-table-column prop="id" label="ID" min-width="50" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="userId" label="用户ID" min-width="210"></el-table-column>
+        <el-table-column prop="nickName" label="昵称" min-width="120"></el-table-column>
 				<el-table-column label="类型" min-width="80">
           <template slot-scope="props">
           	{{ props.row.type | contributionType }}
@@ -213,7 +214,7 @@
 			searchCondition
 		},
 		created() {
-			console.log("created")
+			//console.log("created")
 			this.initData();
 			this.getData();
 		},
@@ -244,27 +245,27 @@
 				this.pageSize = this.$config.pageSize;
 			},
 			checkedMineralDescChange() {
-				console.log('checkedMineralDesc', this.checkedMineralDesc)
+				//console.log('checkedMineralDesc', this.checkedMineralDesc)
 			},
 			statusChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			conditionChange(val) {
-				console.log('val', val)
+				//console.log('val', val)
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-				console.log('searchForm', this.searchForm)
+				//console.log('searchForm', this.searchForm)
 				// this.getList();
 			},
       transferTypeTypeChange(val){
         let _this = this;
-        console.log('val', val);
+        //console.log('val', val);
         _this.form4Transfer.transferType = val;
       },
       submit4Transfer(formName){
       	let _this = this;
-      	//console.log('form4Transfer',_this.form4Transfer)
+      	////console.log('form4Transfer',_this.form4Transfer)
       	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
       		_this.$message.error("手机号有误");
       		return;
@@ -277,9 +278,9 @@
       		if (valid) {
       			let url = _this.$api.insertAssistContributionValue;
       			var params = _this.form4Transfer;
-      			//console.log(params,'params');
+      			////console.log(params,'params');
       			_this.$ajax.ajax(url, 'POST', params, function(res){
-      				// console.log('res',res)
+      				// //console.log('res',res)
       				if (res.code == _this.$api.ERR_OK) { // 200
       					_this.$message.success("转让成功");
       					_this.currentPage = 1;
@@ -290,7 +291,7 @@
       				}
       			})
       		} else {
-      			console.log('error submit!!');
+      			//console.log('error submit!!');
       			return false;
       		}
       	});
@@ -319,7 +320,7 @@
 				this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+				//console.log('size', val)
 			},
 			// 获取 easy-mock 的模拟数据
 			getData() {
@@ -329,10 +330,10 @@
         	pageSize: _this.pageSize,
         }
         _this.$ajax.ajax(_this.$api.getAssistContributionValueList, 'GET', params, function(res) {
-        	//console.log('res', res);
+        	////console.log('res', res);
         	if (res.code == _this.$api.ERR_OK) { // 200
         		let list = res.data.list;
-        		//console.log('list', list);
+        		////console.log('list', list);
         		_this.currentItemsCount = list.length;
         		_this.tableData = list;
         		_this.total = res.data.total;
