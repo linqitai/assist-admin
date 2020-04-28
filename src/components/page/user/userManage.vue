@@ -180,7 +180,7 @@
           <el-input v-model="form.teamCalculationPower" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
-        <el-form-item label="平台券">
+        <el-form-item label="帮扶券">
           <el-input v-model="form.platformTicket" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="临时冻结平台券">
@@ -204,7 +204,10 @@
         </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="是否激活">
-          {{form.actived | isOrNo}}
+          <!-- {{form.actived | isOrNo}} -->
+          <el-select v-model="form.actived" @change="activedChange">
+            <el-option v-for="item in activedOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="账号状态">
           {{form.accountStatus | accountStatus}}
@@ -326,6 +329,7 @@
         },
         orderOptions: [],
         conditionOptions: [],
+        activedOptions:[{id:-1,value:'未激活'},{id:1,value:'已激活'}],
         select_cate: '',
         select_word: '',
         del_list: [],
@@ -402,7 +406,8 @@
           wechartNum:form.wechartNum,
           idCard:form.idCard,
           submitActivedNum:form.submitActivedNum,
-          temporaryFreezePlatformTicket:form.temporaryFreezePlatformTicket
+          temporaryFreezePlatformTicket:form.temporaryFreezePlatformTicket,
+          actived:form.actived
         }
         //console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
@@ -484,6 +489,11 @@
       conditionChange(val) {
         let _this = this;
         _this.searchForm.condition = val;
+      },
+      activedChange(val) {
+        let _this = this;
+        console.log("val:",val);
+        _this.form.actived = val;
       },
       searchEvent() {
         this.currentPage = 1;

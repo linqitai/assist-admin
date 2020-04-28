@@ -28,8 +28,8 @@
     data: function() {
       return {
         form: {
-          telephone: '13695757240',
-          password: '888888'
+          telephone: '13958777778',
+          password: '666666'
         },
         rules: {
           telephone: [{
