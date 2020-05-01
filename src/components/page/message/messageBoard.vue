@@ -27,7 +27,7 @@
 				<!-- <el-table-column prop="date" label="日期"  width="120"></el-table-column> -->
 				<!-- <el-table-column prop="userId" label="用户ID" width="150" show-overflow-tooltip></el-table-column> -->
 				<el-table-column prop="nickName" label="用户昵称" width="150" show-overflow-tooltip></el-table-column>
-				<el-table-column prop="createTime" label="留言时间" width="160"></el-table-column>
+				<el-table-column prop="createTime" label="留言时间" min-width="180"></el-table-column>
 				<el-table-column label="留言类型" min-width="90">
 					<template slot-scope="props">
 						<span :class="getColor(props.row.messageType)">{{ props.row.messageType | wordType}}</span>

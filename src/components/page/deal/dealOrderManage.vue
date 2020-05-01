@@ -53,9 +53,9 @@
 				</el-table-column>
 				<el-table-column prop="num" label="交易数量" min-width="90"></el-table-column>
 				<el-table-column prop="price" label="交易单价" min-width="90"></el-table-column>
-				<el-table-column prop="hangBillTime" label="挂单时间" min-width="150"></el-table-column>
-				<el-table-column prop="machingTime" label="匹配时间" min-width="150" fixed="right"></el-table-column>
-				<el-table-column prop="coinReleaseTime" label="放币时间" min-width="150"></el-table-column>
+				<el-table-column prop="hangBillTime" label="挂单时间" min-width="180"></el-table-column>
+				<el-table-column prop="machingTime" label="匹配时间" min-width="180" fixed="right"></el-table-column>
+				<el-table-column prop="coinReleaseTime" label="放币时间" min-width="180"></el-table-column>
 				<el-table-column prop="status" label="交易状态" min-width="100" fixed="right">
 					<template slot-scope="props">
 						<span class="ellipsis" :class="textColor(props.row.status)">{{ props.row.status | dealStatusType }}</span>
