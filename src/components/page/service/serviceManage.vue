@@ -310,14 +310,14 @@
 			addBtn() {
 				this.visibleType = 'add';
 				this.addlOrEditVisible = true;
-				this.form = {
+				/* this.form = {
 					name: '',
 					userType: '',
 					phone: '',
 					weixin: '',
           qq: '',
           remark: '',
-				}
+				} */
 			},
 			handleEdit(index, row) {
 				this.visibleType = 'edit';

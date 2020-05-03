@@ -282,7 +282,7 @@
       return {
         form4Freeze: {
           userId: "",
-          reason: "经系统检测存在刷号",
+          reason: "实名信息和支付宝中的不一致，根据实名条例，将永久冻结账号处理",
           needTicket: "",
           canUnfreeze: 1,
           safePassword: ""
@@ -467,7 +467,7 @@
               // //console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
                 _this.$message.success("操作成功");
-                _this.$utils.formClear(_this.form4Freeze);
+                //_this.$utils.formClear(_this.form4Freeze);
                 _this.isShowFreezeModel = false;
                 _this.detailOrEditVisible = false;
                 _this.getData();
