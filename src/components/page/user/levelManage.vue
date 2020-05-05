@@ -334,7 +334,7 @@
     computed: {},
     methods: {
       initData() {
-        this.pageSizes = [20, 30, 40, 50];
+        this.pageSizes = [20, 30, 40, 50, 100];
         this.pageSize = 20;
         this.currentPage = 1;
         this.levelOptions = this.$config.levelOptions;
