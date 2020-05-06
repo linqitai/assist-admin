@@ -192,6 +192,9 @@
         <el-form-item label="卖出次数">
           <el-input v-model="form.sellTimes" :disabled="true"></el-input>
         </el-form-item>
+		<el-form-item label="卖出数量">
+		  <el-input v-model="form.sellAmount" :disabled="true"></el-input>
+		</el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="区块地址">
           <el-input v-model="form.blockAddress" :disabled="true"></el-input>
