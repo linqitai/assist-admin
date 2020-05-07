@@ -222,7 +222,6 @@
 			searchCondition
 		},
 		created() {
-			//console.log("created")
 			this.initData();
 			this.getData();
 		},
@@ -261,10 +260,8 @@
       },
 			statusChange(val) {
 				let _this = this;
-				//console.log('val', val);
 				_this.searchForm.status = val;
 				_this.currentPage = 1;
-				//console.log('_this.searchForm',_this.searchForm);
 				_this.getData();
 			},
 			conditionChange(val) {
@@ -273,7 +270,6 @@
 				_this.searchForm = _this.$utils.formClear(_this.searchForm);
 				_this.searchForm.condition = val;
 			},
-			// 获取 easy-mock 的模拟数据
 			getData() {
 				let _this = this;
 				var params = {
