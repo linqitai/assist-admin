@@ -231,6 +231,14 @@
         <el-form-item label="审核者手机号">
           {{checkerInfo.mobilePhone}}
         </el-form-item>
+        <el-form-item label="是否用券修改">
+          <el-select v-model="form.isUseTicket" @change="isUseTicketChange">
+            <el-option v-for="item in [{id:0,value:'否'},{id:1,value:'是'}]" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <div>
+
+        </div>
       </el-form>
       <span slot="footer" class="dialog-footer center">
         <el-button type="primary" icon="el-icon-s-claim" @click="updateUserInfo(form)">保存</el-button>
@@ -383,6 +391,11 @@
         	}
         })
       },
+      isUseTicketChange(value){
+        let _this = this;
+        _this.form.isUseTicket = value;
+        console.log("_this.form.isUseTicket",_this.form.isUseTicket);
+      },
       freezeBtn(userId) {
         let _this = this;
         _this.isShowFreezeModel = true;
@@ -410,7 +423,8 @@
           idCard:form.idCard,
           submitActivedNum:form.submitActivedNum,
           temporaryFreezePlatformTicket:form.temporaryFreezePlatformTicket,
-          actived:form.actived
+          actived:form.actived,
+          isUseTicket: form.isUseTicket
         }
         //console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
@@ -551,6 +565,7 @@
         _this.visibleType = 'detail';
         //console.log("row",row);
         _this.form = row;
+        _this.form.isUseTicket = '';
         _this.detailOrEditVisible = true;
         _this.getChecker(row.checkerId);
       },

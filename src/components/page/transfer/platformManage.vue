@@ -92,7 +92,7 @@
 			    <el-input type="number" v-model.number="form4Transfer.transferAmount" clearable></el-input>
 			  </el-form-item>
 			  <el-form-item label="对方手机号" prop="mobilePhone">
-			    <el-input v-model="form4Transfer.mobilePhone" clearable show-word-limit></el-input>
+			    <el-input v-model="form4Transfer.mobilePhone" clearable show-word-limit></el-input> 财务手机号:13506878979
 			  </el-form-item>
 			  <el-form-item label="权限密码" prop="safePassword">
 			    <el-input v-model="form4Transfer.safePassword" clearable type="password"></el-input>

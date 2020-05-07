@@ -100,5 +100,8 @@ export default{
 	//statistics
 	getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
 	getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
-  get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum"
+  get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum",
+  //raise
+  getAssistRaiseListPage: host + "admin/raise/getAssistRaiseListPage",
+  updateIsShow: host + "admin/raise/updateIsShow"
 }

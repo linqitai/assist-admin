@@ -40,6 +40,11 @@ export default new Router({
 				    component: resolve => require(['../components/page/user/freezeManage.vue'], resolve),
 				    meta: { title: '冻结管理' }
 				},
+        {
+            path: '/raiseManage',
+            component: resolve => require(['../components/page/user/raiseManage.vue'], resolve),
+            meta: { title: '帮扶申请管理' }
+        },
 				{
 				    path: '/checkManage',
 				    component: resolve => require(['../components/page/user/checkManage.vue'], resolve),
@@ -175,13 +180,13 @@ export default new Router({
                     // markdown组件
                     path: '/markdown',
                     component: resolve => require(['../components/page/Markdown.vue'], resolve),
-                    meta: { title: 'markdown编辑器' }    
+                    meta: { title: 'markdown编辑器' }
                 },
                 {
                     // 图片上传组件
                     path: '/upload',
                     component: resolve => require(['../components/page/Upload.vue'], resolve),
-                    meta: { title: '文件上传' }   
+                    meta: { title: '文件上传' }
                 },
                 {
                     // vue-schart组件

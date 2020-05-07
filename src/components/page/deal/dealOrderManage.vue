@@ -175,7 +175,7 @@
 				status:"",
 				statusOptions: [],
         statusOptions4Update: [
-          {id:0,value:'待付款'},{id:2,value:'待确认'}
+          {id:0,value:'待付款'},{id:2,value:'待确认'},{id:9,value:'取消交易'}
         ],
 				conditionOptions: [
 					{
