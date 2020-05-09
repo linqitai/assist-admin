@@ -166,6 +166,14 @@
         <el-form-item label="临时冻结贡献值">
           <el-input v-model="form.temporaryFreezeContribution" :disabled="true"></el-input>
         </el-form-item>
+        
+        <div class="placeholderLine10"></div>
+        <el-form-item label="帮扶券">
+          <el-input v-model="form.platformTicket" :disabled="true"></el-input>
+        </el-form-item>
+        <el-form-item label="临时冻结平台券">
+          <el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
+        </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="直推人数">
           <el-input v-model="form.teamateNum" :disabled="true"></el-input>
@@ -180,21 +188,19 @@
           <el-input v-model="form.teamCalculationPower" :disabled="true"></el-input>
         </el-form-item>
         <div class="placeholderLine10"></div>
-        <el-form-item label="帮扶券">
-          <el-input v-model="form.platformTicket" :disabled="true"></el-input>
-        </el-form-item>
-        <el-form-item label="临时冻结平台券">
-          <el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
-        </el-form-item>
         <el-form-item label="买入次数">
           <el-input v-model="form.buyTimes" :disabled="true"></el-input>
         </el-form-item>
+        <el-form-item label="买入数量">
+          <el-input v-model="form.buyAmount" :disabled="true"></el-input>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
         <el-form-item label="卖出次数">
           <el-input v-model="form.sellTimes" :disabled="true"></el-input>
         </el-form-item>
-		<el-form-item label="卖出数量">
-		  <el-input v-model="form.sellAmount" :disabled="true"></el-input>
-		</el-form-item>
+        <el-form-item label="卖出数量">
+          <el-input v-model="form.sellAmount" :disabled="true"></el-input>
+        </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="区块地址">
           <el-input v-model="form.blockAddress" :disabled="true"></el-input>
