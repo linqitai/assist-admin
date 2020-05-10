@@ -1,34 +1,7 @@
 
 <style scoped>
-	.handle-box {
-		margin-bottom: 20px;
-	}
-
-	.handle-select {
-		width: 120px;
-	}
-
-	.handle-input {
-		width: 300px;
-		display: inline-block;
-	}
-
-	.del-dialog-cnt {
-		font-size: 16px;
-		text-align: center
-	}
-
-	.table {
-		width: 100%;
-		font-size: 14px;
-	}
-
-	.red {
-		color: #ff0000;
-	}
-
-	.mr10 {
-		margin-right: 10px;
+	.transferBox{
+		width: 400px;
 	}
 </style>
 <template>
@@ -89,6 +62,29 @@
 				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
 				 :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
 				</el-pagination>
+			</div>
+			<div class="transferBox">
+        <el-form-item label="回收矿石">
+        </el-form-item>
+				<el-form ref="form4Transfer" :model="form4Transfer" :rules="rules4Transfer" label-width="110px" label-position="left">
+			    <el-form-item label="回收类型" prop="transferAmount">
+			      <el-select v-model="form4Transfer.transferType" @change="transferTypeTypeChange" class="handle-select mr10 width160">
+			      	<el-option v-for="item in transferTypeOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+			      </el-select>
+			    </el-form-item>
+				  <el-form-item label="回收数量" prop="transferAmount">
+				    <el-input type="number" v-model.number="form4Transfer.transferAmount" clearable></el-input>
+				  </el-form-item>
+				  <el-form-item label="对方手机号" prop="mobilePhone">
+				    <el-input v-model="form4Transfer.mobilePhone" clearable show-word-limit></el-input>
+				  </el-form-item>
+				  <el-form-item label="权限密码" prop="safePassword">
+				    <el-input v-model="form4Transfer.safePassword" clearable type="password"></el-input>
+				  </el-form-item>
+				  <el-form-item>
+				    <el-button type="primary" @click="submit4Transfer('form4Transfer')">提交</el-button>
+				  </el-form-item>
+				</el-form>
 			</div>
 		</div>
 
@@ -240,7 +236,35 @@
 				},
 				adressWidth: '200px',
 				idx: -1,
-				checkedMineralDesc: false
+				checkedMineralDesc: false,
+        form4Transfer:{
+          transferType:8,
+        	transferAmount:"",
+        	mobilePhone:"",
+        	safePassword:""
+        },
+        transferTypeOptions:[{
+          id: 8,
+          value: "竞拍服务商"
+        }],
+        rules4Transfer:{
+          transferType: [
+        	{ required: true, message: '请选择回收类型', trigger: 'blur' },
+        	{ type: 'number', message: '请选择回收类型', trigger: 'blur' }
+          ],
+        	transferAmount: [
+        		{ required: true, message: '请输入回收数量', trigger: 'blur' },
+        		{ type: 'number', message: '请输入数字类型', trigger: 'blur' }
+        	],
+        	mobilePhone: [
+        		{ required: true, message: '请输入对方手机号', trigger: 'blur' },
+        		{ max: 11, message: '请填写正确的手机号', trigger: 'blur' }
+        	],
+        	safePassword:[
+        		{ required: true, message: '请输权限密码', trigger: 'blur' },
+        		{ min: 1, max: 20, message: '请填写正确的权限密码', trigger: 'blur' }
+        	]
+        },
 			}
 		},
 		components: {
@@ -252,31 +276,17 @@
 			this.getData();
 		},
 		computed: {
-			// data() {
-			//     return this.tableData.filter((d) => {
-			//         let is_del = false;
-			//         for (let i = 0; i < this.del_list.length; i++) {
-			//             if (d.name === this.del_list[i].name) {
-			//                 is_del = true;
-			//                 break;
-			//             }
-			//         }
-			//         if (!is_del) {
-			//             if (d.address.indexOf(this.select_cate) > -1 &&
-			//                 (d.name.indexOf(this.select_word) > -1 ||
-			//                     d.address.indexOf(this.select_word) > -1)
-			//             ) {
-			//                 return d;
-			//             }
-			//         }
-			//     })
-			// }
 		},
 		methods: {
 			initData(){
 				this.pageSizes = this.$config.pageSizes;
 				this.pageSize = this.$config.pageSize;
 			},
+      transferTypeTypeChange(val){
+        let _this = this;
+        console.log('val', val);
+        _this.form4Transfer.transferType = val;
+      },
 			checkedMineralDescChange() {
 				console.log('checkedMineralDesc', this.checkedMineralDesc)
 			},
@@ -292,6 +302,39 @@
 
 				// this.getList();
 			},
+      submit4Transfer(formName){
+      	let _this = this;
+      	////console.log('form4Transfer',_this.form4Transfer)
+      	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
+      		_this.$message.error("手机号有误");
+      		return;
+      	}
+      	if(!_this.$reg.safePassword.test(_this.form4Transfer.safePassword)){
+      		_this.$message.error("权限密码有误");
+      		return;
+      	}
+      	this.$refs[formName].validate((valid) => {
+      		if (valid) {
+      			let url = _this.$api.recycleMineral;
+      			var params = _this.form4Transfer;
+      			////console.log(params,'params');
+      			_this.$ajax.ajax(url, 'POST', params, function(res){
+      				// //console.log('res',res)
+      				if (res.code == _this.$api.ERR_OK) { // 200
+      					_this.$message.success("转让成功");
+      					_this.currentPage = 1;
+      					_this.getData();
+      					//_this.$utils.formClear(_this.form4Transfer);
+      				}else{
+      					_this.$message.error(res.message);
+      				}
+      			})
+      		} else {
+      			//console.log('error submit!!');
+      			return false;
+      		}
+      	});
+      },
 			sellerSureBtn(){
 				this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
 					confirmButtonText: '确定',
@@ -336,9 +379,7 @@
 			handleSizeChange(val) {
 				console.log('size', val)
 			},
-			// 获取 easy-mock 的模拟数据
 			getData() {
-				// 开发环境使用 easy-mock 数据，正式环境使用 json 文件
 				if (process.env.NODE_ENV === 'development') {
 					this.url = '/ms/table/list';
 				};
@@ -347,11 +388,6 @@
 				this.searchForm.searchContent = this.$route.query.id;
 				this.searchForm.status = this.$route.query.status;
 				console.log('searchForm',this.searchForm);
-				// this.$axios.post(this.url, {
-				//     page: this.cur_page
-				// }).then((res) => {
-				//     this.tableData = res.data.list;
-				// })
 				this.tableData = [{
 					ID: 1,
 					date: '2016-05-02',
@@ -503,4 +539,3 @@
 		}
 	}
 </script>
-

@@ -103,5 +103,6 @@ export default{
   get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum",
   //raise
   getAssistRaiseListPage: host + "admin/raise/getAssistRaiseListPage",
-  updateIsShow: host + "admin/raise/updateIsShow"
+  updateIsShow: host + "admin/raise/updateIsShow",
+  recycleMineral: host + "admin/mineralBook/recycleMineral"
 }

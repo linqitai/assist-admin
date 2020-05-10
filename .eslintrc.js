@@ -44,7 +44,8 @@ module.exports = {
     'block-spacing': 0,
     'brace-style': 0,
     'padded-blocks': 0,
-    'object-curly-spacing':0
+    'object-curly-spacing':0,
+    'no-multiple-empty-lines':0
   },
   parserOptions: {
     parser: 'babel-eslint'

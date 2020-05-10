@@ -1,4 +1,3 @@
-
 <style scoped lang="scss">
 	.table {
 		width: 100%;
@@ -95,10 +94,8 @@
       	</el-form>
       </div>
 		</div>
-
 	</div>
 </template>
-
 <script>
 	import searchCondition from "@/components/common/searchCondition.vue";
 	export default {
@@ -339,7 +336,7 @@
         		_this.total = res.data.total;
         	}
         })
-			},
+			}
 		}
 	}
 </script>
