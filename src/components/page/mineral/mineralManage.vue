@@ -298,13 +298,9 @@
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-				console.log('searchForm', this.searchForm)
-
-				// this.getList();
 			},
       submit4Transfer(formName){
       	let _this = this;
-      	////console.log('form4Transfer',_this.form4Transfer)
       	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
       		_this.$message.error("手机号有误");
       		return;
