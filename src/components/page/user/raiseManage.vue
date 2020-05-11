@@ -122,13 +122,11 @@
 								<div>用户ID：{{props.row.userId}}</div>
 								<div>标题：{{props.row.title}}</div>
 								<div>故事：{{props.row.story||'--'}}</div>
-								<!-- <img class="gesturePic" :src="props.row.gesturePic"/> -->
 							</div>
 						</div>
 				  </template>
 				</el-table-column>
 				<el-table-column prop="id" label="ID" min-width="30" show-overflow-tooltip></el-table-column>
-				<!-- <el-table-column prop="parentId" label="上级ID" min-width="100" show-overflow-tooltip></el-table-column> -->
 				<el-table-column label="提交时间" min-width="140">
 					<template slot-scope="scope">
 						{{scope.row.createTime}}
@@ -136,11 +134,6 @@
 				</el-table-column>
 				<el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip></el-table-column>
-				<!-- <el-table-column label="是否实名" min-width="80">
-					<template slot-scope="scope">
-						{{scope.row.actived | activedType}}
-					</template>
-				</el-table-column> -->
 				<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
         <el-table-column prop="needTicket" label="需要多少券" min-width="100"></el-table-column>
         <el-table-column prop="getedTicket" label="已经筹到多少券" min-width="120"></el-table-column>
