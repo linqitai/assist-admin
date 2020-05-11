@@ -432,7 +432,6 @@
           actived:form.actived,
           isUseTicket: form.isUseTicket
         }
-        //console.log("params",params);
         _this.$ajax.ajax(_this.$api.updateUserInfo, 'POST', params, function(res) {
           _this.isShowUnfrezeeModel = false;
         	if (res.code == _this.$api.ERR_OK) {
@@ -487,10 +486,8 @@
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
             _this.$ajax.ajax(url, 'POST', params, function(res) {
-              // //console.log('res',res)
               if (res.code == _this.$api.ERR_OK) { // 200
                 _this.$message.success("操作成功");
-                //_this.$utils.formClear(_this.form4Freeze);
                 _this.isShowFreezeModel = false;
                 _this.detailOrEditVisible = false;
                 _this.getData();
