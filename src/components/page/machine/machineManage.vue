@@ -347,7 +347,6 @@
 						var params = _this.form4Transfer;
 						//console.log(params,'params');
 						_this.$ajax.ajax(url, 'POST', params, function(res){
-							// //console.log('res',res)
 							if (res.code == _this.$api.ERR_OK) { // 200
 								_this.$message.success("操作成功");
 								//_this.$utils.formClear(_this.form4Transfer);

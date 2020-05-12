@@ -486,7 +486,7 @@
             let url = _this.$api.insertAssistUserFreeze;
             var params = _this.form4Freeze;
             _this.$ajax.ajax(url, 'POST', params, function(res) {
-              if (res.code == _this.$api.ERR_OK) { // 200
+              if (res.code == _this.$api.ERR_OK) {
                 _this.$message.success("操作成功");
                 _this.isShowFreezeModel = false;
                 _this.detailOrEditVisible = false;
@@ -533,10 +533,6 @@
       // 获取 easy-mock 的模拟数据
       getData() {
         let _this = this;
-        // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-        // if (process.env.NODE_ENV === 'development') {
-        // 	this.url = '/ms/table/list';
-        // };
         // this.searchForm.condition = this.$route.query.condition;
         // this.searchForm.searchContent = this.$route.query.id;
         var params = {

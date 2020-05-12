@@ -12,6 +12,7 @@
 					<div class="inline">
 						<el-date-picker class="width160" @change="datePickerChange" type="date" placeholder="选择日期" v-model="searchForm.machingTime" value-format="yyyy-MM-dd"></el-date-picker>
 					</div>
+          <!-- <el-input class="width160" v-model="searchForm.machingTime" size="medium" placeholder="请输入时间" clearable></el-input> -->
 				</div>
 				<div class="element">
 					<p class="inline">交易状态查询</p>
@@ -166,6 +167,9 @@
 				pageSize:'',
 				currentPage: 1,
 				multipleSelection: [],
+        year:'',
+        month:'',
+        day:'',
 				searchForm: {
 					machingTime:'',
 					status: '',
@@ -215,7 +219,8 @@
 				adressWidth: '200px',
 				idx: -1,
 				checkedMineralDesc: false,
-        checked:false
+        checked:false,
+        getMachineTime:''
 			}
 		},
 		components: {
@@ -248,8 +253,14 @@
 			},
 			datePickerChange(val){
 				let _this = this;
-				//console.log(val);
-				_this.searchForm.machingTime = val;
+        /* _this.year = val.substr(0,4);
+        _this.month = val.substr(5,2);
+        _this.day = val.substr(8,2);
+        console.log('_this.year',_this.year);
+        console.log('_this.month',_this.month);
+        console.log('_this.day',_this.day); */
+        _this.getMachineTime = new Date(val).getTime();
+        console.log('_this.getMachineTime',_this.getMachineTime);
 				_this.currentPage = 1;
 				_this.getData();
 			},
@@ -276,7 +287,7 @@
 					pageNo:_this.currentPage,
 					pageSize:_this.pageSize,
 					status: _this.searchForm.status,
-					machingTime:_this.searchForm.machingTime,
+					machingTimeLong:_this.getMachineTime,
 					id:_this.searchForm.id,
 					buyerId:_this.searchForm.buyerId,
 					sellerId:_this.searchForm.sellerId,
