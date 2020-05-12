@@ -476,7 +476,6 @@
           }
         })
       },
-      // 获取 easy-mock 的模拟数据
       getData() {
         let _this = this;
         // var params = {
@@ -511,7 +510,6 @@
           }
           _this.loading = false;
         })
-
       },
       search() {
         this.is_search = true;
