@@ -313,20 +313,16 @@
       		if (valid) {
       			let url = _this.$api.recycleMineral;
       			var params = _this.form4Transfer;
-      			////console.log(params,'params');
       			_this.$ajax.ajax(url, 'POST', params, function(res){
-      				// //console.log('res',res)
       				if (res.code == _this.$api.ERR_OK) { // 200
       					_this.$message.success("转让成功");
       					_this.currentPage = 1;
       					_this.getData();
-      					//_this.$utils.formClear(_this.form4Transfer);
       				}else{
       					_this.$message.error(res.message);
       				}
       			})
       		} else {
-      			//console.log('error submit!!');
       			return false;
       		}
       	});
