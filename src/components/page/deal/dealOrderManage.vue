@@ -408,7 +408,8 @@
 						id:form.id,
 						buyerId:form.buyerId,
 						sellerId:form.sellerId,
-            addContributionValue:_this.addContributionValue.toFixed(2)
+            addContributionValue:_this.addContributionValue.toFixed(2),
+            isCancel
 					}
 					//console.log('params',params);
 
