@@ -95,6 +95,7 @@
        	<div>卖家昵称:{{form.nickName}}</div>
        	<div>卖家姓名:{{form.realName}}</div>
        	<div>卖家手机号:{{form.mobilePhone}}</div>
+        <div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}}</div>
         <div>买家手机号:{{form.buyerPhone}}</div>
        	<div>交易类型:{{form.type | dealType}}</div>
        	<div>交易数量:{{form.num}}</div>
@@ -408,8 +409,7 @@
 						id:form.id,
 						buyerId:form.buyerId,
 						sellerId:form.sellerId,
-            addContributionValue:_this.addContributionValue.toFixed(2),
-            isCancel
+            addContributionValue:_this.addContributionValue.toFixed(2)
 					}
 					//console.log('params',params);
 

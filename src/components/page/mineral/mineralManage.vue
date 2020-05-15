@@ -246,7 +246,13 @@
         transferTypeOptions:[{
           id: 8,
           value: "竞拍服务商"
-        }],
+        },{
+          id: 10,
+          value: "矿机异常"
+        },{
+          id: 11,
+          value: "账号异常"
+        },{id:12,value:'系统回收'}],
         rules4Transfer:{
           transferType: [
         	{ required: true, message: '请选择回收类型', trigger: 'blur' },
