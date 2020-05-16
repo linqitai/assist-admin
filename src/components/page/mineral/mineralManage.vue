@@ -304,7 +304,7 @@
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-			},
+			}, 
       submit4Transfer(formName){
       	let _this = this;
       	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
