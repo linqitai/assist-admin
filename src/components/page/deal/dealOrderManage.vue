@@ -261,7 +261,6 @@
 			},
       status4UpdateChange(val){
         let _this = this;
-        //console.log('val', val);
         _this.form4Update.status = val;
       },
 			statusChange(val) {
