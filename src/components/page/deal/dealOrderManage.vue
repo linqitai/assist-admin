@@ -254,12 +254,6 @@
 			},
 			datePickerChange(val){
 				let _this = this;
-        /* _this.year = val.substr(0,4);
-        _this.month = val.substr(5,2);
-        _this.day = val.substr(8,2);
-        console.log('_this.year',_this.year);
-        console.log('_this.month',_this.month);
-        console.log('_this.day',_this.day); */
         _this.getMachineTime = new Date(val).getTime();
         console.log('_this.getMachineTime',_this.getMachineTime);
 				_this.currentPage = 1;
