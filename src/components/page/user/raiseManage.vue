@@ -101,8 +101,6 @@
 						<div class="flexBox">
 							<div class="flexBoxLeft" v-if="props.row.pic">
 								<!-- <div class="realName">{{props.row.realName}}</div>
-								<img class="idCardPic" :src="props.row.idCardPic"/>
-								<div class="idCard">{{props.row.idCard}}</div> -->
                 <!-- <img class="idCardPic" v-for="(item,index) in props.row.pic.split('|')" :src="item" :key="index" :preview-src-list="props.row.pic.split('|')"/> -->
                 <el-image
                     style="width: 60px; height: 80px"
