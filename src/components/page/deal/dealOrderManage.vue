@@ -250,7 +250,7 @@
 				}
 			},
 			checkedMineralDescChange() {
-				//console.log('checkedMineralDesc', this.checkedMineralDesc)
+				
 			},
 			datePickerChange(val){
 				let _this = this;

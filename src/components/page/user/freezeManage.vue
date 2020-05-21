@@ -293,8 +293,7 @@
           blockAddress: _this.searchForm.blockAddress,
         }
         _this.$ajax.ajax(_this.$api.getAssistUserFreezePageList, 'GET', params, function(res) {
-          // //console.log('res',res)
-          if (res.code == _this.$api.ERR_OK) { // 200
+          if (res.code == _this.$api.ERR_OK) {
             _this.tableData = res.data.list;
             _this.total = res.data.total;
           }
