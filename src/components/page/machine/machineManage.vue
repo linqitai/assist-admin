@@ -265,14 +265,9 @@
 				},
 				url: '',
 				tableData: [],
-				tableData1: [{
-					id: 1,
-					date: '2016-05-02',
-					name: '王小虎',
-					address: '上海市普陀区金沙江路 1518 弄'
-				}],
+				tableData1: [],
 				searchForm: {
-					versionNo:4,
+					versionNo:5,
 					sellOrNot:''
 				},
 				status: "",
