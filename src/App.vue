@@ -40,6 +40,8 @@
 	.width80{width: 80px !important;}.width100{width: 100px !important;}.width120{width: 120px !important;}.width140{width: 140px !important;}.width160{width: 160px !important;}.width200 {width: 200px !important;}.width220{width: 220px;}.width240{width: 240px;}
 	.width260{width: 260px;}.width280{width: 280px;}.width300 {width: 300px !important;}
 	.width400 {width: 400px !important;}
+  .width600 {width: 600px !important;}
+  .width800 {width: 800px !important;}
 	.margint{margin-top: 6px;}.marginb{margin-bottom: 6px;}
 	.margL10{margin-left: 10px;}.margL12{margin-left: 12px;}.margR20{margin-right: 20px;}
 	.margT3{margin-top: 3px;}.margT6{margin-top: 6px;}.margT8{margin-top: 8px;}.margT10{margin-top: 10px;}.margT20{margin-top: 20px;}

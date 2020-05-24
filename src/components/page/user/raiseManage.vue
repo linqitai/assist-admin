@@ -115,11 +115,7 @@
 				  </template>
 				</el-table-column>
 				<el-table-column prop="id" label="ID" min-width="30" show-overflow-tooltip></el-table-column>
-				<el-table-column label="提交时间" min-width="140">
-					<template slot-scope="scope">
-						{{scope.row.createTime}}
-					</template>
-				</el-table-column>
+				<el-table-column prop="createTime" label="提交时间" min-width="160"></el-table-column>
 				<el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
@@ -127,7 +123,27 @@
         <el-table-column prop="getedTicket" label="已经筹到多少券" min-width="120"></el-table-column>
         <el-table-column prop="beHelpTimes" label="被帮扶次数" min-width="80"></el-table-column>
         <el-table-column prop="teamCalculationPower" label="团队算力" min-width="90"></el-table-column>
-        <el-table-column label="是否显示" width="120" fixed="right">
+        <el-table-column label="状态" width="100">
+        	<template slot-scope="scope">
+        		{{scope.row.status | filterStatus}}
+        	</template>
+        </el-table-column>
+        <el-table-column label="操作" width="120" fixed="right">
+          <template slot-scope="scope">
+            <el-link type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-link>
+            <!-- <el-button type="text" icon="el-icon-view" @click="handleDetail(scope.$index, scope.row)">详情</el-button>
+          	<el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
+            <!-- <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+          </template>
+        </el-table-column>
+        <!-- <el-table-column label="设置" width="120" fixed="right">
+          <template slot-scope="scope">
+            <el-select v-model="scope.row.status" @change="statusChange">
+              <el-option v-for="item in statusOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+            </el-select>
+          </template>
+        </el-table-column> -->
+        <!-- <el-table-column label="是否显示" width="120" fixed="right">
         	<template slot-scope="scope">
         		<el-switch
         		  v-model="scope.row.isShow"
@@ -138,19 +154,7 @@
         		  @change="isShowChange(scope.row)">
         		</el-switch>
         	</template>
-        </el-table-column>
-				<!-- <el-table-column prop="actived" label="是否显示" min-width="80">
-					<template slot-scope="scope">
-						{{scope.row.isShow==1?'是':'否'}}
-					</template>
-				</el-table-column> -->
-				<!-- <el-table-column label="操作" width="140" align="center" fixed="right">
-					<template slot-scope="scope">
-						<el-link type="primary" @click="handlePass(scope.$index, scope.row)">通过</el-link>
-						<i class="placeholderVertical">|</i>
-						<el-button type="text" @click="handleRefuse(scope.$index, scope.row)">驳回</el-button>
-					</template>
-				</el-table-column> -->
+        </el-table-column> -->
 			</el-table>
 			<div class="pagination">
 				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
@@ -162,12 +166,7 @@
 		<!-- 详情编辑弹出框 -->
 		<el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
 			<el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
-				<el-form-item label="注册时间">
-					<el-date-picker type="datetime" placeholder="选择日期" v-model="form.registerTime" value-format="yyyy-MM-dd hh:mm:ss" class="width200" :disabled="true"></el-date-picker>
-				</el-form-item>
-				<el-form-item label="上级ID">
-					<el-input v-model="form.parentId"></el-input>
-				</el-form-item>
+
 				<el-form-item label="用户名">
 					<el-input v-model="form.nickName"></el-input>
 				</el-form-item>
@@ -177,74 +176,34 @@
 				<el-form-item label="手机号">
 					<el-input v-model="form.mobilePhone"></el-input>
 				</el-form-item>
-				<el-form-item label="是否激活">
-					<el-input v-model="form.actived"></el-input>
+        <div class="placeholderLine10"></div>
+				<el-form-item label="所需券">
+					<el-input v-model="form.needTicket"></el-input>
 				</el-form-item>
-				<el-form-item label="支付宝">
-					<el-input v-model="form.alipayNum"></el-input>
+				<el-form-item label="团队算力">
+					<el-input v-model="form.teamCalculationPower"></el-input>
 				</el-form-item>
-				<el-form-item label="微信号">
-					<el-input v-model="form.wechartNum"></el-input>
+				<el-form-item label="标题">
+					<el-input v-model="form.title"></el-input>
 				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="上周拥有矿石">
-					<el-input v-model="form.lastWeekMineral"></el-input>
+        <div class="placeholderLine10"></div>
+				<el-form-item label="故事">
+					<el-input v-model="form.story"
+            class="width800"
+            type="textarea"
+            :autosize="{ minRows: 6, maxRows: 16}">
+          </el-input>
 				</el-form-item>
-				<el-form-item label="当前拥有矿石">
-					<el-input v-model="form.thisWeekMineral"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结矿石">
-					<el-input v-model="form.temporaryFreezeMineral"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="待释放矿石">
-					<el-input v-model="form.toBeReleasedMineral"></el-input>
-				</el-form-item>
-				<el-form-item label="贡献值">
-					<el-input v-model="form.contributionValue"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结贡献值">
-					<el-input v-model="form.temporaryFreezeContribution"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="算力">
-					<el-input v-model="form.calculationPower"></el-input>
-				</el-form-item>
-				<el-form-item label="平台券">
-					<el-input v-model="form.platformTicket"></el-input>
-				</el-form-item>
-				<el-form-item label="临时冻结平台券">
-					<el-input v-model="form.temporaryFreezePlatformTicket"></el-input>
-				</el-form-item>
-				<div class="placeholderLine10"></div>
-				<el-form-item label="买入次数">
-					<el-input v-model="form.buyingTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="卖出次数">
-					<el-input v-model="form.sellingTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="区块地址">
-					<el-input v-model="form.blockAddress"></el-input>
-				</el-form-item>
-				<el-form-item label="被打小报告次数">
-					<el-input v-model="form.beComlaintTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="被冻结账号次数">
-					<el-input v-model="form.beFrozenTimes"></el-input>
-				</el-form-item>
-				<el-form-item label="账号状态">
-					<el-input v-model="form.accountStatus"></el-input>
-				</el-form-item>
-				<el-form-item label="账号冻结原因">
-					<el-input v-model="form.abnormalReason"></el-input>
-				</el-form-item>
-				<el-form-item label="口号">
-					<el-input v-model="form.slogan" class="width400"></el-input>
-				</el-form-item>
+        <el-form-item label="状态">
+          <el-select v-model="form.status" @change="statusChange">
+            <el-option v-for="item in statusOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer center">
 				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
-				<el-button type="primary" icon="el-icon-edit" @click="operateBtn">冻结</el-button>
+        <el-button type="primary" icon="el-icon-finished" @click="saveEdit" v-show="visibleType=='edit'">确 定</el-button>
+				<!-- <el-button type="primary" icon="el-icon-edit" @click="operateBtn">冻结</el-button> -->
 				<!-- <el-button type="danger" icon="el-icon-delete" v-show="visibleType=='detail'" @click="handleDelete(form.ID)">删除</el-button> -->
 				<!-- <el-button type="primary" icon="el-icon-finished" @click="saveEdit" v-show="visibleType=='edit'">确 定</el-button> -->
 			</span>
@@ -303,6 +262,24 @@
 		components: {
 			searchCondition
 		},
+    filters: {
+    	filterStatus(val) {
+    		//0-待审核 1-审核通过 2-排队中 3-筹款中 4-筹款结束
+    		var result = '';
+    		if (val == 0) {
+    			result = '待审核';
+    		}else if (val == 1) {
+    			result = '审核通过';
+    		}else if (val == 2) {
+    			result = '排队中';
+    		}else if (val == 3) {
+    			result = '筹款中';
+    		}else if (val == 4) {
+    			result = '筹款结束';
+    		}
+    		return result;
+    	}
+    },
 		created() {
 			//console.log("created")
 
@@ -317,7 +294,7 @@
 				this.pageSize = this.$config.pageSize;
 				this.currentPage = 1;
 				this.orderOptions = this.$config.orderOptions;
-				this.conditionOptions = this.$config.conditionOptions;
+				this.statusOptions = this.$config.statusOptions;
 				this.activedOptions = this.$config.activedOptions4Serach;
 			},
 			checkedMineralDescChange() {
@@ -327,11 +304,40 @@
 				this.currentPage = 1;
 				this.getData();
 			},
-			conditionChange(val) {
-				//console.log('val', val)
-				if(val == 0){
-
+      handleEdit(index, row) {
+        this.visibleType = 'edit';
+        //const item = this.tableData[index];
+        this.form = row;
+        this.detailOrEditVisible = true;
+      },
+      saveEdit() {
+        let _this = this;
+        var params = {
+        	id:_this.form.id,
+          title:_this.form.title,
+          story:_this.form.story,
+          needTicket:_this.form.needTicket,
+        }
+        _this.$ajax.ajax(_this.$api.updateRaiseInfo, 'POST', params, function(res){
+        	// console.log('res',res)
+        	if (res.code == _this.$api.ERR_OK) { // 200
+        		_this.$message.success('操作成功');
+            this.detailOrEditVisible = false;
+        	}
+        })
+      },
+			statusChange(val) {
+				let _this = this;
+				var params = {
+					status:val,
+					raiseId:_this.form.id
 				}
+				_this.$ajax.ajax(_this.$api.updateStatus, 'POST', params, function(res){
+					// console.log('res',res)
+					if (res.code == _this.$api.ERR_OK) { // 200
+						_this.$message.success('操作成功');
+					}
+				})
 			},
 			searchEvent() {
 				this.currentPage = 1;
@@ -486,12 +492,6 @@
 			},
 			handleSelectionChange(val) {
 				this.multipleSelection = val;
-			},
-			// 保存编辑
-			saveEdit() {
-				// this.$set(this.tableData, this.idx, this.form);
-				this.detailOrEditVisible = false;
-				this.$message.success(`修改 ${this.form.name} 信息成功`);
 			},
 			// 确定删除
 			deleteRow() {

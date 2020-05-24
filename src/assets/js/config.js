@@ -19,6 +19,7 @@ export default{
   levelOptions:[{id: 1,value: "青铜"},{id: 2,value: "白银"},{id: 3,value: "黄金"},{id: 4,value: "钻石"},{id: 5,value: "铂金"}],
 	orderOptions:[{id:"register_time",value:"默认"},{id:"this_week_mineral",value:"矿石"},{id:"my_calculation_power",value:"我的算力"},{id:"team_calculation_power",value:"团队算力"},{id:"contribution_value",value:"贡献值"},{id:"platform_ticket",value:"帮扶券"},{id:"be_complaint_times",value:"小报告次数"},{id:"be_frozen_times",value:"冻结次数"}],
 	conditionOptions:[{id:"",value:"全部"},{id:"userId",value:"用户ID"},{id:"nickName",value:"昵称"},{id:"realName",value:"姓名"},{id:"mobilePhone",value:"手机号"},{id:"blockAddress",value:"区块地址"}],
+  statusOptions:[{id: 0,value: "待审核"},{id: 1,value: "审核通过"},{id: 2,value: "排队中"},{id: 3,value: "筹款中"},{id: 4,value: "筹款结束"}],//0-待审核 1-审核通过 2-排队中 3-筹款中 4-筹款结束
 	provinceOptions:[{
 		"ProID": 1,
 		"name": "北京市",

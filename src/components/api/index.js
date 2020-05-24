@@ -104,5 +104,7 @@ export default{
   //raise
   getAssistRaiseListPage: host + "admin/raise/getAssistRaiseListPage",
   updateIsShow: host + "admin/raise/updateIsShow",
-  recycleMineral: host + "admin/mineralBook/recycleMineral"
+  updateStatus: host + "admin/raise/updateStatus",
+  recycleMineral: host + "admin/mineralBook/recycleMineral",
+  updateRaiseInfo: host + "admin/raise/updateRaiseInfo"
 }
