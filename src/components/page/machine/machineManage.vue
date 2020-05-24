@@ -327,7 +327,6 @@
 			},
 			submit4Transfer(formName){
 				let _this = this;
-				//console.log('form4Transfer',_this.form4Transfer)
 				if(!_this.$reg.phone.test(_this.form4Transfer.mobilePhone)){
 					_this.$message.error("手机号有误");
 					return;
@@ -340,7 +339,6 @@
 					if (valid) {
 						let url = _this.$api.giveMyMachine;
 						var params = _this.form4Transfer;
-						//console.log(params,'params');
 						_this.$ajax.ajax(url, 'POST', params, function(res){
 							if (res.code == _this.$api.ERR_OK) { // 200
 								_this.$message.success("操作成功");
@@ -350,7 +348,6 @@
 							}
 						})
 					} else {
-						//console.log('error submit!!');
 						return false;
 					}
 				});
