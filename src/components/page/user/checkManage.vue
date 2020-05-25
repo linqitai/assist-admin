@@ -411,9 +411,7 @@
 						actived: 2,
 						remark: _this.$utils.clearSpecialStrict(value)
 					}
-					//console.log("params",params);
 					_this.$ajax.ajax(_this.$api.updateUserActivedByUserId, 'POST', params, function(res){
-						//console.log('updateUserActivedByUserId')
 						if (res.code == _this.$api.ERR_OK) { // 200
 							_this.getData();
 							 _this.$message({
