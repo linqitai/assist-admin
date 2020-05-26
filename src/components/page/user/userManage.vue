@@ -530,7 +530,6 @@
         this.pageSize = val;
         this.getData();
       },
-      // 获取 easy-mock 的模拟数据
       getData() {
         let _this = this;
         // this.searchForm.condition = this.$route.query.condition;
