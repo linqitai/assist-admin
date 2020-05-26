@@ -422,7 +422,6 @@
 			},
 			// 保存编辑
 			saveBtn() {
-				// this.$set(this.tableData, this.idx, this.form);
 				this.addlOrEditVisible = false;
 				this.$message.success(`${this.visibleType=='add'?'添加':'修改'} ${this.form.name} 信息成功`);
 			},
