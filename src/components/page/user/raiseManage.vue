@@ -128,6 +128,18 @@
         		{{scope.row.status | filterStatus}}
         	</template>
         </el-table-column>
+        <el-table-column label="是否显示" width="120" fixed="right">
+        	<template slot-scope="scope">
+        		<el-switch
+        		  v-model="scope.row.isShow"
+        		  active-color="#ffae00"
+        		  inactive-color="#c7c7c7"
+        		  active-text="是"
+        		  inactive-text="否"
+        		  @change="isShowChange(scope.row)">
+        		</el-switch>
+        	</template>
+        </el-table-column>
         <el-table-column label="操作" width="120" fixed="right">
           <template slot-scope="scope">
             <el-link type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-link>
@@ -142,18 +154,6 @@
               <el-option v-for="item in statusOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
             </el-select>
           </template>
-        </el-table-column> -->
-        <!-- <el-table-column label="是否显示" width="120" fixed="right">
-        	<template slot-scope="scope">
-        		<el-switch
-        		  v-model="scope.row.isShow"
-        		  active-color="#ffae00"
-        		  inactive-color="#c7c7c7"
-        		  active-text="是"
-        		  inactive-text="否"
-        		  @change="isShowChange(scope.row)">
-        		</el-switch>
-        	</template>
         </el-table-column> -->
 			</el-table>
 			<div class="pagination">
@@ -176,6 +176,9 @@
 				<el-form-item label="手机号">
 					<el-input v-model="form.mobilePhone"></el-input>
 				</el-form-item>
+        <el-form-item label="图片张数">
+        	<el-input v-model="form.picNum"></el-input>
+        </el-form-item>
         <div class="placeholderLine10"></div>
 				<el-form-item label="所需券">
 					<el-input v-model="form.needTicket"></el-input>
@@ -317,6 +320,7 @@
           title:_this.form.title,
           story:_this.form.story,
           needTicket:_this.form.needTicket,
+          picNum:_this.form.picNum,
         }
         _this.$ajax.ajax(_this.$api.updateRaiseInfo, 'POST', params, function(res){
         	// console.log('res',res)
