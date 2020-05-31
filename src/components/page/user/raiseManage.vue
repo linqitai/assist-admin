@@ -309,7 +309,6 @@
 			},
       handleEdit(index, row) {
         this.visibleType = 'edit';
-        //const item = this.tableData[index];
         this.form = row;
         this.detailOrEditVisible = true;
       },
