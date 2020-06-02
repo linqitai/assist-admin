@@ -412,7 +412,7 @@
 						remark: _this.$utils.clearSpecialStrict(value)
 					}
 					_this.$ajax.ajax(_this.$api.updateUserActivedByUserId, 'POST', params, function(res){
-						if (res.code == _this.$api.ERR_OK) { // 200
+						if (res.code == _this.$api.ERR_OK) {
 							_this.getData();
 							 _this.$message({
 								type: 'success',
@@ -428,7 +428,6 @@
 				});
 			},
 			handleDelete(ID) {
-				//console.log('ID',ID);
 				this.delVisible = true;
 			},
 			delAll() {
