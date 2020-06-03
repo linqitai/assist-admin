@@ -128,6 +128,7 @@
        	</el-form-item>
        </el-form>
        <el-checkbox v-model="checked">是否给于买家奖励</el-checkbox>
+       <el-checkbox v-model="isFreezeSellerChecked">是否帮卖家确认且冻结卖家</el-checkbox>
        <div class="placeholderLine10"></div>
        <div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
@@ -221,6 +222,7 @@
 				idx: -1,
 				checkedMineralDesc: false,
         checked:false,
+        isFreezeSellerChecked:false,
         getMachineTime:''
 			}
 		},
@@ -250,7 +252,7 @@
 				}
 			},
 			checkedMineralDescChange() {
-				
+
 			},
 			datePickerChange(val){
 				let _this = this;
@@ -322,10 +324,11 @@
 				}).then(() => {
           //console.log("sure");
           let params = {
-          	id:form.id
+          	id:form.id,
+            isFreezeSellerChecked:_this.isFreezeSellerChecked?1:0
           }
+          console.log("params",params);
           _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
-          	// //console.log('res',res)
           	if (res.code == _this.$api.ERR_OK) { // 200
           		_this.$message({
           			type: 'success',
