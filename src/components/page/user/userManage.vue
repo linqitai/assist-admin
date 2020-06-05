@@ -75,8 +75,8 @@
 				<el-button type="primary" icon="search" @click="search">搜索</el-button>
 			</div> -->
       <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-        <el-table-column prop="id" label="ID" min-width="60" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="parentId" label="上级ID" min-width="80" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="userId" label="用户ID" min-width="160" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="parentId" label="上级ID" min-width="160" show-overflow-tooltip></el-table-column>
         <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
         <el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
