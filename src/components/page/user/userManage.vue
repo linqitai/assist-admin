@@ -518,7 +518,6 @@
       searchEvent() {
         this.currentPage = 1;
         this.getData();
-        // this.getList();
       },
       // 分页导航
       handleCurrentChange(val) {
