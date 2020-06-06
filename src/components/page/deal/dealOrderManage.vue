@@ -329,7 +329,7 @@
           }
           console.log("params",params);
           _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
-          	if (res.code == _this.$api.ERR_OK) { // 200
+          	if (res.code == _this.$api.ERR_OK) {
           		_this.$message({
           			type: 'success',
           			message: '确认成功'
