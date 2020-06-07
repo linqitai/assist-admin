@@ -75,9 +75,9 @@
 				<el-button type="primary" icon="search" @click="search">搜索</el-button>
 			</div> -->
       <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-        <el-table-column prop="userId" label="用户ID" min-width="160" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="parentId" label="上级ID" min-width="160" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
+        <el-table-column prop="userId" label="用户ID" min-width="190" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="parentId" label="上级ID" min-width="190" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="registerTime" label="注册日期" min-width="190"></el-table-column>
         <el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
@@ -166,7 +166,7 @@
         <el-form-item label="临时冻结贡献值">
           <el-input v-model="form.temporaryFreezeContribution" :disabled="true"></el-input>
         </el-form-item>
-        
+
         <div class="placeholderLine10"></div>
         <el-form-item label="帮扶券">
           <el-input v-model="form.platformTicket" :disabled="true"></el-input>
