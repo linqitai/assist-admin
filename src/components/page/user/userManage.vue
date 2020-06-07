@@ -66,14 +66,6 @@
 					</div>
 				</div> -->
       </search-condition>
-      <!-- <div class="handle-box">
-				<el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
-					<el-option key="1" label="广东省" value="广东省"></el-option>
-					<el-option key="2" label="湖南省" value="湖南省"></el-option>
-				</el-select>
-				<el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-				<el-button type="primary" icon="search" @click="search">搜索</el-button>
-			</div> -->
       <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
         <el-table-column prop="userId" label="用户ID" min-width="190" show-overflow-tooltip></el-table-column>
         <el-table-column prop="parentId" label="上级ID" min-width="190" show-overflow-tooltip></el-table-column>
