@@ -32,7 +32,7 @@
 					<el-table :data="props.row.assistCityAgentExtendList" border stripe class="table" style="width: 90%">
 						<el-table-column prop="id" label="ID" width="60" show-overflow-tooltip></el-table-column>
 						<el-table-column prop="cityName" label="城市名称" min-width="80"></el-table-column>
-						<el-table-column prop="userId" label="用户ID" min-width="80" show-overflow-tooltip></el-table-column>
+						<el-table-column prop="userId" label="用户ID" min-width="170" show-overflow-tooltip></el-table-column>
 						<el-table-column prop="realName" label="代理姓名" min-width="100"></el-table-column>
 						<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
 						<el-table-column prop="platformTicket" label="拥有平台券" min-width="100"></el-table-column>
@@ -61,7 +61,7 @@
 						{{scope.row.status | agencyStatusType}}
 					</template>
 				</el-table-column>
-				<el-table-column prop="userId" label="用户ID" min-width="80" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="userId" label="用户ID" min-width="170" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="realName" label="代理姓名" min-width="120"></el-table-column>
 				<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
 				<el-table-column prop="platformTicket" label="拥有平台券" min-width="120"></el-table-column>
@@ -174,7 +174,7 @@
 				<el-button type="primary" icon="el-icon-finished" @click="saveBtn">确 定</el-button>
 			</span> -->
 		</el-dialog>
-		
+
 		<!-- 添加编辑弹出框 -->
 		<el-dialog :title="dialogTitle4CityAgent=='add'?'添加市代理':'编辑市代理'" v-dialogDrag :visible.sync="addlOrEditVisible4CityAgent" width="500px">
 			<!-- <el-form :model="replyRuleForm" :rules="rules" ref="replyRuleForm" label-width="100px">
@@ -583,7 +583,7 @@
 			conditionChange(val) {
 				//console.log('val', val)
 			},
-			
+
 			// 分页导航
 			handleCurrentChange(val) {
 				this.currentPage = val||1;
