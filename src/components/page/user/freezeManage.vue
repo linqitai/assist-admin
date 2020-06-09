@@ -204,7 +204,6 @@
       },
       submit4Freeze(formName) {
         let _this = this;
-        //console.log('form4Freeze', _this.form4Freeze)
         if (!_this.$reg.userId.test(_this.form4Freeze.userId)) {
           _this.$message.error("用户ID有误");
           return;
