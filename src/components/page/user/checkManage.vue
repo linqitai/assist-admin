@@ -108,9 +108,10 @@
 				  <template slot-scope="props">
 						<div class="flexBox">
 							<div class="flexBoxLeft">
-								<div class="realName">{{props.row.realName}}</div>
+								<!-- <div class="realName">{{props.row.realName}}</div> -->
 								<img class="idCardPic" :src="props.row.idCardPic"/>
-								<div class="idCard">{{props.row.idCard}}</div>
+                <img class="gesturePic" :src="props.row.gesturePic"/>
+								<!-- <div class="idCard">{{props.row.idCard}}</div> -->
 							</div>
 							<div class="flexBoxRight">
 								<div>用户ID：{{props.row.userId}}</div>

@@ -104,6 +104,12 @@
               {
                 icon: 'el-icon-s-custom',
                 // icon:'iconfont iconfont-question',
+                index: 'checkManage',
+                title: '审核管理'
+              },
+              {
+                icon: 'el-icon-s-custom',
+                // icon:'iconfont iconfont-question',
                 index: 'merchantManage',
                 title: '商家管理'
               },
