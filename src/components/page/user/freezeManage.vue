@@ -178,7 +178,6 @@
       },
       unFreezeBtn(row) {
         let _this = this;
-        //console.log("row",row);
         _this.unFreezeUserId = row.userId;
         _this.unFreezeNickName = row.nickName;
         _this.isShowUnfrezeeModel = true;
@@ -194,7 +193,7 @@
         }
         _this.$ajax.ajax(_this.$api.unFreeze, 'POST', params, function(res) {
 			_this.isShowUnfrezeeModel = false;
-        	if (res.code == _this.$api.ERR_OK) { // 200  60 * 60 * 12
+        	if (res.code == _this.$api.ERR_OK) {
         		_this.$message.success("解冻成功");
             _this.getData();
         	}else{
