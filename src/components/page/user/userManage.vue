@@ -69,7 +69,7 @@
       <el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
         <el-table-column prop="userId" label="用户ID" min-width="190" show-overflow-tooltip></el-table-column>
         <el-table-column prop="parentId" label="上级ID" min-width="190" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="registerTime" label="注册日期" min-width="190"></el-table-column>
+        <el-table-column prop="registerTime" label="注册日期" min-width="160"></el-table-column>
         <el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
@@ -80,8 +80,8 @@
         <el-table-column prop="thisWeekMineral" label="可用矿石" min-width="80" fixed="right"></el-table-column>
         <el-table-column prop="contributionValue" label="贡献值" min-width="70" fixed="right"></el-table-column>
         <el-table-column prop="platformTicket" label="帮扶券" min-width="70" fixed="right"></el-table-column>
-        <el-table-column prop="myCalculationPower" label="个人算力" min-width="60" fixed="right"></el-table-column>
-        <el-table-column prop="teamCalculationPower" label="团队算力" min-width="60" fixed="right"></el-table-column>
+        <el-table-column prop="myCalculationPower" label="个人算力" min-width="80" fixed="right"></el-table-column>
+        <el-table-column prop="teamCalculationPower" label="团队算力" min-width="90" fixed="right"></el-table-column>
         <el-table-column prop="beComplaintTimes" label="被投诉次数" min-width="100"></el-table-column>
         <el-table-column prop="beFrozenTimes" label="被冻结次数" min-width="100"></el-table-column>
         <el-table-column prop="accountStatus" label="账户状态" min-width="80" fixed="right">

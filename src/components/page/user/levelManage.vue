@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="element">
-          <div class="inline width160 margL10"><el-button type="primary" icon="el-icon-circle-plus-outline" @click="giveLevelDealProfit">执行分红</el-button></div>
+          <div class="inline width160 margL10"><el-button type="primary" :loading="levelProfitLoading" icon="el-icon-circle-plus-outline" @click="giveLevelDealProfit">执行分红</el-button></div>
         </div>
 
         <!-- <div class="element">
@@ -320,7 +320,8 @@
         checkerInfo:{},
         loading:false,
         startTime:'',
-        endTime:''
+        endTime:'',
+        levelProfitLoading:false
       }
     },
     components: {
@@ -469,8 +470,9 @@
           userIdList: userIdList.join(','),
           level:_this.searchForm.level
         }
+        _this.levelProfitLoading = true;
         _this.$ajax.ajax(_this.$api.giveLevelDealProfit, 'POST', params, function(res) {
-          // //console.log('res',res)
+          _this.levelProfitLoading = false;
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.$message.success('执行成功');
           }
