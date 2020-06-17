@@ -360,7 +360,7 @@
       searchCondition
     },
     created() {
-      ////console.log("created")
+      //////console.log("created")
       this.initData();
       this.getData();
     },
@@ -392,7 +392,7 @@
       isUseTicketChange(value){
         let _this = this;
         _this.form.isUseTicket = value;
-        console.log("_this.form.isUseTicket",_this.form.isUseTicket);
+        //console.log("_this.form.isUseTicket",_this.form.isUseTicket);
       },
       freezeBtn(userId) {
         let _this = this;
@@ -504,7 +504,7 @@
       },
       activedChange(val) {
         let _this = this;
-        console.log("val:",val);
+        //console.log("val:",val);
         _this.form.actived = val;
       },
       searchEvent() {
@@ -532,7 +532,7 @@
         params[_this.searchForm.condition] = _this.searchForm.searchContent;
         params.orderField = _this.searchForm.order;
         _this.$ajax.ajax(_this.$api.getAssistUserInfoPageList, 'GET', params, function(res) {
-          // //console.log('res',res)
+          // ////console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.tableData = res.data.list;
             _this.total = res.data.total;
@@ -552,7 +552,7 @@
       handleDetail(index, row) {
         let _this = this;
         _this.visibleType = 'detail';
-        //console.log("row",row);
+        ////console.log("row",row);
         _this.form = row;
         _this.form.isUseTicket = '';
         _this.detailOrEditVisible = true;
@@ -565,7 +565,7 @@
           pageSize: _this.pageSize,
         } */
         _this.$ajax.ajax(_this.$api.getAssistUserInfo + checkerId, 'GET', null, function(res) {
-          // //console.log('res',res)
+          // ////console.log('res',res)
           if (res.code == _this.$api.ERR_OK) { // 200
             _this.checkerInfo = res.data;
           }

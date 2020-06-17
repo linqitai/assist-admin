@@ -40,13 +40,14 @@
 				</div>
 			</search-condition>
 			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="id" label="ID" width="50" show-overflow-tooltip></el-table-column>
+				<el-table-column prop="id" label="ID" width="200" show-overflow-tooltip></el-table-column>
 				<!-- <el-table-column prop="buyerId" label="买家ID" width="190"></el-table-column>
 				<el-table-column prop="sellerId" label="卖家ID" width="190"></el-table-column> -->
 				<el-table-column prop="nickName" label="卖家昵称" min-width="120"></el-table-column>
 				<el-table-column prop="realName" label="卖家姓名" min-width="120"></el-table-column>
 				<el-table-column prop="mobilePhone" label="卖家手机号" min-width="120"></el-table-column>
 				<el-table-column prop="buyerPhone" label="买家手机号" min-width="120"></el-table-column>
+        <el-table-column prop="buyerNickName" label="买家昵称" min-width="120"></el-table-column>
 				<el-table-column prop="type" label="交易类型" min-width="100">
 					<template slot-scope="props">
 						{{ props.row.type | dealType }}
@@ -97,6 +98,7 @@
        	<div>卖家手机号:{{form.mobilePhone}}</div>
         <div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}} 身份证号:{{form.idCard}} 个人算力:{{form.myCalculationPower}} 团队算力:{{form.teamCalculationPower}} 实名人数:{{form.realnameNum}} 贡献值:{{form.contributionValue}}</div>
         <div>买家手机号:{{form.buyerPhone}}</div>
+        <div>买家昵称:{{form.buyerNickName}}</div>
        	<div>交易类型:{{form.type | dealType}}</div>
        	<div>交易数量:{{form.num}}</div>
        	<div>交易单价:{{form.price}}</div>
