@@ -137,8 +137,6 @@
 				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
 				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn(form)">帮卖方确认</el-button>
 				<el-button type="default" icon="el-icon-edit" @click="saveDealStatusBtn(form)">保存修改</el-button>
-        <!-- <el-button v-if="form.status==5" type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button> -->
-				<!-- <el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button> -->
 			</span>
 		</el-dialog>
 
