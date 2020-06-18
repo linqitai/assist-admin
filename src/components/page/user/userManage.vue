@@ -246,7 +246,7 @@
       </span>
     </el-dialog>
 
-    <!-- 删除提示框 -->
+    <!-- 用户解冻 -->
     <el-dialog title="提示" :visible.sync="isShowFreezeModel" width="440px" center>
       <div class="transferBox">
         <el-form ref="form4Freeze" :model="form4Freeze" :rules="rules4Freeze" label-width="140px" label-position="left">
