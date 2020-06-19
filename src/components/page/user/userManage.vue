@@ -55,7 +55,7 @@
               <el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
             </el-select>
           </div>
-          <div class="inline width160 margL10">
+          <div class="inline width220 margL10">
             <el-input v-model="searchForm.searchContent" size="medium" placeholder="请输入搜索内容" clearable></el-input>
           </div>
         </div>
