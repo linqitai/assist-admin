@@ -74,6 +74,7 @@
         <el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip fixed="left"></el-table-column>
         <el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
         <el-table-column prop="actived" label="是否激活" min-width="80"></el-table-column>
+        <el-table-column prop="isAgent" label="代理" min-width="50"></el-table-column>
         <el-table-column prop="level" label="级别" min-width="50"></el-table-column>
         <el-table-column prop="teamateNum" label="直推人数" min-width="80"></el-table-column>
         <el-table-column prop="realnameNum" label="实名人数" min-width="80"></el-table-column>
