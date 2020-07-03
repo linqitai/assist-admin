@@ -128,9 +128,15 @@
        	<el-form-item label="贡献值" class="block" v-if="checked">
        		<el-input-number v-model="addContributionValue" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
        	</el-form-item>
+        <el-form-item label="确认方式" class="block">
+        	 <!-- @change="conditionChange" -->
+          <el-select v-model="isFreezeSellerChecked" @change="sureOptionsChange">
+            <el-option v-for="item in sureOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
        </el-form>
        <el-checkbox v-model="checked">是否给于买家奖励</el-checkbox>
-       <el-checkbox v-model="isFreezeSellerChecked">是否帮卖家确认且冻结卖家</el-checkbox>
+       <!-- <el-checkbox v-model="isFreezeSellerChecked">是否帮卖家确认且冻结卖家</el-checkbox> -->
        <div class="placeholderLine10"></div>
        <div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
@@ -183,6 +189,9 @@
         statusOptions4Update: [
           {id:0,value:'待付款'},{id:2,value:'待确认'},{id:9,value:'取消交易'}
         ],
+        sureOptions: [
+          {id:0,value:'只扣1个贡献值'},{id:1,value:'扣1且冻结'},{id:2,value:'不扣也不冻结'}
+        ],
 				conditionOptions: [
 					{
 						id: "",
@@ -222,7 +231,7 @@
 				idx: -1,
 				checkedMineralDesc: false,
         checked:false,
-        isFreezeSellerChecked:false,
+        isFreezeSellerChecked:0,
         getMachineTime:''
 			}
 		},
@@ -264,6 +273,11 @@
       status4UpdateChange(val){
         let _this = this;
         _this.form4Update.status = val;
+      },
+      sureOptionsChange(val){
+        let _this = this;
+        _this.isFreezeSellerChecked = val;
+        console.log("_this.isFreezeSellerChecked:",_this.isFreezeSellerChecked);
       },
 			statusChange(val) {
 				let _this = this;
@@ -325,7 +339,7 @@
           //console.log("sure");
           let params = {
           	id:form.id,
-            isFreezeSellerChecked:_this.isFreezeSellerChecked?1:0
+            isFreezeSellerChecked:_this.isFreezeSellerChecked
           }
           console.log("params",params);
           _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
