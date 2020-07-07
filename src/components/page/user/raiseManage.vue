@@ -279,7 +279,11 @@
     			result = '筹款中';
     		}else if (val == 4) {
     			result = '筹款结束';
-    		}
+    		}else if (val == 5) {
+					result = '投票中';
+        }else if (val == 6) {
+          result = '待拜访';
+        }
     		return result;
     	}
     },
