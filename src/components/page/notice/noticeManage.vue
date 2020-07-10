@@ -195,8 +195,7 @@
 					isPublish:row.isPublish?1:0,
 				}
 				_this.$ajax.ajax(_this.$api.updateNotice, 'POST', params, function(res){
-					// console.log('res',res)
-					if (res.code == _this.$api.ERR_OK) { // 200
+					if (res.code == _this.$api.ERR_OK) {
 						_this.$message.success('操作成功');
 					}
 				})
