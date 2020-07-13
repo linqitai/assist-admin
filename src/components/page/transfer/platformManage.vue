@@ -115,7 +115,7 @@
 						value: "转入"
 					},
 					{
-						id: 1,
+						id: 8,
 						value: "奖励"
 					}],
 				form4Transfer:{

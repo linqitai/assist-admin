@@ -436,6 +436,7 @@
       levelChange(val) {
         let _this = this;
         _this.searchForm.level = val;
+        _this.currentPage = 1;
         this.getData();
       },
       conditionChange(val) {

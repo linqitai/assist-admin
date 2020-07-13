@@ -54,6 +54,7 @@
         <el-table-column prop="nickName" label="昵称" min-width="120"></el-table-column>
 				<el-table-column label="类型" min-width="80">
           <template slot-scope="props">
+             <!-- | contributionType -->
           	{{ props.row.type | contributionType }}
           </template>
         </el-table-column>
@@ -160,6 +161,15 @@
           id: 2,
           value: "转入"
         },{
+          id: 26,
+          value: "交易不发短信被投诉"
+				},{
+          id: 27,
+          value: "解冻处罚"
+				},{
+          id: 28,
+          value: "交易超时确认"
+				},{
           id: 25,
           value: "线下志愿者奖励"
         },{
@@ -282,7 +292,7 @@
       			_this.$ajax.ajax(url, 'POST', params, function(res){
       				// //console.log('res',res)
       				if (res.code == _this.$api.ERR_OK) { // 200
-      					_this.$message.success("转让成功");
+      					_this.$message.success("操作成功");
       					_this.currentPage = 1;
       					_this.getData();
       					//_this.$utils.formClear(_this.form4Transfer);
