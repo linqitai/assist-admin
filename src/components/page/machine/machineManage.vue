@@ -267,7 +267,7 @@
 				tableData: [],
 				tableData1: [],
 				searchForm: {
-					versionNo:5,
+					versionNo:6,
 					sellOrNot:''
 				},
 				status: "",
@@ -474,7 +474,7 @@
 			addBtn() {
 				this.visibleType = 'add';
 				this.addlOrEditVisible = true;
-				this.form = {
+				/* this.form = {
 					version:1,
 					tag:0,
 					type:0,
@@ -485,7 +485,7 @@
 					limitBuy:'',
 					inventory:'',
 					sellOrNot:0
-				}
+				} */
 				//this.getProvinceJson();
 			},
 			handleEdit(index, row) {
