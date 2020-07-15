@@ -62,11 +62,6 @@
 				<el-table-column prop="addOrReduce" label="正负" min-width="60"></el-table-column>
 				<el-table-column prop="contributionValue" label="贡献值" min-width="90"></el-table-column>
         <el-table-column prop="currentContributionValue" label="所拥有贡献值" min-width="120"></el-table-column>
-				<!-- <el-table-column label="操作" width="90" align="center" fixed="right">
-					<template slot-scope="scope">
-						<el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
-					</template>
-				</el-table-column> -->
 			</el-table>
 			<div class="pagination">
 				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
