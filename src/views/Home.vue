@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <div>123123123213123</div>
+    <div>12312312321312312</div>
   </div>
 </template>
 
