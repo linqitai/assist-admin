@@ -113,10 +113,12 @@
         transferTypeOptions:[{
 						id: 0,
 						value: "转入"
-					},
-					{
+					},{
 						id: 8,
 						value: "奖励"
+					},{
+						id: 12,
+						value: "代理分红"
 					}],
 				form4Transfer:{
           transferType:0,
