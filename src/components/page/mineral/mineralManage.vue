@@ -11,63 +11,31 @@
 				<el-breadcrumb-item><i class="el-icon-lx-cascades"></i>用户管理</el-breadcrumb-item>
 			</el-breadcrumb>
 		</div> -->
-		<div class="container">
-			<search-condition @clickSearchData="searchEvent">
-				<div class="element">
-					<p class="inline">日期</p>
-					<div class="inline">
-						<el-date-picker class="width160" type="date" placeholder="选择日期" v-model="searchForm.date" value-format="yyyy-MM-dd"></el-date-picker>
-					</div>
-				</div>
-				<div class="element">
-					<p class="inline">用户ID</p>
-					<div class="inline">
-						<el-input v-model="searchForm.parentID" size="medium" placeholder="请输入搜索内容" clearable></el-input>
-					</div>
-				</div>
-				<div class="element">
-					<p class="inline">正负</p>
-					<div class="inline">
-						<el-select v-model="searchForm.status" @change="statusChange" class="handle-select mr10 width200">
-							<el-option v-for="item in statusOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
-						</el-select>
-					</div>
-				</div>
-				<!-- <div class="element">
-					<p class="inline">条件查询</p>
-					<div class="inline">
-						<el-select v-model="searchForm.condition" @change="conditionChange" class="handle-select mr10">
-							<el-option v-for="item in conditionOptions" :key="item.id" :label="item.value" :value="item.value"></el-option>
-						</el-select>
-					</div>
-					<div class="inline width160">
-						<el-input v-model="searchForm.searchContent" size="medium" placeholder="请输入搜索内容" clearable></el-input>
-					</div>
-				</div> -->
-			</search-condition>
-			<el-table :data="tableData" show-summary border stripe class="table" ref="multipleTable" style="width: 100%">
-				<el-table-column prop="ID" label="账本ID" min-width="80"></el-table-column>
-				<el-table-column prop="date" label="用户ID" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="类型" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="时间" min-width="150"></el-table-column>
-				<el-table-column prop="date" label="正负" min-width="150"></el-table-column>
-				<el-table-column prop="ID" label="矿石" min-width="150"></el-table-column>
-				<el-table-column label="操作" width="90" align="center" fixed="right">
-					<template slot-scope="scope">
-						<el-link type="primary" @click="handleDetail(scope.$index, scope.row)">详情</el-link>
-					</template>
-				</el-table-column>
+		<div class="container" v-if="tableData">
+			<el-table :data="tableData" border stripe class="table" ref="multipleTable" style="width: 100%">
+				<el-table-column prop="id" label="账本ID" min-width="60"></el-table-column>
+				<el-table-column prop="userId" label="用户ID" min-width="150"></el-table-column>
+				<el-table-column prop="createTime" label="时间" min-width="150"></el-table-column>
+				<el-table-column prop="addOrReduce" label="加减" min-width="60"></el-table-column>
+				<el-table-column prop="type" label="类型" min-width="60"></el-table-column>
+				<el-table-column prop="number" label="数量" min-width="60"></el-table-column>
+        <el-table-column prop="currentMineralNum" label="还剩" min-width="60"></el-table-column>
 			</el-table>
 			<div class="pagination">
 				<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
 				 :page-sizes="pageSizes" :page-size="pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
 				</el-pagination>
 			</div>
-			<div class="transferBox">
+      <!-- <div>
+        <el-button type="primary" @click="getData">获取异常信息</el-button>
+        <el-button type="primary" :loading="levelProfitLoading" icon="el-icon-circle-plus-outline" @click="reduceThisWeekMineral4YC">执行异常信息</el-button>
+      </div> -->
+
+			<div class="transferBox margT10">
         <el-form-item label="回收矿石">
         </el-form-item>
 				<el-form ref="form4Transfer" :model="form4Transfer" :rules="rules4Transfer" label-width="110px" label-position="left">
-			    <el-form-item label="回收类型" prop="transferAmount">
+			    <el-form-item label="回收类型" prop="transferType">
 			      <el-select v-model="form4Transfer.transferType" @change="transferTypeTypeChange" class="handle-select mr10 width160">
 			      	<el-option v-for="item in transferTypeOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
 			      </el-select>
@@ -88,68 +56,6 @@
 			</div>
 		</div>
 
-		<!-- 详情编辑弹出框 -->
-		<el-dialog :title="visibleType=='detail'?'详情':'编辑'" :visible.sync="detailOrEditVisible" fullscreen>
-			<el-form ref="form" :model="form" label-width="auto" :inline="true" :disabled="visibleType=='detail'?true:false">
-				<el-form-item label="ID">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="买家手机号">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="卖家ID">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="卖家手机号">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易类型">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易数量">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易单价">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="交易状态">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="挂单时间">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="匹配时间">
-					<el-input v-model="form.name"></el-input>
-				</el-form-item>
-				<el-form-item label="放币时间">
-					<el-input v-model="form.address"></el-input>
-				</el-form-item>
-				<el-form-item label="备注">
-					<el-input type="textarea" v-model="form.address" class="width400"></el-input>
-				</el-form-item>
-				<el-form-item label="付款截图">
-					<div class="imageBox">
-						<el-image class="item" :preview-src-list="imagesList" v-for="item in imagesList" :key="item" :src="item" fit="cover"
-						 lazy></el-image>
-					</div>
-				</el-form-item>
-
-			</el-form>
-			<span slot="footer" class="dialog-footer center">
-				<!-- <el-button @click="detailOrEditVisible = false">取 消</el-button> -->
-				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn">取消交易</el-button>
-				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn">帮卖方确认</el-button>
-			</span>
-		</el-dialog>
-
-		<!-- 删除提示框 -->
-		<el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
-			<div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
-			<span slot="footer" class="dialog-footer">
-				<el-button @click="delVisible = false">取 消</el-button>
-				<el-button type="primary" @click="deleteRow">确 定</el-button>
-			</span>
-		</el-dialog>
 	</div>
 </template>
 
@@ -158,29 +64,10 @@
 	export default {
 		data() {
 			return {
-				imagesList: [
-					'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg',
-					'https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg'
-				],
-				images: [{
-						id: '1',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '2',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '3',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-					{
-						id: '4',
-						url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-					},
-				],
+				levelProfitLoading:false,
 				url: '',
 				tableData: [],
+        list: [],
 				total: 400,
 				pageIndex: 1,
 				pageSizes:'',
@@ -274,7 +161,7 @@
 			}
 		},
 		components: {
-			searchCondition
+			//searchCondition
 		},
 		created() {
 			console.log("created")
@@ -285,7 +172,7 @@
 		},
 		methods: {
 			initData(){
-				this.pageSizes = this.$config.pageSizes;
+				this.pageSizes = [8, 30, 40, 50, 100];
 				this.pageSize = this.$config.pageSize;
 			},
       transferTypeTypeChange(val){
@@ -304,7 +191,7 @@
 			},
 			searchEvent() {
 				this.pageIndex = 1;
-			}, 
+			},
       submit4Transfer(formName){
       	let _this = this;
       	if(!_this.$reg.phone2.test(_this.form4Transfer.mobilePhone)){
@@ -369,106 +256,54 @@
 					});
 				});
 			},
+			// 分页导航
 			handleCurrentChange(val) {
-				this.currentPage = val;
-				this.getData();
+        console.log("val",val);
+			  this.currentPage = val;
+			  this.getData();
 			},
 			handleSizeChange(val) {
-				console.log('size', val)
+			  this.currentPage = 1;
+			  this.pageSize = val;
+			  this.getData();
 			},
 			getData() {
-				if (process.env.NODE_ENV === 'development') {
-					this.url = '/ms/table/list';
-				};
-				this.searchForm.condition = this.$route.query.condition;
-				this.searchForm.parentID = this.$route.query.id;
-				this.searchForm.searchContent = this.$route.query.id;
-				this.searchForm.status = this.$route.query.status;
-				console.log('searchForm',this.searchForm);
-				this.tableData = [{
-					ID: 1,
-					date: '2016-05-02',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1518 弄',
-					zip: 200333
-				}, {
-					ID: 2,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333
-				}, {
-					ID: 3,
-					date: '2016-05-01',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1519 弄',
-					zip: 200333
-				}, {
-					ID: 4,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 5,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333
-				}, {
-					ID: 6,
-					date: '2016-05-01',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1519 弄',
-					zip: 200333
-				}, {
-					ID: 7,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 8,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333,
-					remark: "上海市普陀区金沙江路 1517 弄上弄上弄上"
-				}, {
-					ID: 9,
-					date: '2016-05-03',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1516 弄',
-					zip: 200333
-				}, {
-					ID: 10,
-					date: '2016-05-04',
-					name: '王小虎',
-					region: '上海',
-					city: '普陀区',
-					address: '上海市普陀区金沙江路 1517 弄',
-					zip: 200333,
-					remark: "上海市普陀区金沙江路 1517 弄上弄上弄上"
-				}]
+				let _this = this;
+				var params = {
+					pageNo: _this.currentPage,
+					pageSize: _this.pageSize,
+				}
+        console.log('params', params);
+				_this.$ajax.ajax(_this.$api.getMineralBookList, 'GET', params, function(res) {
+					if (res.code == _this.$api.ERR_OK) {
+						let list = res.data.list;
+						_this.currentItemsCount = list.length;
+						_this.tableData = list;
+						_this.total = res.data.total;
+					}
+				})
 			},
+      reduceThisWeekMineral4YC(){
+        let _this = this;
+        //过滤出userId
+        let userIdList = [];
+        _this.tableData.forEach(item=>{
+          userIdList.push(`'${item.userId}'`);
+        })
+        var params = {
+          userIdList: userIdList.join(',')
+        }
+        console.log('params',params);
+        _this.levelProfitLoading = true;
+        _this.$ajax.ajax(_this.$api.reduceThisWeekMineral4YC, 'POST', params, function(res) {
+          _this.levelProfitLoading = false;
+          if (res.code == _this.$api.ERR_OK) {
+            _this.$message.success('执行成功');
+          }
+        },function(){
+          _this.levelProfitLoading = false;
+        })
+      },
 			search() {
 				this.is_search = true;
 			},
@@ -492,6 +327,23 @@
 				// }
 				// this.detailOrEditVisible = true;
 			},
+      getYC(){
+        let _this = this;
+        var params = {
+        	pageNo: _this.pageIndex,
+        	pageSize: _this.pageSize,
+        }
+        _this.$ajax.ajax(_this.$api.getMineralBookInfoList4YC, 'GET', params, function(res) {
+        	////console.log('res', res);
+        	if (res.code == _this.$api.ERR_OK) { // 200
+        		let list = res.data.list;
+        		////console.log('list', list);
+        		_this.currentItemsCount = list.length;
+        		_this.tableData = list;
+        		_this.total = res.data.total;
+        	}
+        })
+      },
 			handleEdit(index, row) {
 				this.visibleType = 'edit';
 				this.idx = index;

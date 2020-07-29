@@ -70,7 +70,7 @@ export default{
 	updateAssistMiningMachine:host + "admin/miningMachine/updateAssistMiningMachine",
 	deleteAssistMiningMachine: host + "admin/miningMachine/deleteAssistMiningMachine/",
 	giveMyMachine: host + "admin/myMachine/giveMyMachine",
-	//交易信息 
+	//交易信息
 	getAssistTransactionListByPage: host + "admin/transaction/getAssistTransactionListByPage",
 	cancelAssistTransactionById: host + "admin/transaction/cancelAssistTransactionById",
   sureDeal4SellerById: host + "admin/transaction/sureDeal4SellerById",
@@ -106,5 +106,8 @@ export default{
   updateIsShow: host + "admin/raise/updateIsShow",
   updateStatus: host + "admin/raise/updateStatus",
   recycleMineral: host + "admin/mineralBook/recycleMineral",
+  getMineralBookList: host + "admin/mineralBook/getMineralBookList",
+  getMineralBookInfoList4YC: host + "admin/mineralBook/getMineralBookInfoList4YC",
+  reduceThisWeekMineral4YC: host + "admin/mineralBook/reduceThisWeekMineral4YC",
   updateRaiseInfo: host + "admin/raise/updateRaiseInfo"
 }

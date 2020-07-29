@@ -165,6 +165,9 @@
           id: 28,
           value: "交易超时确认"
 				},{
+          id: 29,
+          value: "最近有30天没登录"
+				},{
           id: 30,
           value: "违规操作"
 				},{
@@ -330,7 +333,6 @@
 			handleSizeChange(val) {
 				//console.log('size', val)
 			},
-			// 获取 easy-mock 的模拟数据
 			getData() {
         let _this = this;
         var params = {
