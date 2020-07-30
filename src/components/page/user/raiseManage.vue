@@ -402,7 +402,6 @@
         }
         picList.push(item);
         //_this.picList = picList;
-        console.log("picList",picList);
         return picList;
       },
       isShowChange(row){
@@ -411,7 +410,6 @@
       		isShow:row.isShow?1:0,
       		raiseId:row.id
       	}
-        console.log('row.isShow',row.isShow)
       	_this.$ajax.ajax(_this.$api.updateIsShow, 'POST', params, function(res){
       		// console.log('res',res)
       		if (res.code == _this.$api.ERR_OK) { // 200
