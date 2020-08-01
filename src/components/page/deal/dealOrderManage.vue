@@ -96,7 +96,7 @@
        	<div>卖家昵称:{{form.nickName}}</div>
        	<div>卖家姓名:{{form.realName}}</div>
        	<div>卖家手机号:{{form.mobilePhone}}</div>
-        <div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}} 身份证号:{{form.idCard}} 个人算力:{{form.myCalculationPower}} 团队算力:{{form.teamCalculationPower}} 实名人数:{{form.realnameNum}} 贡献值:{{form.contributionValue}}</div>
+        <div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}} 身份证号:{{form.idCard}} 个人算力:{{form.myCalculationPower}} 团队算力:{{form.teamCalculationPower}} 实名人数:{{form.realnameNum}} 贡献值:{{form.contributionValue}} 爱心值:{{form.aword}}</div>
         <div>买家手机号:{{form.buyerPhone}}</div>
         <div>买家昵称:{{form.buyerNickName}}</div>
        	<div>交易类型:{{form.type | dealType}}</div>
