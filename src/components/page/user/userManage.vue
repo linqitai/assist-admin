@@ -133,6 +133,9 @@
         <el-form-item label="实名次数">
           <el-input v-model="form.submitActivedNum"></el-input>
         </el-form-item>
+        <el-form-item label="爱心值">
+          <el-input v-model="form.aword"></el-input>
+        </el-form-item>
         <div class="placeholderLine10"></div>
         <el-form-item label="手机号">
           <el-input v-model="form.mobilePhone"></el-input>
