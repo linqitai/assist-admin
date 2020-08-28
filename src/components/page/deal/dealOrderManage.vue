@@ -357,10 +357,6 @@
           		});
           	}
           })
-					_this.$message({
-						type: 'success',
-						message: '确认成功'
-					});
 					_this.detailOrEditVisible = false;
 				}).catch(() => {
 					_this.$message({
