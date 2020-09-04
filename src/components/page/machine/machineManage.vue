@@ -267,7 +267,7 @@
 				tableData: [],
 				tableData1: [],
 				searchForm: {
-					versionNo:6,
+					versionNo:7,
 					sellOrNot:''
 				},
 				status: "",
@@ -429,7 +429,7 @@
 				this.pageSizes = this.$config.pageSizes;
 				this.pageSize = this.$config.pageSize;
 				this.versionOptions = this.$config.versionOptions;
-				this.machineVersionNoOptions = this.$config.machineVersionNoOptions;
+				this.machineVersionNoOptions = this.$config.versionOptions;
 				this.isOrNoOptions = this.$config.isOrNoOptions;
 				this.tagOptions = this.$config.machineTagOptions;
 				this.typeOptions = this.$config.machineTypeOptions;
