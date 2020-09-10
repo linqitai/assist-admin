@@ -119,6 +119,9 @@
 					},{
 						id: 12,
 						value: "代理分红"
+					},{
+						id: 19,
+						value: "昨日收购矿石奖励"
 					}],
 				form4Transfer:{
           transferType:0,
