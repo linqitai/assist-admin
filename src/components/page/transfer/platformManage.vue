@@ -122,6 +122,9 @@
 					},{
 						id: 19,
 						value: "昨日收购矿石奖励"
+					},{
+						id: 23,
+						value: "挑战2048小游戏胜出"
 					}],
 				form4Transfer:{
           transferType:0,
