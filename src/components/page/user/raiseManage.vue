@@ -102,6 +102,11 @@
 							<div class="flexBoxLeft" v-if="props.row.pic">
                 <el-image
                     style="width: 60px; height: 80px"
+                    v-for="(item,index) in props.row.headPic.split('|')" :src="item" :key="index"
+                    :preview-src-list="props.row.headPic.split('|')">
+                  </el-image>
+                <el-image
+                    style="width: 60px; height: 80px"
                     v-for="(item,index) in props.row.pic.split('|')" :src="item" :key="index"
                     :preview-src-list="props.row.pic.split('|')">
                   </el-image>
@@ -119,10 +124,12 @@
 				<el-table-column prop="realName" label="姓名" min-width="80" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="nickName" label="昵称" min-width="120" show-overflow-tooltip></el-table-column>
 				<el-table-column prop="mobilePhone" label="手机号" min-width="120"></el-table-column>
+        <el-table-column prop="needMineral" label="需要多少矿石" min-width="100"></el-table-column>
         <el-table-column prop="needTicket" label="需要多少券" min-width="100"></el-table-column>
         <el-table-column prop="getedTicket" label="已经筹到多少券" min-width="120"></el-table-column>
         <el-table-column prop="beHelpTimes" label="被帮扶次数" min-width="80"></el-table-column>
         <el-table-column prop="teamCalculationPower" label="团队算力" min-width="90"></el-table-column>
+        <el-table-column prop="remark" label="驳回原因" min-width="200"></el-table-column>
         <el-table-column label="状态" width="100">
         	<template slot-scope="scope">
         		{{scope.row.status | filterStatus}}
@@ -142,10 +149,10 @@
         </el-table-column>
         <el-table-column label="操作" width="120" fixed="right">
           <template slot-scope="scope">
-            <el-link type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-link>
+            <el-link type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-link> |
             <!-- <el-button type="text" icon="el-icon-view" @click="handleDetail(scope.$index, scope.row)">详情</el-button>
           	<el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
-            <!-- <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+            <el-link type="primary" @click="deleteRaiseByRaiseId(scope.row)">删除</el-link>
           </template>
         </el-table-column>
         <!-- <el-table-column label="设置" width="120" fixed="right">
@@ -183,6 +190,9 @@
 				<el-form-item label="所需券">
 					<el-input v-model="form.needTicket"></el-input>
 				</el-form-item>
+        <el-form-item label="所需矿石">
+        	<el-input v-model="form.needMineral"></el-input>
+        </el-form-item>
 				<el-form-item label="团队算力">
 					<el-input v-model="form.teamCalculationPower"></el-input>
 				</el-form-item>
@@ -201,6 +211,14 @@
           <el-select v-model="form.status" @change="statusChange">
             <el-option v-for="item in statusOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
           </el-select>
+        </el-form-item>
+        <div class="placeholderLine10"></div>
+        <el-form-item label="驳回原因">
+        	<el-input v-model="form.remark"
+            class="width800"
+            type="textarea"
+            :autosize="{ minRows: 1, maxRows: 3}">
+          </el-input>
         </el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer center">
@@ -283,6 +301,8 @@
 					result = '投票中';
         }else if (val == 6) {
           result = '待拜访';
+        }else if (val == 7) {
+          result = '被驳回';
         }
     		return result;
     	}
@@ -323,7 +343,9 @@
           title:_this.form.title,
           story:_this.form.story,
           needTicket:_this.form.needTicket,
+          needMineral:_this.form.needMineral,
           picNum:_this.form.picNum,
+          remark:_this.form.remark
         }
         _this.$ajax.ajax(_this.$api.updateRaiseInfo, 'POST', params, function(res){
         	// console.log('res',res)
@@ -365,7 +387,29 @@
 				this.pageSize = val;
 				this.getData();
 			},
-			// 获取 easy-mock 的模拟数据
+      deleteRaiseByRaiseId(item){
+        let _this = this;
+        _this.$confirm(`您确定要将ID为${item.id}的帮扶筹删除吗?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+        	var params = {
+        		raiseId:item.id
+        	}
+        	_this.$ajax.ajax(_this.$api.deleteRaiseByRaiseId, 'POST', params, function(res){
+        		// //console.log('res',res)
+        		if (res.code == _this.$api.ERR_OK) { // 200
+        			 _this.$message.success('操作成功');
+               _this.getData();
+        		}else{
+        	    _this.$message.error('操作失败');
+        	  }
+        	})
+        }).catch(() => {
+
+        });
+      },
 			getData() {
 				let _this = this;
 				//console.log('searchForm',this.searchForm);

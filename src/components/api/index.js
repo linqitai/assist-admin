@@ -109,5 +109,6 @@ export default{
   getMineralBookList: host + "admin/mineralBook/getMineralBookList",
   getMineralBookInfoList4YC: host + "admin/mineralBook/getMineralBookInfoList4YC",
   reduceThisWeekMineral4YC: host + "admin/mineralBook/reduceThisWeekMineral4YC",
-  updateRaiseInfo: host + "admin/raise/updateRaiseInfo"
+  updateRaiseInfo: host + "admin/raise/updateRaiseInfo",
+  deleteRaiseByRaiseId: host + "admin/raise/deleteRaiseByRaiseId"
 }
