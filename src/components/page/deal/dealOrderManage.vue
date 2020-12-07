@@ -10,9 +10,10 @@
 				<div class="element">
 					<p class="inline">匹配时间</p>
 					<div class="inline">
-						<el-date-picker class="width160" @change="datePickerChange" type="date" placeholder="选择日期" v-model="searchForm.machingTime" value-format="yyyy-MM-dd"></el-date-picker>
+						<el-date-picker class="width160" @change="datePickerChange" type="date" placeholder="选择日期" v-model="searchForm.machingTime"
+						 value-format="yyyy-MM-dd"></el-date-picker>
 					</div>
-          <!-- <el-input class="width160" v-model="searchForm.machingTime" size="medium" placeholder="请输入时间" clearable></el-input> -->
+					<!-- <el-input class="width160" v-model="searchForm.machingTime" size="medium" placeholder="请输入时间" clearable></el-input> -->
 				</div>
 				<div class="element">
 					<p class="inline">交易状态查询</p>
@@ -47,7 +48,7 @@
 				<el-table-column prop="realName" label="卖家姓名" min-width="120"></el-table-column>
 				<el-table-column prop="mobilePhone" label="卖家手机号" min-width="120"></el-table-column>
 				<el-table-column prop="buyerPhone" label="买家手机号" min-width="120"></el-table-column>
-        <el-table-column prop="buyerNickName" label="买家昵称" min-width="120"></el-table-column>
+				<el-table-column prop="buyerNickName" label="买家昵称" min-width="120"></el-table-column>
 				<el-table-column prop="type" label="交易类型" min-width="100">
 					<template slot-scope="props">
 						{{ props.row.type | dealType }}
@@ -89,63 +90,64 @@
 			</el-form-item> -->
 			<!-- <el-image class="item" :preview-src-list="imagesList" v-for="item in imagesList" :key="item" :src="item" fit="cover"
 			 lazy></el-image> -->
-       <el-form ref="form" label-width="auto" :inline="false">
-       	<div>ID:{{form.id}}</div>
-       	<div>买家ID:{{form.buyerId}}</div>
-       	<div>卖家ID:{{form.sellerId}}</div>
-       	<div>卖家昵称:{{form.nickName}}</div>
-       	<div>卖家姓名:{{form.realName}}</div>
-       	<div class="red">卖家手机号:{{form.mobilePhone}}</div>
-        <div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}} 身份证号:{{form.idCard}} 个人算力:{{form.myCalculationPower}} 团队算力:{{form.teamCalculationPower}} 实名人数:{{form.realnameNum}} 贡献值:{{form.contributionValue}} 爱心值:{{form.aword}}</div>
-        <div>买家昵称:{{form.buyerNickName}}</div>
-        <div>买家手机号:{{form.buyerPhone}}</div>
-       	<div>交易类型:{{form.type | dealType}}</div>
-       	<div>交易数量:{{form.num}}</div>
-       	<div>交易单价:{{form.price}}</div>
-       	<div class="red">交易状态:{{form.status | dealStatusType}}</div>
-       	<div>挂单时间:{{form.hangBillTime}}</div>
-       	<div>匹配时间:{{form.machingTime}}</div>
-        <div>放币时间:{{form.coinReleaseTime||'--'}}</div>
-       	<div>可确认时间:{{form.letSureTime||'--'}}</div>
-        <div>可取消时间:{{form.canCancelTime||'--'}}</div>
-        <!-- <div>取消交易时间:{{form.canCancelTime||'--'}}</div> -->
-       	<div>备注:{{form.remark}}</div>
-       	<div>
-       		<div>打款凭证:</div>
-       		<div v-if="form.status==4 || form.status==5 || form.status==8">
-       			<img class="selectedImg" :src="form.imgUrl"/>
-       		</div>
-       	</div>
-        <el-form-item label="交易状态" class="block">
-        	 <!-- @change="conditionChange" -->
-          <el-select v-model="form4Update.status" @change="status4UpdateChange">
-            <el-option v-for="item in statusOptions4Update" :key="item.id" :label="item.value" :value="item.id"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="留言" class="block">
-          <el-input v-model="form4Update.remark" size="medium" type="textarea" :rows="2" placeholder="留言内容" clearable></el-input>
-        </el-form-item>
-       	<el-form-item label="贡献值" class="block" v-if="checked">
-       		<el-input-number v-model="addContributionValue" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
-       	</el-form-item>
-        <el-form-item label="确认方式" class="block">
-        	 <!-- @change="conditionChange" -->
-          <el-select v-model="isFreezeSellerChecked" @change="sureOptionsChange">
-            <el-option v-for="item in sureOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
-          </el-select>
-        </el-form-item>
-       </el-form>
-       <el-checkbox v-model="checked">是否给于买家奖励</el-checkbox>
-       <!-- <el-checkbox v-model="isFreezeSellerChecked">是否帮卖家确认且冻结卖家</el-checkbox> -->
-       <div class="placeholderLine10"></div>
-       <div class="placeholderLine10"></div>
+			<el-form ref="form" label-width="auto" :inline="false">
+				<div>ID:{{form.id}}</div>
+				<div>买家ID:{{form.buyerId}}</div>
+				<div>卖家ID:{{form.sellerId}}</div>
+				<div>卖家昵称:{{form.nickName}}</div>
+				<div>卖家姓名:{{form.realName}}</div>
+				<div class="red">卖家手机号:{{form.mobilePhone}}</div>
+				<div>卖家买入次数:{{form.buyTimes}} 买入个数:{{form.buyAmount}} 卖出次数:{{form.sellTimes}} 卖出个数:{{form.sellAmount}} 身份证号:{{form.idCard}}
+					个人算力:{{form.myCalculationPower}} 团队算力:{{form.teamCalculationPower}} 实名人数:{{form.realnameNum}} 贡献值:{{form.contributionValue}}
+					爱心值:{{form.aword}}</div>
+				<div>买家昵称:{{form.buyerNickName}}</div>
+				<div>买家手机号:{{form.buyerPhone}}</div>
+				<div>交易类型:{{form.type | dealType}}</div>
+				<div>交易数量:{{form.num}}</div>
+				<div>交易单价:{{form.price}}</div>
+				<div class="red">交易状态:{{form.status | dealStatusType}}</div>
+				<div>挂单时间:{{form.hangBillTime}}</div>
+				<div>匹配时间:{{form.machingTime}}</div>
+				<div>放币时间:{{form.coinReleaseTime||'--'}}</div>
+				<div>可确认时间:{{form.letSureTime||'--'}}</div>
+				<div>可取消时间:{{form.canCancelTime||'--'}}</div>
+				<!-- <div>取消交易时间:{{form.canCancelTime||'--'}}</div> -->
+				<div>备注:{{form.remark}}</div>
+				<div>
+					<div>打款凭证:</div>
+					<div v-if="form.status==4 || form.status==5 || form.status==8">
+						<img class="selectedImg" :src="form.imgUrl" />
+					</div>
+				</div>
+				<el-form-item label="交易状态" class="block">
+					<!-- @change="conditionChange" -->
+					<el-select v-model="form4Update.status" @change="status4UpdateChange">
+						<el-option v-for="item in statusOptions4Update" :key="item.id" :label="item.value" :value="item.id"></el-option>
+					</el-select>
+				</el-form-item>
+				<el-form-item label="留言" class="block">
+					<el-input v-model="form4Update.remark" size="medium" type="textarea" :rows="2" placeholder="留言内容" clearable></el-input>
+				</el-form-item>
+				<el-form-item label="贡献值" class="block" v-if="checked">
+					<el-input-number v-model="addContributionValue" :min="0" :max="10" label="请填写所要给于奖励的贡献值"></el-input-number>
+				</el-form-item>
+				<el-form-item label="确认方式" class="block">
+					<!-- @change="conditionChange" -->
+					<el-select v-model="isFreezeSellerChecked" @change="sureOptionsChange">
+						<el-option v-for="item in sureOptions" :key="item.id" :label="item.value" :value="item.id"></el-option>
+					</el-select>
+				</el-form-item>
+			</el-form>
+			<el-checkbox v-model="checked">是否给于买家奖励</el-checkbox>
+			<!-- <el-checkbox v-model="isFreezeSellerChecked">是否帮卖家确认且冻结卖家</el-checkbox> -->
+			<div class="placeholderLine10"></div>
+			<div class="placeholderLine10"></div>
 			<span slot="footer" class="dialog-footer center">
 				<el-button type="default" icon="el-icon-edit" @click="cancelDealBtn(form)">取消交易</el-button>
 				<el-button type="primary" icon="el-icon-edit" @click="sellerSureBtn(form)">帮卖方确认</el-button>
 				<el-button type="default" icon="el-icon-edit" @click="saveDealStatusBtn(form)">保存修改</el-button>
 			</span>
 		</el-dialog>
-
 		<!-- 删除提示框 -->
 		<el-dialog title="提示" :visible.sync="delVisible" width="300px" center>
 			<div class="del-dialog-cnt">删除不可恢复，是否确定删除？</div>
@@ -162,38 +164,52 @@
 	export default {
 		data() {
 			return {
-        form4Update:{
-          status:2,
-          remark:''
-        },
-        addContributionValue:0,
+				form4Update: {
+					status: 2,
+					remark: ''
+				},
+				remark:'',
+				addContributionValue: 0,
 				url: '',
 				tableData: [],
 				total: 400,
 				pageIndex: 1,
-				pageSizes:'',
-				pageSize:'',
+				pageSizes: '',
+				pageSize: '',
 				currentPage: 1,
 				multipleSelection: [],
-        year:'',
-        month:'',
-        day:'',
+				year: '',
+				month: '',
+				day: '',
 				searchForm: {
-					machingTime:'',
+					machingTime: '',
 					status: '',
 					condition: '',
 					searchContent: ''
 				},
-				status:"",
+				status: "",
 				statusOptions: [],
-        statusOptions4Update: [
-          {id:0,value:'待付款'},{id:2,value:'待确认'},{id:9,value:'取消交易'}
-        ],
-        sureOptions: [
-          {id:0,value:'只扣1个贡献值'},{id:1,value:'扣1且冻结'},{id:2,value:'不扣也不冻结'}
-        ],
-				conditionOptions: [
-					{
+				statusOptions4Update: [{
+					id: 0,
+					value: '待付款'
+				}, {
+					id: 2,
+					value: '待确认'
+				}, {
+					id: 9,
+					value: '取消交易'
+				}],
+				sureOptions: [{
+					id: 0,
+					value: '只扣1个贡献值'
+				}, {
+					id: 1,
+					value: '扣1且冻结'
+				}, {
+					id: 2,
+					value: '不扣也不冻结'
+				}],
+				conditionOptions: [{
 						id: "",
 						value: "无"
 					},
@@ -223,16 +239,16 @@
 				delVisible: false,
 				form: {
 					date: '',
-					status:'',
+					status: '',
 					name: '',
 					address: ''
 				},
 				adressWidth: '200px',
 				idx: -1,
 				checkedMineralDesc: false,
-        checked:false,
-        isFreezeSellerChecked:0,
-        getMachineTime:''
+				checked: false,
+				isFreezeSellerChecked: 0,
+				getMachineTime: ''
 			}
 		},
 		components: {
@@ -246,39 +262,39 @@
 
 		},
 		methods: {
-			initData(){
+			initData() {
 				this.pageSizes = this.$config.pageSizes;
 				this.pageSize = this.$config.pageSize;
-				this.statusOptions= this.$config.dealStatusOptions;
+				this.statusOptions = this.$config.dealStatusOptions;
 			},
-			textColor(status){
-				if(status==5){
+			textColor(status) {
+				if (status == 5) {
 					return 'red';
-				}else if(status == 8){
+				} else if (status == 8) {
 					return 'green';
-				}else if(status==3){
+				} else if (status == 3) {
 					return 'textAdorn';
 				}
 			},
 			checkedMineralDescChange() {
 
 			},
-			datePickerChange(val){
+			datePickerChange(val) {
 				let _this = this;
-        _this.getMachineTime = new Date(val).getTime();
-        console.log('_this.getMachineTime',_this.getMachineTime);
+				_this.getMachineTime = new Date(val).getTime();
+				console.log('_this.getMachineTime', _this.getMachineTime);
 				_this.currentPage = 1;
 				_this.getData();
 			},
-      status4UpdateChange(val){
-        let _this = this;
-        _this.form4Update.status = val;
-      },
-      sureOptionsChange(val){
-        let _this = this;
-        _this.isFreezeSellerChecked = val;
-        console.log("_this.isFreezeSellerChecked:",_this.isFreezeSellerChecked);
-      },
+			status4UpdateChange(val) {
+				let _this = this;
+				_this.form4Update.status = val;
+			},
+			sureOptionsChange(val) {
+				let _this = this;
+				_this.isFreezeSellerChecked = val;
+				console.log("_this.isFreezeSellerChecked:", _this.isFreezeSellerChecked);
+			},
 			statusChange(val) {
 				let _this = this;
 				_this.searchForm.status = val;
@@ -294,17 +310,17 @@
 			getData() {
 				let _this = this;
 				var params = {
-					pageNo:_this.currentPage,
-					pageSize:_this.pageSize,
+					pageNo: _this.currentPage,
+					pageSize: _this.pageSize,
 					status: _this.searchForm.status,
-					machingTimeLong:_this.getMachineTime,
-					id:_this.searchForm.id,
-					buyerId:_this.searchForm.buyerId,
-					sellerId:_this.searchForm.sellerId,
-					mobilePhone:_this.searchForm.mobilePhone,
+					machingTimeLong: _this.getMachineTime,
+					id: _this.searchForm.id,
+					buyerId: _this.searchForm.buyerId,
+					sellerId: _this.searchForm.sellerId,
+					mobilePhone: _this.searchForm.mobilePhone,
 				}
 				//console.log(params,'params');
-				_this.$ajax.ajax(_this.$api.getAssistTransactionListByPage, 'GET', params, function(res){
+				_this.$ajax.ajax(_this.$api.getAssistTransactionListByPage, 'GET', params, function(res) {
 					// //console.log('res',res)
 					if (res.code == _this.$api.ERR_OK) { // 200
 						_this.tableData = res.data.list;
@@ -316,47 +332,47 @@
 				let _this = this;
 				_this.currentPage = 1;
 				//console.log('searchForm', _this.searchForm)
-				if(_this.searchForm.condition=='选择'){
+				if (_this.searchForm.condition == '选择') {
 
-				}else if(_this.searchForm.condition == '订单ID'){
+				} else if (_this.searchForm.condition == '订单ID') {
 					_this.searchForm.id = _this.searchForm.searchContent;
-				}else if(_this.searchForm.condition == '买家ID'){
+				} else if (_this.searchForm.condition == '买家ID') {
 					_this.searchForm.buyerId = _this.searchForm.searchContent;
-				}else if(_this.searchForm.condition == '卖家ID'){
+				} else if (_this.searchForm.condition == '卖家ID') {
 					_this.searchForm.sellerId = _this.searchForm.searchContent;
-				}else if(_this.searchForm.condition == '卖家手机号'){
+				} else if (_this.searchForm.condition == '卖家手机号') {
 					_this.searchForm.mobilePhone = _this.searchForm.searchContent;
 				}
 				_this.getData();
 			},
-			sellerSureBtn(form){
-        let _this = this;
+			sellerSureBtn(form) {
+				let _this = this;
 				_this.$confirm('此操作将帮卖方确认, 是否继续?', '提示', {
 					confirmButtonText: '确定',
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
-          //console.log("sure");
-          let params = {
-          	id:form.id,
-            isFreezeSellerChecked:_this.isFreezeSellerChecked
-          }
-          console.log("params",params);
-          _this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res){
-          	if (res.code == _this.$api.ERR_OK) {
-          		_this.$message({
-          			type: 'success',
-          			message: '确认成功'
-          		});
-          		_this.detailOrEditVisible = false;
-          		_this.getData();
-          	}else{
-          		_this.$message({
-          			type: 'info',
-          			message: res.message
-          		});
-          	}
-          })
+					//console.log("sure");
+					let params = {
+						id: form.id,
+						isFreezeSellerChecked: _this.isFreezeSellerChecked
+					}
+					console.log("params", params);
+					_this.$ajax.ajax(_this.$api.sureDeal4SellerById, 'POST', params, function(res) {
+						if (res.code == _this.$api.ERR_OK) {
+							_this.$message({
+								type: 'success',
+								message: '确认成功'
+							});
+							_this.detailOrEditVisible = false;
+							_this.getData();
+						} else {
+							_this.$message({
+								type: 'info',
+								message: res.message
+							});
+						}
+					})
 					_this.detailOrEditVisible = false;
 				}).catch(() => {
 					_this.$message({
@@ -365,42 +381,42 @@
 					});
 				});
 			},
-      saveDealStatusBtn(){
-        let _this = this;
-        _this.$confirm('此操作将修改此单交易信息与状态, 是否继续?', '提示', {
-        	confirmButtonText: '确定',
-        	cancelButtonText: '取消',
-        	type: 'warning'
-        }).then(() => {
-        	let params = {
-        		id:_this.form.id,
-        		status:_this.form4Update.status,
-        		remark:_this.form4Update.remark
-        	}
-        	//console.log('params',params);
-        	_this.$ajax.ajax(_this.$api.updateTransactionInfo, 'POST', params, function(res){
-        		// //console.log('res',res)
-        		if (res.code == _this.$api.ERR_OK) { // 200
-        			_this.$message({
-        				type: 'success',
-        				message: '修改成功'
-        			});
-        			_this.detailOrEditVisible = false;
-        			_this.getData();
-        		}else{
-        			_this.$message({
-        				type: 'info',
-        				message: res.message
-        			});
-        		}
-        	})
-        }).catch(() => {
-        	this.$message({
-        		type: 'info',
-        		message: '我再考虑考虑'
-        	});
-        });
-      },
+			saveDealStatusBtn() {
+				let _this = this;
+				_this.$confirm('此操作将修改此单交易信息与状态, 是否继续?', '提示', {
+					confirmButtonText: '确定',
+					cancelButtonText: '取消',
+					type: 'warning'
+				}).then(() => {
+					let params = {
+						id: _this.form.id,
+						status: _this.form4Update.status,
+						remark: _this.form4Update.remark
+					}
+					//console.log('params',params);
+					_this.$ajax.ajax(_this.$api.updateTransactionInfo, 'POST', params, function(res) {
+						// //console.log('res',res)
+						if (res.code == _this.$api.ERR_OK) { // 200
+							_this.$message({
+								type: 'success',
+								message: '修改成功'
+							});
+							_this.detailOrEditVisible = false;
+							_this.getData();
+						} else {
+							_this.$message({
+								type: 'info',
+								message: res.message
+							});
+						}
+					})
+				}).catch(() => {
+					this.$message({
+						type: 'info',
+						message: '我再考虑考虑'
+					});
+				});
+			},
 			cancelDealBtn(form) {
 				let _this = this;
 				_this.$confirm('此操作将取消此单交易, 是否继续?', '提示', {
@@ -408,18 +424,17 @@
 					cancelButtonText: '取消',
 					type: 'warning'
 				}).then(() => {
-          if(!_this.checked){
-            _this.addContributionValue = 0.00;
-          }
-					let params = {
-						id:form.id,
-						buyerId:form.buyerId,
-						sellerId:form.sellerId,
-            addContributionValue:_this.addContributionValue.toFixed(2)
+					if (!_this.checked) {
+						_this.addContributionValue = 0.00;
 					}
-					//console.log('params',params);
-
-					_this.$ajax.ajax(_this.$api.cancelAssistTransactionById, 'POST', params, function(res){
+					let params = {
+						id: form.id,
+						buyerId: form.buyerId,
+						sellerId: form.sellerId,
+						addContributionValue: _this.addContributionValue.toFixed(2),
+						remark:"【客服】由于买家没及时付款，此单交易将取消，请卖家重新匹配。"
+					}
+					_this.$ajax.ajax(_this.$api.cancelAssistTransactionById, 'POST', params, function(res) {
 						// //console.log('res',res)
 						if (res.code == _this.$api.ERR_OK) { // 200
 							_this.$message({
@@ -428,7 +443,7 @@
 							});
 							_this.detailOrEditVisible = false;
 							_this.getData();
-						}else{
+						} else {
 							_this.$message({
 								type: 'info',
 								message: res.message
@@ -465,8 +480,8 @@
 			handleDetail(index, row) {
 				this.visibleType = 'detail';
 				this.form = row;
-        this.form4Update.status = row.status;
-        this.form4Update.remark = row.remark;
+				this.form4Update.status = row.status;
+				this.form4Update.remark = row.remark;
 				this.detailOrEditVisible = true;
 			},
 			handleEdit(index, row) {
@@ -515,9 +530,10 @@
 </script>
 
 <style scoped>
-	.selectedImg{
+	.selectedImg {
 		width: 300px;
 	}
+
 	.handle-box {
 		margin-bottom: 20px;
 	}

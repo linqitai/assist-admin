@@ -5,7 +5,7 @@ const host = '/bfl/'
 // 登录接口
 // export const loginUrl = host + 'admin/login';
 
-export default{
+export default {
 	//CONST
 	ERR_OK: 200,
 	ERR_NO: 500,
@@ -25,18 +25,18 @@ export default{
 	editAdminUser: host + "admin/user/updateAdminUser",
 	deletedAdminUserByUserId: host + "admin/user/deletedAdminUserByUserId/",
 	updateUserActivedByUserId: host + "admin/userInfo/updateUserActivedByUserId",
-  giveLevelDealProfit: host + "admin/userInfo/giveLevelDealProfit",
-  getAssistUserInfoPageList4Prifit: host + "admin/userInfo/getAssistUserInfoPageList4Prifit",
-  getAssistUserInfoPageList4Level: host + "admin/userInfo/getAssistUserInfoPageList4Level",
-  updateUserInfo: host + "admin/userInfo/updateUserInfo",
+	giveLevelDealProfit: host + "admin/userInfo/giveLevelDealProfit",
+	getAssistUserInfoPageList4Prifit: host + "admin/userInfo/getAssistUserInfoPageList4Prifit",
+	getAssistUserInfoPageList4Level: host + "admin/userInfo/getAssistUserInfoPageList4Level",
+	updateUserInfo: host + "admin/userInfo/updateUserInfo",
 	//service
 	getServiceUserPageList: host + "admin/user/getServiceUserPageList",
 	insertServiceUser: host + "admin/user/insertServiceUser",
 	deletedServiceUserById: host + "admin/user/deletedServiceUserById/",
 	updateServiceUser: host + "admin/user/updateServiceUser",
 	//userinfo
-	getAssistUserInfo: host +'/admin/userInfo/getAssistUserInfo/',
-	getAssistUserInfoPageList: host +'/admin/userInfo/getAssistUserInfoPageList',
+	getAssistUserInfo: host + '/admin/userInfo/getAssistUserInfo/',
+	getAssistUserInfoPageList: host + '/admin/userInfo/getAssistUserInfoPageList',
 	getUserIdByPhone: host + "admin/userInfo/getUserIdByPhone",
 	updateLetCanUnFreeze: host + "admin/userInfo/updateLetCanUnFreeze",
 	//menu
@@ -65,16 +65,17 @@ export default{
 	updateAssistQuestion: host + "admin/question/updateAssistQuestion",
 	deleteAssistQuestionById: host + "admin/question/deleteAssistQuestionById/",
 	//矿机
-	insertAssistMiningMachine:host + "admin/miningMachine/insertAssistMiningMachine",
-	getAssistMiningMachineList:host + "admin/miningMachine/getAssistMiningMachineList",
-	updateAssistMiningMachine:host + "admin/miningMachine/updateAssistMiningMachine",
+	insertAssistMiningMachine: host + "admin/miningMachine/insertAssistMiningMachine",
+	getAssistMiningMachineList: host + "admin/miningMachine/getAssistMiningMachineList",
+	updateAssistMiningMachine: host + "admin/miningMachine/updateAssistMiningMachine",
 	deleteAssistMiningMachine: host + "admin/miningMachine/deleteAssistMiningMachine/",
 	giveMyMachine: host + "admin/myMachine/giveMyMachine",
 	//交易信息
+	cancelDealAndFrezzeSeller: host + "admin/transaction/cancelDealAndFrezzeSeller",
 	getAssistTransactionListByPage: host + "admin/transaction/getAssistTransactionListByPage",
 	cancelAssistTransactionById: host + "admin/transaction/cancelAssistTransactionById",
-  sureDeal4SellerById: host + "admin/transaction/sureDeal4SellerById",
-  updateTransactionInfo: host + "admin/transaction/updateTransactionInfo",
+	sureDeal4SellerById: host + "admin/transaction/sureDeal4SellerById",
+	updateTransactionInfo: host + "admin/transaction/updateTransactionInfo",
 	//公告管理
 	getNoticePageList: host + "admin/notice/getNoticePageList",
 	updateNotice: host + "admin/notice/updateNotice",
@@ -100,15 +101,15 @@ export default{
 	//statistics
 	getToDayRegisterNum: host + "admin/statistics/getToDayRegisterNum",
 	getAwaitingCheckNum: host + "admin/statistics/getAwaitingCheckNum",
-  get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum",
-  //raise
-  getAssistRaiseListPage: host + "admin/raise/getAssistRaiseListPage",
-  updateIsShow: host + "admin/raise/updateIsShow",
-  updateStatus: host + "admin/raise/updateStatus",
-  recycleMineral: host + "admin/mineralBook/recycleMineral",
-  getMineralBookList: host + "admin/mineralBook/getMineralBookList",
-  getMineralBookInfoList4YC: host + "admin/mineralBook/getMineralBookInfoList4YC",
-  reduceThisWeekMineral4YC: host + "admin/mineralBook/reduceThisWeekMineral4YC",
-  updateRaiseInfo: host + "admin/raise/updateRaiseInfo",
-  deleteRaiseByRaiseId: host + "admin/raise/deleteRaiseByRaiseId"
+	get7DaysRegisterNum: host + "admin/userInfo/get7DaysRegisterNum",
+	//raise 
+	getAssistRaiseListPage: host + "admin/raise/getAssistRaiseListPage",
+	updateIsShow: host + "admin/raise/updateIsShow",
+	updateStatus: host + "admin/raise/updateStatus",
+	recycleMineral: host + "admin/mineralBook/recycleMineral",
+	getMineralBookList: host + "admin/mineralBook/getMineralBookList",
+	getMineralBookInfoList4YC: host + "admin/mineralBook/getMineralBookInfoList4YC",
+	reduceThisWeekMineral4YC: host + "admin/mineralBook/reduceThisWeekMineral4YC",
+	updateRaiseInfo: host + "admin/raise/updateRaiseInfo",
+	deleteRaiseByRaiseId: host + "admin/raise/deleteRaiseByRaiseId"
 }

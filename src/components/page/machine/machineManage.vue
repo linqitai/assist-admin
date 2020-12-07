@@ -105,7 +105,7 @@
 			</div>
 		</div>
 		<!-- 添加编辑弹出框 -->
-		<el-dialog :title="visibleType=='add'?'添加矿机':'编辑矿机'" v-dialogDrag :visible.sync="addlOrEditVisible" width="500px">
+		<el-dialog :title="visibleType=='add'?'添加矿机':'编辑矿机'" :visible.sync="addlOrEditVisible" width="500px">
 			<!--:rules="rules" -->
 			<el-form ref="form" :model="form" :rules="rules" label-width="auto">
 				<el-form-item label="矿机版本" prop="version">

@@ -3,7 +3,7 @@ module.exports = {
 	publicPath: './',
     productionSourceMap: false,
     devServer: {
-		port: 9099,
+		port: 9098,
         proxy: {
             '/bfl':{
                 target:'http://localhost:8002/',
