@@ -196,8 +196,14 @@
 					id: 2,
 					value: '待确认'
 				}, {
+					id: 3,
+					value: '上传付款截图'
+				}, {
 					id: 9,
 					value: '取消交易'
+				}, {
+					id: 12,
+					value: '请卖家上传短信通知凭证'
 				}],
 				sureOptions: [{
 					id: 0,
